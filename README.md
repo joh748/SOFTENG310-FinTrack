@@ -107,3 +107,6 @@ It might take a bit of time for everything to be downloaded, but once its over, 
 
 The following section goes into great detail about the various commands, but to get started, just type the following into the terminal to run the backend:
 `npm start`
+
+## Express
+To learn more about Express, check out the [express documentation](https://expressjs.com/en/5x/api.html)
