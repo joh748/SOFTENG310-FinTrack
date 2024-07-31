@@ -2,13 +2,15 @@
 Financial Tracker for SOFTENG 310 Project in the University of Auckland by Team Meow Meow Kitty Cats (Group 6). 
 
 # Frontend
+Change your current directory to the frontend using:
+
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+The frontend was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
 
-In the project directory, you can run:
+In the frontend directory, you can run:
 
 ### `npm start`
 
