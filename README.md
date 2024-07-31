@@ -1,7 +1,7 @@
 # SOFTENG310-FinTrack
 Financial Tracker for SOFTENG 310 Project in the University of Auckland by Team Meow Meow Kitty Cats (Group 6). This project will allows users to input and track their income and expenses for a certain period of time. Other functionality such as displaying financial metrics, currency conversion, and more will also be added.
 
-The project is a web app that uses React.js for the frontend, and Express.js for the backend. The database used is PostgreSQL.
+The project is a web app that uses React.js and Tailwind for the frontend, and Express.js for the backend. The database used is PostgreSQL.
 
 To run the web app locally, make sure to run the frontend and backend in separate terminals.
 
@@ -116,4 +116,4 @@ The following section goes into great detail about the various commands, but to 
 `npm start`
 
 ## Express
-To learn more about Express, check out the [express documentation](https://expressjs.com/en/5x/api.html)
+To learn more about Express, check out the [express documentation](https://expressjs.com/en/4x/api.html)
