@@ -1,7 +1,9 @@
 # SOFTENG310-FinTrack
-Financial Tracker for SOFTENG 310 Project in the University of Auckland by Team Meow Meow Kitty Cats (Group 6). 
+Financial Tracker for SOFTENG 310 Project in the University of Auckland by Team Meow Meow Kitty Cats (Group 6). This project will allows users to input and track their income and expenses for a certain period of time. Other functionality such as displaying financial metrics, currency conversion, and more will also be added.
 
-# Setup
+The project is a web app that uses React.js for the frontend, and Express.js for the backend. The database used is PostgreSQL.
+
+# General Setup
 To start off, you will need the node package manager (npm) to be installed in order to download the dependencies required for the frontend and backend. npm is installed alongside node.js
 
 You can download node.js at: https://nodejs.org/en/download/prebuilt-installer
