@@ -24,7 +24,7 @@ Make sure you're currently in the `.../SOFTENG310-FinTrack` directory (you may n
 Change your current directory to the frontend using:
 `cd frontend`
 
-Then, type in the following to download all the frontend dependencies:
+Then, type in the following to download all the frontend dependencies (you may have to repeat this if new dependencies are added):
 `npm install`
 
 It might take a bit of time for everything to be downloaded, but once its over, you can start running the frontend!
@@ -107,7 +107,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 Make sure you're currently in the `.../SOFTENG310-FinTrack` directory (you may need to create a new terminal).
 `cd backend`
 
-Then, type in the following to download all the frontend dependencies:
+Then, type in the following to download all the frontend dependencies (you may have to repeat this if new dependencies are added):
 `npm install`
 
 It might take a bit of time for everything to be downloaded, but once its over, you can start running the backend!
