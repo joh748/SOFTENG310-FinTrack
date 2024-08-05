@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+/*
+  This file is the main component of the frontend. It is the parent component of all other components.
+  Put our react components in this component.
+  Example:
+
+  function App() {
+  return (
+    <OurComponent />
+    <OtherComponent />
+    );
+  }
+*/
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <h1>FinTrack app</h1>
     </div>
   );
 }
