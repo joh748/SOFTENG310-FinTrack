@@ -1,6 +1,6 @@
 const express = require('express');
-const { checkEmailExists, checkPasswordCorrect, createUser  , getUserID} = require('../services/userService');
-const { isAuthenticated } = require('../middleware/autMiddleware'); 
+const { checkEmailExists, checkPasswordCorrect, createUser  , getUserID,  makeTransaction , getBalance, getUserTransactionsByPage} = require('../services/userService');
+const {isAuthenticated} = require('../middleware/autMiddleware')
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 
@@ -72,16 +72,38 @@ router.post('/signup', async (req, res) => {
         res.status(500).send({ success: false, error: error.message });
     }
 });
-
-
-
-router.get('/logout', async (req, res) => {
+router.get('/getBalance', isAuthenticated, async (req, res) => {
+    const userID = req.user.id;
     try {
-        req.session.destroy();
-        res.send({ success: true });
+        const result = await getBalance(userID);
+        res.send({ result: result });
     } catch (error) {
+        console.error('Error getting balance:', error);
         res.status(500).send({ success: false, error: error.message });
     }
 });
+router.post('/makeTransaction', isAuthenticated, async (req, res) => { 
+    const {amount,title,description} = req.body;
+
+    const userID = req.user.id;
+    try {
+        await makeTransaction(userID , amount , title , description );
+        res.send({ success: true });
+    } catch (error) {
+        console.error('Error making transactions', error);
+        res.status(500).send({ success: false, error: error.message });
+    }
+});
+router.post('/getTransactionByPage' , isAuthenticated , async(req , res) =>{
+    const {pageNumber} = req.body;
+    const userID = req.user.id;
+    try{
+       const result =  await getUserTransactionsByPage(userID , pageNumber);
+       res.status(200).send({sucess : true , result : result})
+    }catch{
+        console.error('Error when getting transactions' , error);
+        res.status(500).send({ success: false, error: error.message });
+    }
+})
 
 module.exports = router;
