@@ -70,6 +70,21 @@ const createUser = async (email, password) => {
         throw error;
     }
 }
+const decreaseBalance = async ( userID , amount ) => {
+    try {
+        const query = {
+            text: 'UPDATE users SET balance = balance + $1 WHERE id = $2' ,
+            values : [amount , userID]
+        }
+        try {
+            const result = await pool.query(query);
+        } catch(error){
+            console.error('Error updating balance:', error);
+        }
+    } catch(error){
+        console.error("problem with decrease balance function",error);
+    }
+}
 
 
 
