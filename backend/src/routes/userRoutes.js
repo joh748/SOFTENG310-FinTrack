@@ -1,6 +1,6 @@
 const express = require('express');
-const { checkEmailExists, checkPasswordCorrect, createUser  , getUserID} = require('../services/userService');
-const { isAuthenticated } = require('../middleware/autMiddleware'); 
+const { checkEmailExists, checkPasswordCorrect, createUser  , getUserID, decreaseBalance, getBalance} = require('../services/userService');
+const {isAuthenticated} = require('../middleware/autMiddleware')
 const router = express.Router();
 const jwt = require('jsonwebtoken');
 
@@ -72,14 +72,24 @@ router.post('/signup', async (req, res) => {
         res.status(500).send({ success: false, error: error.message });
     }
 });
-
-
-
-router.get('/logout', async (req, res) => {
+router.get('/getBalance', isAuthenticated, async (req, res) => {
+    const userID = req.user.id;
     try {
-        req.session.destroy();
+        const result = await getBalance(userID); // Use await for asynchronous call
+        res.send({ result: result });
+    } catch (error) {
+        console.error('Error getting balance:', error);
+        res.status(500).send({ success: false, error: error.message });
+    }
+});
+router.post('/updateBalance', isAuthenticated, async (req, res) => { // Use POST method
+    const amount = req.body.amount;
+    const userID = req.user.id;
+    try {
+        await decreaseBalance(userID, amount);
         res.send({ success: true });
     } catch (error) {
+        console.error('Error updating balance:', error);
         res.status(500).send({ success: false, error: error.message });
     }
 });

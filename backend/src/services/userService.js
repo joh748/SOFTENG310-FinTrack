@@ -85,7 +85,22 @@ const decreaseBalance = async ( userID , amount ) => {
         console.error("problem with decrease balance function",error);
     }
 }
-
+const getBalance = async (userID) => {
+    try {
+        const query  = {
+            text: 'SELECT balance FROM users WHERE id = $1' ,
+            values : [userID]
+        }
+        try {
+            const result = await pool.query(query);
+            return result.rows[0];
+        } catch (error){
+            console.error ("problem when fetching balance" , error);
+        }
+    }catch{
+        console.error("problem before query", error);
+    }
+}
 
 
 
@@ -95,5 +110,7 @@ module.exports = {
     checkEmailExists,
     checkPasswordCorrect,
     createUser, 
-    getUserID
+    getUserID,
+    decreaseBalance,
+    getBalance
 };

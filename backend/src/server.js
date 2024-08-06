@@ -11,7 +11,8 @@ const isAuthenticated = require("./middleware/autMiddleware.js");
 
 
 const app = express();
-
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     origin: function (origin, callback) {
         if (!origin || allowedOrigins.indexOf(origin) !== -1) {
@@ -41,7 +42,7 @@ pool.connect((err) => {
     }
 });
 
-app.use('/user', isAuthenticated ,  userRoutes);
+app.use('/user',  userRoutes);
 
 const port = 4000
 

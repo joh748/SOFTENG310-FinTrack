@@ -34,10 +34,7 @@ async function createTables() {
     }
   } catch (error) {
     console.error('Error creating tables:', error);
-  } finally {
-  
-    pool.end();
-  }
+  } 
 }
 
 module.exports = createTables;
