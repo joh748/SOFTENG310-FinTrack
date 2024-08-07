@@ -1,22 +1,29 @@
-//dependancies
 const express = require("express");
+const session = require("express-session");
 const cors = require("cors");
-const jwt = require("jsonwebtoken");
-//config
-const pool = require("./config/db.js");
+const userRoutes = require("./routes/userRoutes.js");
 const createTables = require("./config/createTables.js");
-const corsConfig = require("./config/corsConfig");
-//middleware
+const jwt = require("jsonwebtoken");
+const pool = require("./config/db.js");
 const isAuthenticated = require("./middleware/autMiddleware.js");
-//routes 
-const userRoutes = require("./routes/users.js");
-const transactionRoutes = require("./routes/transactions")
+
+
 
 
 const app = express();
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(corsConfig);
+
+app.use(cors({
+    origin: function (origin, callback) {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+            callback(null, true);
+        } else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+}));
 
 pool.connect((err) => {
     if (err) {
@@ -34,8 +41,7 @@ pool.connect((err) => {
     }
 });
 
-app.use('/user',  userRoutes);
-app.use('/transactions' , transactionRoutes);
+app.use('/user', isAuthenticated ,  userRoutes);
 
 const port = 4000
 

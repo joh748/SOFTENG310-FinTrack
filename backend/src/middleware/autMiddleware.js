@@ -1,4 +1,3 @@
-const jwt = require('jsonwebtoken');
 function isAuthenticated(req, res, next) {
     const authHeader = req.headers['authorization'];
     console.log("Authorization Header:", authHeader);
@@ -20,4 +19,4 @@ function isAuthenticated(req, res, next) {
     }
   }
 
-  module.exports = { isAuthenticated };
+module.exports = isAuthenticated;
