@@ -1,0 +1,84 @@
+
+
+
+please note that as it stands the application runs on local host port 4000 so for any endpoints must start with the following
+
+REQUIRES VERIFICATION : if the user is not logged in and has a verified token they can not use this endpoint 
+the frontend should first login/signup and get the token and only then make requests 
+
+http://localhost:4000
+
+Endpoints for application
+
+
+USER Endpoints : for this the convention is /user/{the desired endpoint}
+
+
+http://localhost:4000/user
+
+
+Post Requests : 
+
+Login : 
+
+- logs the user in and returns verification token in the response , this token is used for validation
+
+endpoint  - http://localhost:4000/user/login
+
+Request body - [email , password ]
+
+
+Signup : 
+
+- signs user in creating an account if account already exists it sends back unsuccesfull along with the message 
+and returns verification token in the response , this token is used for validation
+
+endpoint  - http://localhost:4000/user/signup
+
+Request body - [email , password ]
+
+
+Get Requests : 
+
+
+REQUIRES VERIFICATION
+
+Balance : 
+
+ endpoint - http://localhost:4000/user/balance
+
+-Balance gets the users balance but please note this is an endpoint that REQUIRES VERIFICATION so if the user is not logged in and has a verified token they can not use this endpoint 
+the frontend should first login/signup and get the token and only then make requests
+
+
+
+http://localhost:4000/transactions
+
+
+REQUIRES VERIFICATION
+
+Post requests : 
+
+   endpoint - http://localhost:4000/transactions/makeTransaction 
+
+   Request body - [ amount,title,description ]
+
+   -the endpoint  makes a transaction and adds it to the table of transactions it assigns it to our user , it automatically updates the specified users balance to account for the new transaction
+
+
+
+
+
+REQUIRES VERIFICATION
+
+Get requests : 
+
+endpoint - http://localhost:4000/transactions/getTransactionByPage
+
+Params : pagenumber = x 
+
+- for this you just need to in the request params assign a value pagenumber , this will return the users transactions. It bassicly just works in the way you would expect
+  if you do the pagenumber =1 you get the first ten transactions // frontend peeps please let me know if you want to change the number of requests 
+   
+
+
