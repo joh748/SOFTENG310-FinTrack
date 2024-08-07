@@ -43,8 +43,8 @@ const makeTransaction = async ( userID , amount , title , description) => {
             values: [amount , userID]
         }
         try {
-            const result = await pool.query(addTransactionQuery);
-            const result2 = await pool.query(changeBalanceQuery);
+            await pool.query(addTransactionQuery);
+            await pool.query(changeBalanceQuery);
             console.log(`succesfuly made transaction user_id : ${userID} , amount : ${amount} , title : ${title} , description : ${description}`)
         } catch(error){
             console.error('Error updating balance:', error);
