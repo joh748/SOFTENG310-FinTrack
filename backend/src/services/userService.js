@@ -1,7 +1,7 @@
 const { system } = require('nodemon/lib/config');
 const pool = require('../config/db');
 const { hashPassword, comparePasswords } = require('./securePassword');
-const { use } = require('../routes/userRoutes');
+const { use } = require('../routes/users');
 
 
 const getUserID = async (email) => {
@@ -144,7 +144,5 @@ module.exports = {
     checkPasswordCorrect,
     createUser, 
     getUserID,
-    makeTransaction,
     getBalance,
-    getUserTransactionsByPage
 };

@@ -12,7 +12,7 @@ async function hashPassword(password) {
         
         return hashedPassword;
     } catch (error) {
-        throw new Error('Error hashing password');
+        throw new Error('Error hashing password password was' + password );
     }
 }
 
