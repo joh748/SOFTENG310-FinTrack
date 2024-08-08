@@ -71,28 +71,7 @@ const createUser = async (email, password) => {
         throw error;
     }
 }
-const makeTransaction = async ( userID , amount , title , description) => {
-    try {
-        const addTransactionQuery = {
-            text: 'INSERT INTO transactions (user_id , amount , title , description) VALUES ($1, $2, $3, $4)'
-                    ,
-            values : [ userID, amount , title , description ]
-        }
-        const changeBalanceQuery = {
-            text :  'UPDATE users SET balance = balance + $1 WHERE id = $2',
-            values: [amount , userID]
-        }
-        try {
-            const result = await pool.query(addTransactionQuery);
-            const result2 = await pool.query(changeBalanceQuery);
-            console.log(`succesfuly made transaction user_id : ${userID} , amount : ${amount} , title : ${title} , description : ${description}`)
-        } catch(error){
-            console.error('Error updating balance:', error);
-        }
-    } catch(error){
-        console.error("problem with decrease balance function",error);
-    }
-}
+
 const getBalance = async (userID) => {
     try {
         const query  = {
@@ -109,31 +88,57 @@ const getBalance = async (userID) => {
         console.error("problem before query", error);
     }
 }
-const getUserTransactionsByPage = async(userID , pageNumber) => {
-
-    const pageSize = 10;
-    const offset = (pageNumber - 1) * pageSize;
+const getGoal = async (userID) => {
     try {
-        const query = {
-            text: `
-                SELECT * FROM transactions 
-                WHERE user_id = $1 
-                ORDER BY created_at ASC 
-                LIMIT $2 
-                OFFSET $3
-            `,
-            values: [userID, pageSize, offset]
-        };
+        const query  = {
+            text: 'SELECT goal FROM users WHERE id = $1' ,
+            values : [userID]
+        }
         try {
             const result = await pool.query(query);
-            return result.rows;
-        } catch{
-            console.error("error when getting transactions" , error);
+            return result.rows[0];
+        } catch (error){
+            console.error ("problem when fetching balance" , error);
         }
-    }catch {
-        console.error("error in function start" , error);
+    }catch{
+        console.error("problem before query", error);
     }
 }
+const setBalance = async (userID, balance) => {
+    try {
+        const query = {
+            text: 'UPDATE users SET balance = $1 WHERE id = $2',
+            values: [newBalance, userID],
+        };
+        const result = await pool.query(query);
+        if (result.rowCount > 0) {
+            return { success: true, message: 'Balance updated successfully' };
+        } else {
+            return { success: false, message: 'User not found' };
+        }
+    } catch (error) {
+        console.error('An error occurred while updating balance:', error);
+        throw error;
+    }
+};
+const setGoal= async (userID, goal) => {
+    try {
+        const query = {
+            text: 'UPDATE users SET goal = $1 WHERE id = $2',
+            values: [newBalance, userID],
+        };
+        const result = await pool.query(query);
+        if (result.rowCount > 0) {
+            return { success: true, message: 'Goal updated successfully' };
+        } else {
+            return { success: false, message: 'User not found' };
+        }
+    } catch (error) {
+        console.error('An error occurred while updating balance:', error);
+        throw error;
+    }
+};
+
 
 
 
@@ -145,4 +150,7 @@ module.exports = {
     createUser, 
     getUserID,
     getBalance,
+    getGoal,
+    setBalance,
+    setGoal
 };

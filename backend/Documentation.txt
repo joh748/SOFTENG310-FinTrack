@@ -6,7 +6,7 @@ please note that as it stands the application runs on local host port 4000 so fo
 REQUIRES VERIFICATION : if the user is not logged in and has a verified token they can not use this endpoint 
 the frontend should first login/signup and get the token and only then make requests 
 
-http://localhost:4000
+http://localhost:4000/user
 
 Endpoints for application
 
@@ -50,16 +50,27 @@ Balance :
 -Balance gets the users balance but please note this is an endpoint that REQUIRES VERIFICATION so if the user is not logged in and has a verified token they can not use this endpoint 
 the frontend should first login/signup and get the token and only then make requests
 
+REQUIRES VERIFICATION
+
+Saving goal  : 
+
+ endpoint - http://localhost:4000/user/goal
+
+-Balance gets the users balance but please note this is an endpoint that REQUIRES VERIFICATION so if the user is not logged in and has a verified token they can not use this endpoint 
+the frontend should first login/signup and get the token and only then make requests
 
 
-http://localhost:4000/transactions
+PATCH request : for both balance and goal there is corresponding patch request all you need to do is in the body put the new amount you want for 
+balance : body {balance}
+goal : body {goal}
+http://localhost:4000/transaction
 
 
 REQUIRES VERIFICATION
 
-Post requests : 
+Post request : 
 
-   endpoint - http://localhost:4000/transactions/makeTransaction 
+   endpoint - http://localhost:4000/transaction
 
    Request body - [ amount,title,description ]
 
@@ -73,12 +84,15 @@ REQUIRES VERIFICATION
 
 Get requests : 
 
-endpoint - http://localhost:4000/transactions/getTransactionByPage
+endpoint - http://localhost:4000/transactions/page/:pagenumber
 
 Params : pagenumber = x 
+you must put the pagenumber you want into the actual endpoint so /pagenumber at the end just concatonate the pagenumber variable onto your request
 
 - for this you just need to in the request params assign a value pagenumber , this will return the users transactions. It bassicly just works in the way you would expect
   if you do the pagenumber =1 you get the first ten transactions // frontend peeps please let me know if you want to change the number of requests 
    
+delete
 
+ENdpoint - http://localhost:4000/transactions/:transactionID
 

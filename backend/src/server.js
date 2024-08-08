@@ -35,7 +35,7 @@ pool.connect((err) => {
 });
 
 app.use('/user',  userRoutes);
-app.use('/transactions' , transactionRoutes);
+app.use('/transaction' , transactionRoutes);
 
 const port = 4000
 
