@@ -1,3 +1,24 @@
+/**
+ * Assignment 1 Backend API
+ * 
+ * This API handles user management, transactions, and provides various 
+ * endpoints for interacting with the application.
+ *
+ * Dependencies:
+ * - Express: Web framework for Node.js
+ * - Bcrypt: Library for hashing passwords
+ * - CORS: Middleware to enable Cross-Origin Resource Sharing
+ * - Dotenv: Module to load environment variables from a .env file
+ * - Express-Session: Middleware to manage user sessions
+ * - FS: File system module for interacting with the file system
+ * - JSONWebToken: For token-based authentication
+ * - Nodemon: Tool to automatically restart the server when code changes
+ * - PG: Node.js client for PostgreSQL databases
+ * 
+ * Author: NEVE572
+ * Date: 2024
+ */
+
 //dependancies
 const express = require("express");
 const cors = require("cors");

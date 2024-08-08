@@ -2,8 +2,6 @@
 const { system } = require('nodemon/lib/config');
 const pool = require('../config/db');
 
-
-
 /**
  * returns the users transactions based off the pageSize variable which changes how many we want to return 
  * this is done so that you can easily get transactions page wise.
@@ -12,6 +10,7 @@ const pool = require('../config/db');
  * @var {int} pageSize // change this to change the number of transactions returned
  * @returns 
  */
+
 const getUserTransactionsByPage = async(userID , pageNumber) => {
 
     const pageSize = 10;
@@ -37,6 +36,7 @@ const getUserTransactionsByPage = async(userID , pageNumber) => {
         console.error("error in function start" , error);
     }
 }
+
 /**
  * creates a transaction , we add it to the database , the reason that we update the balance is because transactions should
  * directly corrolate with the users balance so we update that as needed based on the amount. We add the amount given so that 
@@ -46,6 +46,7 @@ const getUserTransactionsByPage = async(userID , pageNumber) => {
  * @param {String} title 
  * @param {String} description 
  */
+
 const makeTransaction = async ( userID , amount , title , description) => {
     try {
         const addTransactionQuery = {
@@ -68,6 +69,7 @@ const makeTransaction = async ( userID , amount , title , description) => {
         console.error("problem with decrease balance function",error);
     }
 }
+
 /**
  * Deletes a transaction from the users transactions , when doing this we firstly get the transaction amount so that we can also 
  * update the users balance so that it no longer reflects the deleted transactions
@@ -75,6 +77,7 @@ const makeTransaction = async ( userID , amount , title , description) => {
  * @param {int} transactionID 
  * @returns 
  */
+
 const deleteTransaction = async (userID, transactionID) => {
     try {
         // Retrieve the transaction amount to adjust the balance later

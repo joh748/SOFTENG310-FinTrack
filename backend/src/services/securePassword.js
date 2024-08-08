@@ -9,6 +9,7 @@ const saltRounds = 10;
  * @return {Promise<string>} - The hashed password.
  * @throws {Error} - Throws an error if hashing fails.
  */
+
 async function hashPassword(password) {
     try {
         // Generate a salt using the specified number of salt rounds
@@ -32,6 +33,7 @@ async function hashPassword(password) {
  * @return {Promise<boolean>} - Returns true if the passwords match, false otherwise.
  * @throws {Error} - Throws an error if the comparison fails.
  */
+
 async function comparePasswords(password, hashedPassword) {
     try {
         // Compare the plain text password with the hashed password

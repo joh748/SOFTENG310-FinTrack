@@ -3,7 +3,12 @@ const pool = require('../config/db');
 const { hashPassword, comparePasswords } = require('./securePassword');
 const { use } = require('../routes/users');
 
-
+/**
+ * Takes in user email and returns the id of the user, the reason for this is purely for future proofing incase it is needed 
+ * it may not be used but would rather have it than not
+ * @param {String} email 
+ * @returns 
+ */
 const getUserID = async (email) => {
     try {
         const query = {
@@ -21,7 +26,12 @@ const getUserID = async (email) => {
         throw error;
     }
 }
-
+/**
+ * Queries the database to check if the given email exists , this is used in conjuction with the controller for login and 
+ * signup to ensure that the user exists so not to create duplicates of a user
+ * @param {String} email 
+ * @returns 
+ */
 const checkEmailExists = async (email) => {
     const query = {
         text: 'SELECT * FROM users WHERE email = $1',
@@ -50,6 +60,12 @@ const checkPasswordCorrect = async (email, password) => {
     }
     
 }
+/**
+ * creates user in the database , we hash the password so as not to store it in plain text. Then we check if the user exists
+ * this is to ensure that we dont create the user twice in the system
+ * @param {String} email 
+ * @param {String} password 
+ */
 const createUser = async (email, password) => {
     try {
         password = await hashPassword(password); 
@@ -71,7 +87,12 @@ const createUser = async (email, password) => {
         throw error;
     }
 }
-
+/**
+ * gets the balance from the database of the specified user
+ * 
+ * @param {int} userID 
+ * @returns  {int} result 
+ */
 const getBalance = async (userID) => {
     try {
         const query  = {
@@ -88,6 +109,12 @@ const getBalance = async (userID) => {
         console.error("problem before query", error);
     }
 }
+/**
+ * gets the savings goal from the database of the specified user
+ * 
+ * @param {int} userID 
+ * @returns {int} result
+ */
 const getGoal = async (userID) => {
     try {
         const query  = {
@@ -104,6 +131,12 @@ const getGoal = async (userID) => {
         console.error("problem before query", error);
     }
 }
+/**
+ * sets the balance from the database of the specified user , for when the users wants to change how much they have incase they made a mistake
+ * 
+ * @param {int} userID 
+ * @returns success: message:
+ */
 const setBalance = async (userID, balance) => {
     try {
         const query = {
@@ -121,6 +154,12 @@ const setBalance = async (userID, balance) => {
         throw error;
     }
 };
+/**
+ * sets the goal from the database of the specified user
+ * 
+ * @param {int} userID 
+ * @returns success: message:
+ */
 const setGoal= async (userID, goal) => {
     try {
         const query = {
