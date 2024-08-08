@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-
+//middleware for authenticating user , the purpose of this is to allow the user to not need to login all the time
+//and ensure that the client is able to make multiple request to the backend through token verification only
 function isAuthenticated(req, res, next) {
     const authHeader = req.headers?.authorization;
     console.log("Authorization Header:", authHeader);
