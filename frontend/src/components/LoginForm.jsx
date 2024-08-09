@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default function LoginForm() {
     const labelStyle = "text-2xl";
@@ -31,6 +33,8 @@ export default function LoginForm() {
                 <input className={inputStyle} required type="password" onChange={(e) => {setPassword(e.target.value)}} value={password} />
             </div>
             <button className="w-60 bg-blue-600 text-white text-2xl p-2 rounded-lg mt-4" onClick={(e) => handleSubmit(e)}>Login!</button>
+            <p className="text-blue-800 text-xl mt-4">Don't have an account?</p>
+            <Link to="/signup" className="text-blue-800 text-xl">Sign up here!</Link>
         </form>
     );
 }
