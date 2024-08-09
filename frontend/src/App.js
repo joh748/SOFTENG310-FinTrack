@@ -2,9 +2,17 @@ import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
+import axios from 'axios';
 
 
 function App() {
+
+  axios.interceptors.request.use ( (config) => {
+    const token = localStorage.getItem('token');
+    config.headers.Authorization = token ? `Bearer ${token}` : '';
+    return config;
+  });
+
   return (
     <BrowserRouter>
       <Routes>
