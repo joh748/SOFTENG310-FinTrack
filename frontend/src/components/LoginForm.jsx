@@ -15,7 +15,12 @@ export default function LoginForm() {
             email: email,
             password: password
         }).then(response => {
-            console.log(response.data);
+            if (response.data.success) {
+                localStorage.setItem("token", response.data.token);
+                window.location.href = "/dashboard";
+            } else {
+                alert("Invalid email or password!");
+            }
         }).catch(error => {
             console.log(error);
         });
