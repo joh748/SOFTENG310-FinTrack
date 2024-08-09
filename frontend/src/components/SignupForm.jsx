@@ -32,7 +32,7 @@ export default function SignupForm() {
                 <label className={labelStyle} htmlFor="password">Password</label>
                 <input className={inputStyle} required type="password" onChange={(e) => {setPassword(e.target.value)}} value={password} />
             </div>
-            <button className="w-60 bg-blue-600 text-white text-2xl p-2 rounded-lg mt-4" onClick={(e) => handleSubmit(e)}>Login!</button>
+            <button className="w-60 bg-blue-600 text-white text-2xl p-2 rounded-lg mt-4" onClick={(e) => handleSubmit(e)}>Sign Up!</button>
             <p className="text-xl mt-4">Already have an account?</p>
             <Link to="/login" className="text-blue-800 text-xl">Log in here!</Link>
         </form>
