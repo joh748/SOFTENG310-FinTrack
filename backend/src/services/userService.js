@@ -3,7 +3,12 @@ const pool = require('../config/db');
 const { hashPassword, comparePasswords } = require('./securePassword');
 const { use } = require('../routes/users');
 
-
+/**
+ * Takes in user email and returns the id of the user, the reason for this is purely for future proofing incase it is needed 
+ * it may not be used but would rather have it than not
+ * @param {String} email 
+ * @returns 
+ */
 const getUserID = async (email) => {
     try {
         const query = {
@@ -21,7 +26,12 @@ const getUserID = async (email) => {
         throw error;
     }
 }
-
+/**
+ * Queries the database to check if the given email exists , this is used in conjuction with the controller for login and 
+ * signup to ensure that the user exists so not to create duplicates of a user
+ * @param {String} email 
+ * @returns 
+ */
 const checkEmailExists = async (email) => {
     const query = {
         text: 'SELECT * FROM users WHERE email = $1',
@@ -50,6 +60,12 @@ const checkPasswordCorrect = async (email, password) => {
     }
     
 }
+/**
+ * creates user in the database , we hash the password so as not to store it in plain text. Then we check if the user exists
+ * this is to ensure that we dont create the user twice in the system
+ * @param {String} email 
+ * @param {String} password 
+ */
 const createUser = async (email, password) => {
     try {
         password = await hashPassword(password); 
@@ -71,28 +87,12 @@ const createUser = async (email, password) => {
         throw error;
     }
 }
-const makeTransaction = async ( userID , amount , title , description) => {
-    try {
-        const addTransactionQuery = {
-            text: 'INSERT INTO transactions (user_id , amount , title , description) VALUES ($1, $2, $3, $4)'
-                    ,
-            values : [ userID, amount , title , description ]
-        }
-        const changeBalanceQuery = {
-            text :  'UPDATE users SET balance = balance + $1 WHERE id = $2',
-            values: [amount , userID]
-        }
-        try {
-            const result = await pool.query(addTransactionQuery);
-            const result2 = await pool.query(changeBalanceQuery);
-            console.log(`succesfuly made transaction user_id : ${userID} , amount : ${amount} , title : ${title} , description : ${description}`)
-        } catch(error){
-            console.error('Error updating balance:', error);
-        }
-    } catch(error){
-        console.error("problem with decrease balance function",error);
-    }
-}
+/**
+ * gets the balance from the database of the specified user
+ * 
+ * @param {int} userID 
+ * @returns  {int} result 
+ */
 const getBalance = async (userID) => {
     try {
         const query  = {
@@ -109,31 +109,75 @@ const getBalance = async (userID) => {
         console.error("problem before query", error);
     }
 }
-const getUserTransactionsByPage = async(userID , pageNumber) => {
-
-    const pageSize = 10;
-    const offset = (pageNumber - 1) * pageSize;
+/**
+ * gets the savings goal from the database of the specified user
+ * 
+ * @param {int} userID 
+ * @returns {int} result
+ */
+const getGoal = async (userID) => {
     try {
-        const query = {
-            text: `
-                SELECT * FROM transactions 
-                WHERE user_id = $1 
-                ORDER BY created_at ASC 
-                LIMIT $2 
-                OFFSET $3
-            `,
-            values: [userID, pageSize, offset]
-        };
+        const query  = {
+            text: 'SELECT goal FROM users WHERE id = $1' ,
+            values : [userID]
+        }
         try {
             const result = await pool.query(query);
-            return result.rows;
-        } catch{
-            console.error("error when getting transactions" , error);
+            return result.rows[0];
+        } catch (error){
+            console.error ("problem when fetching balance" , error);
         }
-    }catch {
-        console.error("error in function start" , error);
+    }catch{
+        console.error("problem before query", error);
     }
 }
+/**
+ * sets the balance from the database of the specified user , for when the users wants to change how much they have incase they made a mistake
+ * 
+ * @param {int} userID 
+ * @returns success: message:
+ */
+const setBalance = async (userID, balance) => {
+    try {
+        const query = {
+            text: 'UPDATE users SET balance = $1 WHERE id = $2',
+            values: [newBalance, userID],
+        };
+        const result = await pool.query(query);
+        if (result.rowCount > 0) {
+            return { success: true, message: 'Balance updated successfully' };
+        } else {
+            return { success: false, message: 'User not found' };
+        }
+    } catch (error) {
+        console.error('An error occurred while updating balance:', error);
+        throw error;
+    }
+};
+/**
+ * sets the goal from the database of the specified user
+ * 
+ * @param {int} userID 
+ * @returns success: message:
+ */
+const setGoal= async (userID, goal) => {
+    try {
+        const query = {
+            text: 'UPDATE users SET goal = $1 WHERE id = $2',
+            values: [newBalance, userID],
+        };
+        const result = await pool.query(query);
+        if (result.rowCount > 0) {
+            return { success: true, message: 'Goal updated successfully' };
+        } else {
+            return { success: false, message: 'User not found' };
+        }
+    } catch (error) {
+        console.error('An error occurred while updating balance:', error);
+        throw error;
+    }
+};
+
 
 
 
@@ -145,4 +189,7 @@ module.exports = {
     createUser, 
     getUserID,
     getBalance,
+    getGoal,
+    setBalance,
+    setGoal
 };

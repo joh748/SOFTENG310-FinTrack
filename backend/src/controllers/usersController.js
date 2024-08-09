@@ -68,3 +68,36 @@ exports.login = async (req, res) => {
         res.status(500).send({ success: false, error: error.message });
     }
 }
+
+exports.goal = async (req, res) => {
+    const userID = req.user.id;
+    try {
+        const result = await getGoal(userID);
+        res.send({ result: result });
+    } catch (error) {
+        console.error('Error getting balance:', error);
+        res.status(500).send({ success: false, error: error.message });
+    }
+}
+exports.setBalance = async(req , res) => {
+    const {balance} = req.body;
+     const userID = req.user.id;
+    try{
+        const result = await this.setBalance(userID, balance) 
+    res.send({result : result});
+   }catch(error) {
+    console.error('error when trying to set balance: ' , error);
+    res.status(500).send({success : false , error : error.message});
+   }
+}
+exports.setGoal = async(req , res) => {
+    const {goal} = req.body;
+     const userID = req.user.id;
+    try{
+        const result = await this.setGoal(userID, goal) 
+    res.send({result : result});
+   }catch(error) {
+    console.error('error when trying to set goal ' , error);
+    res.status(500).send({success : false , error : error.message});
+   }
+}

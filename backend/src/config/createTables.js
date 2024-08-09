@@ -24,6 +24,7 @@ const createUserTableQuery = `
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP , 
     balance DOUBLE PRECISION DEFAULT 0.0
+    saving_goal DOUBLE PRECISION DEFUALT 0.0
 
   );
 `;
