@@ -2,8 +2,14 @@
 const { system } = require('nodemon/lib/config');
 const pool = require('../config/db');
 
-
-
+/**
+ * returns the users transactions based off the pageSize variable which changes how many we want to return 
+ * this is done so that you can easily get transactions page wise.
+ * @param {int} userID 
+ * @param {int} pageNumber 
+ * @var {int} pageSize // change this to change the number of transactions returned
+ * @returns 
+ */
 
 const getUserTransactionsByPage = async(userID , pageNumber) => {
 
@@ -31,6 +37,16 @@ const getUserTransactionsByPage = async(userID , pageNumber) => {
     }
 }
 
+/**
+ * creates a transaction , we add it to the database , the reason that we update the balance is because transactions should
+ * directly corrolate with the users balance so we update that as needed based on the amount. We add the amount given so that 
+ * if the value is a negative we will subtract by adding
+ * @param {int} userID 
+ * @param {DoubleRange} amount 
+ * @param {String} title 
+ * @param {String} description 
+ */
+
 const makeTransaction = async ( userID , amount , title , description) => {
     try {
         const addTransactionQuery = {
@@ -54,7 +70,52 @@ const makeTransaction = async ( userID , amount , title , description) => {
     }
 }
 
+/**
+ * Deletes a transaction from the users transactions , when doing this we firstly get the transaction amount so that we can also 
+ * update the users balance so that it no longer reflects the deleted transactions
+ * @param {int} userID 
+ * @param {int} transactionID 
+ * @returns 
+ */
+
+const deleteTransaction = async (userID, transactionID) => {
+    try {
+        // Retrieve the transaction amount to adjust the balance later
+        const getTransactionAmountQuery = {
+            text: 'SELECT amount FROM transactions WHERE id = $1 AND user_id = $2',
+            values: [transactionID, userID],
+        };
+        const result = await pool.query(getTransactionAmountQuery);
+        
+        if (result.rows.length === 0) {
+            return { success: false, message: 'Transaction not found or does not belong to user' };
+        }
+
+        const amount = result.rows[0].amount;
+
+        // Delete the transaction
+        const deleteTransactionQuery = {
+            text: 'DELETE FROM transactions WHERE id = $1 AND user_id = $2',
+            values: [transactionID, userID],
+        };
+
+        // Update the user's balance
+        const updateBalanceQuery = {
+            text: 'UPDATE users SET balance = balance - $1 WHERE id = $2',
+            values: [amount, userID],
+        };
+
+        await pool.query(deleteTransactionQuery);
+        await pool.query(updateBalanceQuery);
+
+        return { success: true, message: 'Transaction deleted and balance updated successfully' };
+    } catch (error) {
+        console.error('Error deleting transaction:', error);
+        throw error;
+    }
+};
 module.exports  = {
     makeTransaction,
-    getUserTransactionsByPage
+    getUserTransactionsByPage,
+    deleteTransaction
 }
