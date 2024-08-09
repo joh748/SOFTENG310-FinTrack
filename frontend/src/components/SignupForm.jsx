@@ -23,7 +23,7 @@ export default function SignupForm() {
     }
     return (
         <form className="flex flex-col border-2 items-center border-blue-800 w-80 p-4 rounded-xl bg-blue-100">
-            <h2 className="text-4xl font-bold text-center mb-4">Sign Up To Fintrack!</h2>
+            <h2 className="text-4xl font-bold text-center mb-4">Sign Up To FinTrack!</h2>
             <div className="flex flex-col">
                 <label className={labelStyle} htmlFor="email">Email</label>
                 <input className={inputStyle} required type="email" onChange={(e) => {setEmail(e.target.value)}} value={email} />
