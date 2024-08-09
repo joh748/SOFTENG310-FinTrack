@@ -1,6 +1,6 @@
 const cors = require('cors');
 
-const allowedOrigins = ['http://localhost:4000']; // Add your allowed origins here
+const allowedOrigins = ['http://localhost:4000']; 
 
 const corsOptions = {
   origin: function (origin, callback) {
