@@ -34,7 +34,7 @@ export default function SignupForm() {
             </div>
             <button className="w-60 bg-blue-600 text-white text-2xl p-2 rounded-lg mt-4" onClick={(e) => handleSubmit(e)}>Login!</button>
             <p className="text-xl mt-4">Already have an account?</p>
-            <Link to="/login" className="text-blue-800 text-xl">Log in up here!</Link>
+            <Link to="/login" className="text-blue-800 text-xl">Log in here!</Link>
         </form>
     );
 }
