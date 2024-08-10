@@ -45,3 +45,13 @@ export default function AuthForm({endpoint, title, buttonText, redirectTitleText
         </form>
     );
 }
+
+AuthForm.propTypes = {
+    endpoint: String,
+    title: String,
+    buttonText: String,
+    redirectTitleText: String,
+    redirectLink: String,
+    redirectText: String
+  };
+  
