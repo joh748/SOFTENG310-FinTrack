@@ -137,7 +137,7 @@ const getGoal = async (userID) => {
  * @param {int} userID 
  * @returns success: message:
  */
-const setBalance = async (userID, balance) => {
+const setBalance = async (userID, newBalance) => {
     try {
         const query = {
             text: 'UPDATE users SET balance = $1 WHERE id = $2',
@@ -164,7 +164,7 @@ const setGoal= async (userID, goal) => {
     try {
         const query = {
             text: 'UPDATE users SET goal = $1 WHERE id = $2',
-            values: [newBalance, userID],
+            values: [goal, userID],
         };
         const result = await pool.query(query);
         if (result.rowCount > 0) {

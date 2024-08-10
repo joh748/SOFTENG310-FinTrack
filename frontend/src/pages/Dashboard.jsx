@@ -1,7 +1,9 @@
+import CurrentBalance from "../components/CurrentBalance";
+
 export default function Dashboard() {
   return (
     <div>
-      <h1>Dashboard</h1>
+      <CurrentBalance />
     </div>
   );
 }
