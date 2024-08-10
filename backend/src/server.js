@@ -28,7 +28,7 @@ const pool = require("./config/db.js");
 const createTables = require("./config/createTables.js");
 const corsConfig = require("./config/corsConfig");
 //middleware
-const isAuthenticated = require("./middleware/autMiddleware.js");
+const isAuthenticated = require("./middleware/authMiddleware.js");
 //routes 
 const userRoutes = require("./routes/users.js");
 const transactionRoutes = require("./routes/transactions")
