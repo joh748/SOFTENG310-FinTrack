@@ -84,7 +84,7 @@ REQUIRES VERIFICATION
 
 Get requests : 
 
-endpoint - http://localhost:4000/transactions/page/:pagenumber
+endpoint - http://localhost:4000/transaction/page/:pagenumber
 
 Params : pagenumber = x 
 you must put the pagenumber you want into the actual endpoint so /pagenumber at the end just concatonate the pagenumber variable onto your request
@@ -94,5 +94,5 @@ you must put the pagenumber you want into the actual endpoint so /pagenumber at 
    
 delete
 
-ENdpoint - http://localhost:4000/transactions/:transactionID
+ENdpoint - http://localhost:4000/transaction/:transactionID
 
