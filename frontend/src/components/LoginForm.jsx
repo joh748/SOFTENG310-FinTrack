@@ -16,6 +16,7 @@ export default function LoginForm() {
             password: password
         }).then(response => {
             if (response.data.success) {
+                // Store the returned auth token in local storage so that it can be easily accessed throughout the frontend
                 localStorage.setItem("token", response.data.token);
                 window.location.href = "/dashboard";
             } else {
