@@ -10,6 +10,7 @@ const filterPastTransactions = (transactions, daysBefore) => {
     });
 }
 
+// Ensure that "transactions" is a primitive Javascript array, and not some JSON data that needs to be parsed
 export const filterPastWeekTransactions = (transactions) => {
     return filterPastTransactions(transactions, 7);
 }
