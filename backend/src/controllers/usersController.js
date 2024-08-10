@@ -1,5 +1,5 @@
 
-const { checkEmailExists, checkPasswordCorrect, createUser  , getUserID, getBalance} = require('../services/userService');
+const { checkEmailExists, checkPasswordCorrect, createUser , getUserID, getBalance, setBalance, setGoal, getGoal} = require('../services/userService');
 const jwt = require('jsonwebtoken');
 
 exports.login = async (req, res) => {
@@ -81,20 +81,20 @@ exports.goal = async (req, res) => {
 }
 exports.setBalance = async(req , res) => {
     const {balance} = req.body;
-     const userID = req.user.id;
+    const userID = req.user.id;
     try{
-        const result = await this.setBalance(userID, balance) 
-    res.send({result : result});
+        const result = await setBalance(userID, balance) 
+        res.send({result : result});
    }catch(error) {
-    console.error('error when trying to set balance: ' , error);
-    res.status(500).send({success : false , error : error.message});
+        console.error('error when trying to set balance: ' , error);
+        res.status(500).send({success : false , error : error.message});
    }
 }
 exports.setGoal = async(req , res) => {
     const {goal} = req.body;
      const userID = req.user.id;
     try{
-        const result = await this.setGoal(userID, goal) 
+        const result = await setGoal(userID, goal) 
     res.send({result : result});
    }catch(error) {
     console.error('error when trying to set goal ' , error);
