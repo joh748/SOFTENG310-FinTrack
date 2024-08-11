@@ -13,7 +13,6 @@ export default function TransactionList() {
     axios
       .get(`http://localhost:4000/transaction/page/${currentPage}`)
       .then((response) => {
-        // setTransactions(response.data.result);
         let fetchedTransactions = response.data.result;
 
         if (filter === 'year') {
@@ -32,20 +31,6 @@ export default function TransactionList() {
         window.location.href = '/login';
       });
   }, [currentPage], [filter]);
-
-  //function to create dummy transcation
-  const createTransaction = async () => {
-    try {
-      await axios.post('http://localhost:4000/transaction', {
-        title: 'tes2t',
-        amount: -22,
-        description: 'beer',
-      });
-      setCurrentPage(1);
-    } catch (error) {
-      console.error('Error creating transaction:', error);
-    }
-  };
 
   //function to filter transactions
   const filterYear = () => {
@@ -82,7 +67,6 @@ export default function TransactionList() {
           <button className={filter === 'week' ? 'bg-primary-dark text-white text-xl font-bold rounded-full py-0 px-3 w-[130px]' : 'bg-primary text-white text-xl font-bold rounded-full py-0 px-3 w-[130px]'} onClick={filterWeek}>Last week</button>
           <button className={filter === 'month' ? 'bg-primary-dark text-white text-xl font-bold rounded-full py-0 px-3 w-[130px]' : 'bg-primary text-white text-xl font-bold rounded-full py-0 px-3 w-[130px]'} onClick={filterMonth}>Last month</button>
           <button className={filter === 'year' ? 'bg-primary-dark text-white text-xl font-bold rounded-full py-0 px-3 w-[130px]' : 'bg-primary text-white text-xl font-bold rounded-full py-0 px-3 w-[130px]'} onClick={filterYear}>Last year</button>
-          <button onClick={createTransaction}> temp create transaction button</button>
         </div>
         <div className=' flex justify-between flex-col items-center min-h-[400px]'>
 
