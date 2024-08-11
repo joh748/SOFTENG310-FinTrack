@@ -1,6 +1,13 @@
 import CurrentBalance from '../components/CurrentBalance';
 import TransactionLog from '../components/TransactionLog';
 
+/*
+ * When adding your new component:
+ * remove the tags and replace them with your respective react components, and remove the bg-[colour] property in its wrapped <div>
+ * 
+ * The bg-[colour] properties have been added to help visualise where each component should go.
+*/
+
 export default function Dashboard() {
   return (
     <>
