@@ -3,7 +3,7 @@ import TransactionLog from '../components/TransactionLog';
 
 /*
  * When adding your new component:
- * remove the tags and replace them with your respective react components, and remove the bg-[colour] property in its wrapped <div>
+ * remove the p tags and replace them with your respective react components, and remove the bg-[colour] property in its wrapped <div>
  * 
  * The bg-[colour] properties have been added to help visualise where each component should go.
 */
@@ -17,8 +17,11 @@ export default function Dashboard() {
 
       <div className=' flex flex-col px-[8%]'>
         <div className='flex flex-row'>
+
           <div className=' flex flex-col w-[80%]'>
-            <CurrentBalance />
+            <div className=' flex flex-col items-start'>
+              <CurrentBalance />
+            </div>
             <TransactionLog />
           </div>
 
