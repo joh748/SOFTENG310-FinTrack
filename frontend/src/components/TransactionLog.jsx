@@ -61,7 +61,7 @@ export default function TransactionList() {
   return (
     <div className='flex flex-col items-center'>
 
-      <div className=' w-[50%]'>
+      <div className=' w-[100%]'>
         <div className='flex flex-row gap-4 items-center'>
           <h1 className='text-body '>Transaction Log</h1>
           <button className={filter === 'week' ? 'bg-primary-dark text-white text-xl font-bold rounded-full py-0 px-3 w-[130px]' : 'bg-primary text-white text-xl font-bold rounded-full py-0 px-3 w-[130px]'} onClick={filterWeek}>Last week</button>
@@ -70,7 +70,7 @@ export default function TransactionList() {
         </div>
         <div className=' flex justify-between flex-col items-center min-h-[400px]'>
 
-          <div className='w-[80%] mt-[40px]'>
+          <div className='w-[90%] mt-[40px]'>
             <ul>
               {transactions.map((transaction) => (
                 <Transaction key={transaction.id} transaction={transaction} className='' />
