@@ -61,7 +61,7 @@ export default function TransactionList() {
   return (
     <div className='flex flex-col items-center'>
 
-      <div className=' w-[100%] bg-slate-300'>
+      <div className=' w-[100%]'>
         <div className='flex flex-row gap-4 items-center'>
           <h1 className='text-body '>Transaction Log</h1>
           <button className={filter === 'week' ? 'bg-primary-dark text-white text-xl font-bold rounded-full py-0 px-3 w-[130px]' : 'bg-primary text-white text-xl font-bold rounded-full py-0 px-3 w-[130px]'} onClick={filterWeek}>Last week</button>
