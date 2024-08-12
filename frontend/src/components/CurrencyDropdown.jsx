@@ -19,7 +19,7 @@ const CurrencyDropdown = () => {
         setIsOpen(!isOpen);
     }
 
-    // grabs the id of the selected currency and sets it as the selected currency
+    // grabs the id of the selected currency from the selection and sets it as the selected currency
     const handleSelect = (event) => {
         const { id } = event.target;
         setSelectedCurrency(id);
