@@ -1,5 +1,7 @@
 import CurrentBalance from '../components/CurrentBalance';
 import TransactionLog from '../components/TransactionLog';
+import AddTransactionButton from '../components/AddTransactionButton';
+import DeleteTransactionButton from '../components/DeleteTransactionButton';
 
 /*
  * When adding your new component:
@@ -16,7 +18,7 @@ export default function Dashboard() {
       </div>
 
       <div className=' flex flex-col px-[8%]'>
-        <div className='flex flex-row'>
+        <div className='flex flex-row pt-[2%]'>
 
           <div className=' flex flex-col w-[80%]'>
             <div className=' flex flex-col items-start'>
@@ -25,9 +27,9 @@ export default function Dashboard() {
             <TransactionLog />
           </div>
 
-          <div className='bg-slate-500 flex flex-col w-[20%] items-center'>
-            <p>BUTTON</p>
-            <p>BUTTON</p>
+          <div className='bg-slate-500 flex flex-col w-[20%] items-center gap-[3%]'>
+            <AddTransactionButton />
+            <DeleteTransactionButton />
             <p>DROPDOWN</p>
           </div>
         </div>
