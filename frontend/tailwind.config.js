@@ -7,6 +7,16 @@ module.exports = {
         primary: '#2868ad',
         'primary-highlight': '#4d91db',
         'primary-dark': '#19497d',
+        'primary-darker': '#0d3764',
+        'primary-red': '#ef4444',
+        'primary-red-dark': '#cf2a2a',
+        'primary-red-darker': '#a61616',
+        'primary-green': '#22c55e',
+        'primary-green-dark': '#13b44e',
+        'primary-green-darker': '#0a943d',
+        'primary-purple': '#674af7',
+        'primary-purple-dark': '#5a3fdf',
+        'primary-pruple-darker': '#4832b6',
       },
       fontSize: {
         'massive': [
