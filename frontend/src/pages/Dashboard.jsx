@@ -1,7 +1,10 @@
+import { useContext } from 'react';
 import CurrentBalance from '../components/CurrentBalance';
 import TransactionLog from '../components/TransactionLog';
 import AddTransactionButton from '../components/AddTransactionButton';
 import DeleteTransactionButton from '../components/DeleteTransactionButton';
+import CurrencyDropdown from '../components/CurrencyDropdown';
+import TransactionContext from '../context/TransactionContext';
 
 /*
  * When adding your new component:
@@ -11,10 +14,13 @@ import DeleteTransactionButton from '../components/DeleteTransactionButton';
 */
 
 export default function Dashboard() {
+  const { currency } = useContext(TransactionContext);
+
   return (
     <>
       <div className='bg-blue-200'>
         <p>HEADER</p>
+        {currency}
       </div>
 
       <div className=' flex flex-col px-[8%]'>
@@ -27,10 +33,10 @@ export default function Dashboard() {
             <TransactionLog />
           </div>
 
-          <div className='bg-slate-500 flex flex-col w-[20%] items-center gap-[3%]'>
+          <div className='flex flex-col w-[20%] items-center gap-[3%]'>
             <AddTransactionButton />
             <DeleteTransactionButton />
-            <p>DROPDOWN</p>
+            <CurrencyDropdown />
           </div>
         </div>
 

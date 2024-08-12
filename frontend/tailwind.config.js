@@ -51,8 +51,24 @@ module.exports = {
             fontWeight: '500',
           },
         ],
+        'body-small': [
+          '18px',
+          {
+            lineHeight: '120%',
+            letterSpacing: '0%',
+            fontWeight: '500',
+          },
+        ],
         'button': [
           '24px',
+          {
+            lineHeight: '120%',
+            letterSpacing: '0%',
+            fontWeight: '700',
+          },
+        ],
+        'button-small': [
+          '18px',
           {
             lineHeight: '120%',
             letterSpacing: '0%',

@@ -3,6 +3,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
 import axios from 'axios';
+import { TransactionContextProvider } from './context/TransactionContextProvider.jsx';
 
 
 function App() {
@@ -22,7 +23,11 @@ function App() {
       <Route path="/" element={localStorage.getItem("token") ? <Navigate to="/dashboard" replace={true} /> : <Navigate to="/login" replace={true} />} />
         <Route path="login" element={<Login />} />
         <Route path="signup" element={<Signup />} />
-        <Route path="dashboard" element={<Dashboard />} />
+        <Route path="dashboard" element={
+          <TransactionContextProvider>
+          <Dashboard />
+          </TransactionContextProvider>
+          } />
       </Routes>
     </BrowserRouter>
   );
