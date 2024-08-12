@@ -7,7 +7,7 @@ export default function SavingsTracker() {
   const progress = goal > 0 ? (balance / goal) * 100 : 0;
   return (
     <>
-      <div className="flex flex-col items-center gap-2">
+      <div className="flex flex-col items-center gap-2 mb-4 mt-4">
         <h2 className="text-subheading"> Current Savings Goal</h2>
         <p className="text-body">
           ${balance}/${goal}
@@ -18,9 +18,11 @@ export default function SavingsTracker() {
             style={{ width: `${progress}` }}
           ></div>
         </div>
-        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-5 rounded">
-          Set New Goal
-        </button>
+        {progress >= 0 && (
+          <button className="bg-primary-highlight hover:bg-primary text-white font-bold py-1 px-5 rounded">
+            Set New Goal
+          </button>
+        )}
       </div>
     </>
   );
