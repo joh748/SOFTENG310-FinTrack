@@ -1,7 +1,7 @@
 import Transaction from './Transaction';
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import TransactionContext from '../context/TransactionContext';
-import { useContext, } from 'react';
+import { useContext } from 'react';
 
 export default function TransactionList() {
   const { transactions, filter, currentPage, setCurrentPage, filterYear, filterMonth, filterWeek, } = useContext(TransactionContext);

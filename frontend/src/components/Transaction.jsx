@@ -4,7 +4,7 @@ import TransactionContext from '../context/TransactionContext';
 const Transaction = ({ transaction, }) => {
     const [isAmountNegative, setIsAmountNegative] = useState();
     const [convertedAmount, setConvertedAmount] = useState();
-    const { currency, convertCurrency, } = useContext(TransactionContext);
+    const { currency, convertCurrency } = useContext(TransactionContext);
 
     // useEffect check if each transaction is negative and then converts the currency
     useEffect(() => {

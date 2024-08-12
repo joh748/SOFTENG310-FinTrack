@@ -26,7 +26,7 @@ function App() {
         <Route path="dashboard" element={
           <TransactionContextProvider>
           <Dashboard />
-          </TransactionContextProvider>
+          </TransactionContextProvider> // context provider gives access to the context in the dashboard
           } />
       </Routes>
     </BrowserRouter>

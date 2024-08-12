@@ -83,17 +83,17 @@ export function TransactionContextProvider({ children }) {
 
     // all values and functions that can be accessed when consuming this context provider
     const contextValue = {
-        currency, // the currency to convert to i.e NZD, USD, EUR
-        transactions, // the transactions to display
-        filter, // the filter type to apply to the transactions i.e year, month, week
+        currency,           // the currency to convert to i.e NZD, USD, EUR
+        transactions,       // the transactions to display
+        filter,             // the filter type to apply to the transactions i.e year, month, week
         currentPage,
         setFilter,
-        filterYear, // filters the transactions, access the transactions with the transactions variable
-        filterMonth, // filters the transactions, access the transactions with the transactions variable
-        filterWeek, // filters the transactions, access the transactions with the transactions variable
+        filterYear,         // filters the transactions, access the transactions with the transactions variable
+        filterMonth,        // filters the transactions, access the transactions with the transactions variable
+        filterWeek,         // filters the transactions, access the transactions with the transactions variable
         setCurrentPage,
         setCurrency,
-        convertCurrency, // returns a promise that resolves to the converted amount
+        convertCurrency,    // returns a promise that resolves to the converted amount
     };
 
     return (
