@@ -8,6 +8,7 @@ export function TransactionContextProvider({ children }) {
     const [currency, setCurrency] = useState('NZD'); // default currency is NZD
     const [transactions, setTransactions] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
+    const [convertedAmount, setConvertedAmount] = useState(0); // amount of money
     const [filter, setFilter] = useState('');
 
     // fetch transactions from the server and filter them
@@ -56,18 +57,43 @@ export function TransactionContextProvider({ children }) {
         }
     };
 
+    /**
+     * converts the currency of each transaction using the Frankfurter API
+     * the conversion rates refresh at ~2am NZST every business day
+     * 
+     * @param to // the currency to convert to
+     * @param from // the currency to convert from (default value for this application is NZD)
+     * @param amount // the amount of the transaction 
+     * @returns the converted amount in the desired currency at 3 decimal point
+     */
+    const convertCurrency = async (to, from, amount) => {
+        if (!(to === from)) {
+            try {
+                const response = await fetch(`https://api.frankfurter.app/latest?amount=${amount}&from=${from}&to=${to}`);
+                const data = await response.json();
+                return parseFloat(data.rates[to]).toFixed(3)
+            } catch (error) {
+                console.error("Error calculating conversion", error);
+            }
+        } else {
+            setConvertedAmount(amount);
+            return amount;
+        }
+    }
+
     // all values and functions that can be accessed when consuming this context provider
     const contextValue = {
-        currency,
-        transactions,
-        filter,
+        currency, // the currency to convert to i.e NZD, USD, EUR
+        transactions, // the transactions to display
+        filter, // the filter type to apply to the transactions i.e year, month, week
         currentPage,
         setFilter,
-        filterYear,
-        filterMonth,
-        filterWeek,
+        filterYear, // filters the transactions, access the transactions with the transactions variable
+        filterMonth, // filters the transactions, access the transactions with the transactions variable
+        filterWeek, // filters the transactions, access the transactions with the transactions variable
         setCurrentPage,
         setCurrency,
+        convertCurrency, // returns a promise that resolves to the converted amount
     };
 
     return (
