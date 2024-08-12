@@ -39,7 +39,7 @@ export default function AuthForm({endpoint, title, buttonText, redirectTitleText
                 <label className={labelStyle} htmlFor="password">Password</label>
                 <input className={inputStyle} required type="password" onChange={(e) => {setPassword(e.target.value)}} value={password} />
             </div>
-            <button className="w-60 bg-primary text-white text-2xl p-2 rounded-lg mt-4" onClick={(e) => handleSubmit(e)}>{buttonText}</button>
+            <button className="w-60 bg-primary text-white text-button p-2 rounded-lg mt-4" onClick={(e) => handleSubmit(e)}>{buttonText}</button>
             <p className="text-xl mt-4">{redirectTitleText}</p>
             <Link to={redirectLink} className="text-primary-highlight text-xl">{redirectText}</Link>
         </form>
