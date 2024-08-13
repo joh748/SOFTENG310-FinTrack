@@ -5,6 +5,7 @@ import axios from "axios";
 export default function SavingsTracker() {
   const [balance, setBalance] = useState(0);
   const [goal, setGoal] = useState(0);
+  const [newGoal, setNewGoal] = useState(0);
   const progress = goal > 0 ? (balance / goal) * 100 : 0;
 
   useEffect(() => {
