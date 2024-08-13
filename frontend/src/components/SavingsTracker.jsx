@@ -53,8 +53,8 @@ export default function SavingsTracker() {
   };
   return (
     <>
-      <div className="flex flex-col items-center gap-2 mb-4 mt-4">
-        <h2 className="text-subheading font-bold"> Current Savings Goal</h2>
+      <div className="flex flex-col items-center gap-2 mb-2 mt-2">
+        <h2 className="text-2xl font-semibold"> Current Savings Goal</h2>
         <p className="text-body">
           ${balance}/${goal}
         </p>
