@@ -27,17 +27,7 @@ export default function SavingsTracker() {
       .catch((error) => {
         console.log(error);
       });
-
-    //Fetch the user's savings goal
-    axiosInstance
-      .get("/user/goal")
-      .then((response) => {
-        setGoal(response.data.result.goal);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, [balance, goal]);
+  }, [balance]);
 
   // Updates the user's savings goal via the Set New Goal button
   const updateGoal = () => {
@@ -48,11 +38,14 @@ export default function SavingsTracker() {
     });
 
     axiosInstance
-      .post("/user/goal", { goal: newGoal })
+      .patch("/user/goal", {
+        goal: newGoal,
+      })
       .then((response) => {
+        console.log("newGoal:" + newGoal);
         setGoal(newGoal);
         setShowSetGoal(false);
-        alert("Goal updated successfully!");
+        console.log("goal:" + goal);
       })
       .catch((error) => {
         console.log(error);
@@ -61,7 +54,7 @@ export default function SavingsTracker() {
   return (
     <>
       <div className="flex flex-col items-center gap-2 mb-4 mt-4">
-        <h2 className="text-subheading"> Current Savings Goal</h2>
+        <h2 className="text-subheading font-bold"> Current Savings Goal</h2>
         <p className="text-body">
           ${balance}/${goal}
         </p>
@@ -74,7 +67,10 @@ export default function SavingsTracker() {
         {progress >= 0 && (
           <button
             className="bg-primary-highlight hover:bg-primary text-white font-bold py-1 px-5 rounded"
-            onClick={() => setShowSetGoal(true)}
+            onClick={() => {
+              setShowSetGoal(true);
+              console.log("goal:" + goal);
+            }}
           >
             Update Savings Goal
           </button>
