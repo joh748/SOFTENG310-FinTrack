@@ -17,7 +17,7 @@ export default function TransactionList() {
           <button className={filter === 'month' ? 'bg-primary-dark text-white text-xl font-bold rounded-full py-0 px-3 w-[130px]' : 'bg-primary text-white text-xl font-bold rounded-full py-0 px-3 w-[130px]'} onClick={filterMonth}>Last month</button>
           <button className={filter === 'year' ? 'bg-primary-dark text-white text-xl font-bold rounded-full py-0 px-3 w-[130px]' : 'bg-primary text-white text-xl font-bold rounded-full py-0 px-3 w-[130px]'} onClick={filterYear}>Last year</button>
         </div>
-        <div className=' flex justify-between flex-col items-center min-h-[400px]'>
+        <div className=' flex justify-between flex-col items-center min-h-[450px]'>
 
           <div className='w-[90%] mt-[40px]'>
             <ul>
@@ -31,7 +31,7 @@ export default function TransactionList() {
             <button className={currentPage === 1 ? 'text-gray-400' : ''} onClick={() => setCurrentPage(currentPage - 1)} disabled={currentPage === 1}>
               <IoIosArrowBack size={35} />
             </button>
-            <h2 className='text-subheading w-4'>{currentPage}</h2>
+            <h2 className='text-sub-heading w-4'>{currentPage}</h2>
             <button onClick={() => setCurrentPage(currentPage + 1)}>
               <IoIosArrowForward size={35} />
             </button>
