@@ -1,10 +1,39 @@
 import React from "react";
 import { useState, useEffect } from "react";
+import axios from "axios";
 
 export default function SavingsTracker() {
   const [balance, setBalance] = useState(0);
   const [goal, setGoal] = useState(0);
   const progress = goal > 0 ? (balance / goal) * 100 : 0;
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const axiosInstance = axios.create({
+      baseURL: "http://localhost:4000",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    //Fetch the user's current balance
+    axiosInstance
+      .get("/user/balance")
+      .then((response) => {
+        setBalance(response.data.result.balance);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+
+    //Fetch the user's savings goal
+    axiosInstance
+      .get("/user/goal")
+      .then((response) => {
+        setGoal(response.data.result.goal);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  });
   return (
     <>
       <div className="flex flex-col items-center gap-2 mb-4 mt-4">
