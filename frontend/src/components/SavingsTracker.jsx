@@ -10,7 +10,7 @@ export default function SavingsTracker() {
   const [showSetGoal, setShowSetGoal] = useState(false);
   const progress = goal > 0 ? (balance / goal) * 100 : 0;
 
-  //Axios request to fetch the user's current balance and savings goal doesn't work.
+  //Uses axios to fetch the user's current balance.
   useEffect(() => {
     const token = localStorage.getItem("token");
     const axiosInstance = axios.create({
@@ -42,10 +42,8 @@ export default function SavingsTracker() {
         goal: newGoal,
       })
       .then((response) => {
-        console.log("newGoal:" + newGoal);
         setGoal(newGoal);
         setShowSetGoal(false);
-        console.log("goal:" + goal);
       })
       .catch((error) => {
         console.log(error);
