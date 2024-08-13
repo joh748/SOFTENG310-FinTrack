@@ -1,11 +1,13 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import SetGoal from "./SetGoal";
 
 export default function SavingsTracker() {
   const [balance, setBalance] = useState(0);
   const [goal, setGoal] = useState(0);
   const [newGoal, setNewGoal] = useState(0);
+  const [showSetGoal, setShowSetGoal] = useState(false);
   const progress = goal > 0 ? (balance / goal) * 100 : 0;
 
   useEffect(() => {
@@ -35,6 +37,25 @@ export default function SavingsTracker() {
         console.log(error);
       });
   });
+
+  // Updates the user's savings goal via the Set New Goal button
+  const updateGoal = () => {
+    const token = localStorage.getItem("token");
+    const axiosInstance = axios.create({
+      baseURL: "http://localhost:4000",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    axiosInstance
+      .post("/user/goal", { goal: newGoal })
+      .then((response) => {
+        setGoal(newGoal);
+        alert("Goal updated successfully!");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <>
       <div className="flex flex-col items-center gap-2 mb-4 mt-4">
@@ -49,9 +70,20 @@ export default function SavingsTracker() {
           ></div>
         </div>
         {progress >= 0 && (
-          <button className="bg-primary-highlight hover:bg-primary text-white font-bold py-1 px-5 rounded">
+          <button
+            className="bg-primary-highlight hover:bg-primary text-white font-bold py-1 px-5 rounded"
+            onClick={() => setShowSetGoal(true)}
+          >
             Set New Goal
           </button>
+        )}
+        {showSetGoal && (
+          <SetGoal
+            newGoal={newGoal}
+            setNewGoal={setNewGoal}
+            updateGoal={updateGoal}
+            closeModal={() => setShowSetGoal(false)}
+          />
         )}
       </div>
     </>
