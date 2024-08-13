@@ -20,7 +20,7 @@ export default function SetGoal({
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
         <div className="bg-white p-6 rounded-lg w-96 relative">
           <button
-            className="absolute top-2 right-2 text-gray-600 hover:text-gray-900"
+            className="text-2xl absolute top-0 right-2 text-gray-600 hover:text-primary-red"
             onClick={closeModal}
           >
             &times;
@@ -31,26 +31,28 @@ export default function SetGoal({
           <input
             type="range"
             min="0"
+            max="1000000"
             value={newGoal}
             onChange={handleSliderChange}
             className="w-full"
           ></input>
           <input
             type="number"
-            value={newGoal}
             min="0"
+            max="1000000"
+            value={newGoal}
             onChange={handleInputChange}
             className="mt-2 border p-2 text-center w-full"
           ></input>
           <div className="flex justify-center mt-4 gap-4">
             <button
-              className=" bg-primary-highlight hover:bg-primary text-white font-bold py-2 px-4 rounded"
+              className=" bg-primary-highlight hover:bg-primary text-white font-bold py-2 px-4 rounded w-full"
               onClick={updateGoal}
             >
-              Apply New Goal
+              Apply
             </button>
             <button
-              className="bg-gray-500 text-white font-bold py-2 px-4 rounded mr-2"
+              className="bg-gray-600  hover:bg-primary-red text-white font-bold py-2 px-4 rounded mr-2 w-full"
               onClick={closeModal}
             >
               Cancel
