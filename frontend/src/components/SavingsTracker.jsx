@@ -75,7 +75,7 @@ export default function SavingsTracker() {
             className="bg-primary-highlight hover:bg-primary text-white font-bold py-1 px-5 rounded"
             onClick={() => setShowSetGoal(true)}
           >
-            Set New Goal
+            Update Savings Goal
           </button>
         )}
         {showSetGoal && (

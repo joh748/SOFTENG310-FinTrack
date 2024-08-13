@@ -18,21 +18,31 @@ export default function SetGoal({
     <>
       <div>
         <div>
+          <button onClick={closeModal}>&times;</button>
           <h2>Set New Savings Goal</h2>
-          <input type="range" min="0" onChange={handleSliderChange}></input>
-          <input type="number" onChaneg={handleInputChange}></input>
-          <div>
+          <input
+            type="range"
+            min="0"
+            value={newGoal}
+            onChange={handleSliderChange}
+          ></input>
+          <input
+            type="number"
+            value={newGoal}
+            onChaneg={handleInputChange}
+          ></input>
+          <div className="flex justify-center mt-4">
             <button
               className=" bg-primary-highlight hover:bg-primary text-white font-bold py-2 px-4 rounded"
               onClick={updateGoal}
             >
-              Set New Goal
+              Apply New Goal
             </button>
             <button
               className="bg-gray-500 text-white font-bold py-2 px-4 rounded mr-2"
               onClick={closeModal}
             >
-              Close
+              Cancel
             </button>
           </div>
         </div>
