@@ -1,61 +1,10 @@
-import { useEffect, useState } from 'react';
-import axios from 'axios';
 import Transaction from './Transaction';
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
-import { filterPastWeekTransactions, filterPastMonthTransactions, filterPastYearTransactions } from '../utility/transactionFilters.js';
+import TransactionContext from '../context/TransactionContext';
+import { useContext } from 'react';
 
 export default function TransactionList() {
-  const [transactions, setTransactions] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [filter, setFilter] = useState('');
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:4000/transaction/page/${currentPage}`)
-      .then((response) => {
-        let fetchedTransactions = response.data.result;
-
-        if (filter === 'year') {
-          fetchedTransactions = filterPastYearTransactions(fetchedTransactions);
-        }
-        else if (filter === 'month') {
-          fetchedTransactions = filterPastMonthTransactions(fetchedTransactions);
-        }
-        else if (filter === 'week') {
-          fetchedTransactions = filterPastWeekTransactions(fetchedTransactions);
-        }
-        setTransactions(fetchedTransactions);
-      })
-      .catch((error) => {
-        console.error('Not logged in');
-        window.location.href = '/login';
-      });
-  }, [currentPage], [filter]);
-
-  //function to filter transactions
-  const filterYear = () => {
-    if (filter === 'year') {
-      setFilter('');
-    } else {
-      setFilter('year');
-    }
-  };
-
-  const filterMonth = () => {
-    if (filter === 'month') {
-      setFilter('');
-    } else {
-      setFilter('month');
-    }
-  };
-
-  const filterWeek = () => {
-    if (filter === 'week') {
-      setFilter('');
-    } else {
-      setFilter('week');
-    }
-  };
+  const { transactions, filter, currentPage, setCurrentPage, filterYear, filterMonth, filterWeek, } = useContext(TransactionContext);
 
 
   return (
