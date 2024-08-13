@@ -50,6 +50,7 @@ export default function SavingsTracker() {
       .post("/user/goal", { goal: newGoal })
       .then((response) => {
         setGoal(newGoal);
+        setShowSetGoal(false);
         alert("Goal updated successfully!");
       })
       .catch((error) => {
