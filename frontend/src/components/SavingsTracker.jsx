@@ -36,7 +36,7 @@ export default function SavingsTracker() {
       .catch((error) => {
         console.log(error);
       });
-  });
+  }, [balance, goal]);
 
   // Updates the user's savings goal via the Set New Goal button
   const updateGoal = () => {
