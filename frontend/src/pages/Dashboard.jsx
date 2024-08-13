@@ -1,10 +1,11 @@
-import { useContext } from 'react';
-import CurrentBalance from '../components/CurrentBalance';
-import TransactionLog from '../components/TransactionLog';
-import AddTransactionButton from '../components/AddTransactionButton';
-import DeleteTransactionButton from '../components/DeleteTransactionButton';
-import CurrencyDropdown from '../components/CurrencyDropdown';
-import TransactionContext from '../context/TransactionContext';
+import { useContext } from "react";
+import CurrentBalance from "../components/CurrentBalance";
+import TransactionLog from "../components/TransactionLog";
+import AddTransactionButton from "../components/AddTransactionButton";
+import DeleteTransactionButton from "../components/DeleteTransactionButton";
+import CurrencyDropdown from "../components/CurrencyDropdown";
+import TransactionContext from "../context/TransactionContext";
+import SavingsTracker from "../components/SavingsTracker";
 
 /*
  * When adding your new component:
@@ -14,7 +15,6 @@ import TransactionContext from '../context/TransactionContext';
  */
 
 export default function Dashboard() {
-
   return (
     <>
       <div className="bg-blue-200">
@@ -30,7 +30,7 @@ export default function Dashboard() {
             <TransactionLog />
           </div>
 
-          <div className='flex flex-col w-[20%] items-center gap-[3%]'>
+          <div className="flex flex-col w-[20%] items-center gap-[3%]">
             <AddTransactionButton />
             <DeleteTransactionButton />
             <CurrencyDropdown />
