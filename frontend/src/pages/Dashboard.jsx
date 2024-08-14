@@ -25,7 +25,7 @@ export default function Dashboard() {
         <div className='flex flex-row pt-[2%]'>
 
           <div className=' flex flex-col w-[80%]'>
-            <div className=' flex flex-col items-start'>
+            <div className=' flex flex-col items-start mb-[2%]'>
               <CurrentBalance />
             </div>
             <TransactionLog />

@@ -8,8 +8,19 @@ export function TransactionContextProvider({ children }) {
     const [currency, setCurrency] = useState('NZD'); // default currency is NZD
     const [transactions, setTransactions] = useState([]);
     const [currentPage, setCurrentPage] = useState(1);
-    const [convertedAmount, setConvertedAmount] = useState(0); // amount of money
     const [filter, setFilter] = useState('');
+    const [balance, setBalance] = useState(0);
+
+    // fetch the balance from the server
+    useEffect(() => {
+        axios.get("http://localhost:4000/user/balance")
+            .then(response => {
+                setBalance(response.data.result.balance);
+            }).catch(error => {
+                // If the user is not logged in (due to directly accessing dashboard path or token expiring), redirect to the login page
+                window.location.href = "/login";
+            });
+    }, [currency, balance]);
 
     // fetch transactions from the server and filter them
     useEffect(() => {
@@ -76,7 +87,6 @@ export function TransactionContextProvider({ children }) {
                 console.error("Error calculating conversion", error);
             }
         } else {
-            setConvertedAmount(amount);
             return amount;
         }
     }
@@ -87,6 +97,8 @@ export function TransactionContextProvider({ children }) {
         transactions,       // the transactions to display
         filter,             // the filter type to apply to the transactions i.e year, month, week
         currentPage,
+        balance,            // the balance of the user
+        setBalance,
         setFilter,
         filterYear,         // filters the transactions, access the transactions with the transactions variable
         filterMonth,        // filters the transactions, access the transactions with the transactions variable
