@@ -15,7 +15,13 @@ export default function TransactionList() {
   } = useContext(TransactionContext);
   const [selectedTransactions, setSelectedTransactions] = useState([]);
 
-  const handleSelect = (transactionId, isSelected) => {};
+  const handleSelect = (transactionId, isSelected) => {
+    setSelectedTransactions((prev) =>
+      isSelected
+        ? [...prev, transactionId]
+        : prev.filter((id) => id !== transactionId)
+    );
+  };
 
   const handleDeleteSelected = async () => {};
   return (
