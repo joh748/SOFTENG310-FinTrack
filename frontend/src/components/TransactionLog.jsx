@@ -1,20 +1,20 @@
 import Transaction from "./Transaction";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import TransactionContext from "../context/TransactionContext";
-import { useContext, useState } from "react";
-import axios from "axios";
+import { useContext } from "react";
 
 export default function TransactionList() {
   const {
     transactions,
+    selectedTransactions,
     filter,
+    setSelectedTransactions,
     currentPage,
     setCurrentPage,
     filterYear,
     filterMonth,
     filterWeek,
   } = useContext(TransactionContext);
-  const [selectedTransactions, setSelectedTransactions] = useState([]);
 
   const handleSelect = (transactionId, isSelected) => {
     setSelectedTransactions((prev) =>
@@ -24,33 +24,6 @@ export default function TransactionList() {
     );
   };
 
-  const handleDeleteSelected = async () => {
-    console.log("Transactions to delete:", selectedTransactions);
-
-    const token = localStorage.getItem("token");
-
-    if (!token) {
-      console.error("User is not authenticated.");
-      return;
-    }
-
-    const axiosInstance = axios.create({
-      baseURL: "http://localhost:4000",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    try {
-      // Assuming you have an API function to delete a transaction by ID
-      await Promise.all(
-        selectedTransactions.map((transactionId) =>
-          axiosInstance.delete(`/transaction/${transactionId}`)
-        )
-      );
-      console.log("Transactions deleted successfully.");
-    } catch (error) {
-      console.error("Failed to delete transactions", error);
-    }
-  };
   return (
     <div className="flex flex-col items-center">
       <div className=" w-[100%]">
@@ -111,12 +84,6 @@ export default function TransactionList() {
             <h2 className="text-sub-heading w-4">{currentPage}</h2>
             <button onClick={() => setCurrentPage(currentPage + 1)}>
               <IoIosArrowForward size={35} />
-            </button>
-            <button
-              onClick={handleDeleteSelected}
-              className="bg-primary-red text-white text-button px-3 py-3 min-w-[280px] rounded-full hover:bg-primary-red-dark active:bg-primary-red-darker mt-4"
-            >
-              Delete Selected Transactions
             </button>
           </div>
         </div>
