@@ -6,7 +6,6 @@ import { useContext } from "react";
 export default function TransactionList() {
   const {
     transactions,
-    selectedTransactions,
     filter,
     setSelectedTransactions,
     currentPage,
