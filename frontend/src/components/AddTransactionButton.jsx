@@ -1,28 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useContext } from "react";
 import axios from "axios";
 import TransactionForm from "./TransactionForm";
+import TransactionContext from "../context/TransactionContext";
 
 export default function AddTransactionButton() {
   const [showForm, setShowForm] = useState(false);
-  const [balance, setBalance] = useState(0);
-
-  // Fetch the user's current balance when the component mounts
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    const axiosInstance = axios.create({
-      baseURL: "http://localhost:4000",
-      headers: { Authorization: `Bearer ${token}` },
-    });
-
-    axiosInstance
-      .get("/user/balance")
-      .then((response) => {
-        setBalance(response.data.result.balance);
-      })
-      .catch((error) => {
-        console.error("Error fetching user balance:", error);
-      });
-  }, [balance]); // Empty dependency array to run only on mount
+  const { balance, setBalance } = useContext(TransactionContext);
 
   const handleFormSubmit = async ({
     title,
