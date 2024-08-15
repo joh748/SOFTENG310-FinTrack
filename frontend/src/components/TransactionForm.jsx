@@ -4,7 +4,7 @@ export default function TransactionForm({ onSubmit, onCancel }) {
   const labelStyle = "text-2xl";
   const inputStyle = "mt-2 border p-2 w-full";
   const [title, setTitle] = useState("");
-  const [amount, setAmount] = useState();
+  const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState("");
   const [transactionType, setTransactionType] = useState("income");
 
@@ -13,6 +13,15 @@ export default function TransactionForm({ onSubmit, onCancel }) {
     if (event.key === "Enter") {
       event.preventDefault();
     }
+  };
+
+  const handleSubmit = () => {
+    onSubmit({
+      title,
+      amount,
+      description,
+      transactionType,
+    });
   };
   return (
     <form onSubmit={(e) => e.preventDefault()}>
@@ -92,7 +101,7 @@ export default function TransactionForm({ onSubmit, onCancel }) {
           </div>
           <div className="flex justify-center mt-4 gap-4">
             <button
-              onClick={onSubmit}
+              onClick={handleSubmit}
               className=" bg-primary-highlight hover:bg-primary text-white font-bold py-2 px-4 rounded w-full"
             >
               Apply
