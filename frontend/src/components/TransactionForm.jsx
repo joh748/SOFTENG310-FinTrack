@@ -27,7 +27,10 @@ export default function TransactionForm({ onSubmit, onCancel }) {
           </div>
           <div className="flex flex-col">
             <label className={labelStyle}>Description</label>
-            <textarea className={`${inputStyle} p-2 h-24`} rows="4" />
+            <textarea
+              className={`${inputStyle}  min-h-[250px] max-h-[400px]`}
+              rows="4"
+            />
           </div>
           <div className="flex justify-center mt-4 gap-4">
             <button
