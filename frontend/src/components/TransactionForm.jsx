@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 export default function TransactionForm({ onSubmit, onCancel }) {
   const labelStyle = "text-2xl";
@@ -38,10 +39,13 @@ export default function TransactionForm({ onSubmit, onCancel }) {
           </h2>
           {/*Transaction Type element*/}
           <div className="flex flex-col mt-4">
-            <label className={`${labelStyle} mb-2`}>Transaction Type</label>
+            <label htmlFor="transactionType" className={`${labelStyle} mb-2`}>
+              Transaction Type
+            </label>
             <div className="w-full flex gap-2 mb-2">
               <button
                 type="button"
+                id="transactionType"
                 onClick={() => setTransactionType("income")}
                 className={`w-full px-4 py-2 font-bold rounded ${
                   transactionType === "income"
@@ -66,7 +70,9 @@ export default function TransactionForm({ onSubmit, onCancel }) {
           </div>
           {/*Title element*/}
           <div className="flex flex-col">
-            <label className={labelStyle}>Title</label>
+            <label htmlFor="title" className={labelStyle}>
+              Title
+            </label>
             <input
               type="text"
               id="title"
@@ -78,7 +84,9 @@ export default function TransactionForm({ onSubmit, onCancel }) {
           </div>
           {/*Amount element*/}
           <div className="flex flex-col">
-            <label className={labelStyle}>Amount</label>
+            <label htmlFor="amount" className={labelStyle}>
+              Amount
+            </label>
             <input
               type="number"
               id="amount"
@@ -90,7 +98,9 @@ export default function TransactionForm({ onSubmit, onCancel }) {
           </div>
           {/*Description element*/}
           <div className="flex flex-col">
-            <label className={labelStyle}>Description</label>
+            <label htmlFor="description" className={labelStyle}>
+              Description
+            </label>
             <textarea
               id="description"
               value={description}
@@ -118,3 +128,8 @@ export default function TransactionForm({ onSubmit, onCancel }) {
     </form>
   );
 }
+
+TransactionForm.propTypes = {
+  onSubmit: PropTypes.func.isRequired, // Expect a function and make it required
+  onCancel: PropTypes.func.isRequired, // Expect a function and make it required
+};
