@@ -3,6 +3,13 @@ import React from "react";
 export default function TransactionForm({ onSubmit, onCancel }) {
   const labelStyle = "text-2xl";
   const inputStyle = "mt-2 border p-2 w-full";
+
+  // Prevent form submission on enter key press
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+    }
+  };
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
@@ -19,11 +26,19 @@ export default function TransactionForm({ onSubmit, onCancel }) {
           {/* amount,title,description */}
           <div className="flex flex-col">
             <label className={labelStyle}>Title</label>
-            <input type="text" className={inputStyle}></input>
+            <input
+              type="text"
+              onKeyDown={handleKeyDown}
+              className={inputStyle}
+            ></input>
           </div>
           <div className="flex flex-col">
             <label className={labelStyle}>Amount</label>
-            <input type="number" className={inputStyle}></input>
+            <input
+              type="number"
+              onKeyDown={handleKeyDown}
+              className={inputStyle}
+            ></input>
           </div>
           <div className="flex flex-col">
             <label className={labelStyle}>Description</label>
