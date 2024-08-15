@@ -6,6 +6,8 @@ import DeleteTransactionButton from "../components/DeleteTransactionButton";
 import CurrencyDropdown from "../components/CurrencyDropdown";
 import TransactionContext from "../context/TransactionContext";
 import SavingsTracker from "../components/SavingsTracker";
+//REMOVE VIEWING ONLY
+import TransactionForm from "../components/TransactionForm";
 
 /*
  * When adding your new component:
@@ -21,11 +23,10 @@ export default function Dashboard() {
         <p>HEADER</p>
       </div>
 
-      <div className=' flex flex-col px-[8%]'>
-        <div className='flex flex-row pt-[2%]'>
-
-          <div className=' flex flex-col w-[80%]'>
-            <div className=' flex flex-col items-start mb-[2%]'>
+      <div className=" flex flex-col px-[8%]">
+        <div className="flex flex-row pt-[2%]">
+          <div className=" flex flex-col w-[80%]">
+            <div className=" flex flex-col items-start mb-[2%]">
               <CurrentBalance />
             </div>
             <TransactionLog />
@@ -45,6 +46,8 @@ export default function Dashboard() {
         <div className="bg-green-300 flex flex-row justify-center">
           <p>INCOME STATS</p>
         </div>
+        {/* REMOVE VIEWING ONLY */}
+        <TransactionForm></TransactionForm>
       </div>
     </>
   );
