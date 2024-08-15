@@ -2,7 +2,7 @@ import React from "react";
 
 export default function TransactionForm({ onSubmit, onCancel }) {
   const labelStyle = "text-2xl";
-  const inputStyle = "mt-2 border p-2 text-center w-full";
+  const inputStyle = "mt-2 border p-2 w-full";
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
@@ -19,15 +19,15 @@ export default function TransactionForm({ onSubmit, onCancel }) {
           {/* amount,title,description */}
           <div className="flex flex-col">
             <label className={labelStyle}>Title</label>
-            <input className={inputStyle}></input>
+            <input type="text" className={inputStyle}></input>
           </div>
           <div className="flex flex-col">
             <label className={labelStyle}>Amount</label>
-            <input className={inputStyle}></input>
+            <input type="number" className={inputStyle}></input>
           </div>
           <div className="flex flex-col">
             <label className={labelStyle}>Description</label>
-            <input className={`${inputStyle} p-6`}></input>
+            <textarea className={`${inputStyle} p-2 h-24`} rows="4" />
           </div>
           <div className="flex justify-center mt-4 gap-4">
             <button
