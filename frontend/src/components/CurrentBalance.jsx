@@ -12,7 +12,7 @@ export default function CurrentBalance() {
             setConvertedAmount(convertedAmount);
         }
         convert();
-    }, [currency]);
+    }, [currency, balance]);
 
     return (
         <div className="flex flex-col items-center">
