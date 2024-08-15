@@ -1,3 +1,4 @@
+
 import { useContext } from "react";
 import CurrentBalance from "../components/CurrentBalance";
 import TransactionLog from "../components/TransactionLog";
@@ -6,6 +7,7 @@ import DeleteTransactionButton from "../components/DeleteTransactionButton";
 import CurrencyDropdown from "../components/CurrencyDropdown";
 import TransactionContext from "../context/TransactionContext";
 import SavingsTracker from "../components/SavingsTracker";
+
 
 /*
  * When adding your new component:
@@ -17,9 +19,14 @@ import SavingsTracker from "../components/SavingsTracker";
 export default function Dashboard() {
   return (
     <>
-      <div className="bg-blue-200">
-        <p>HEADER</p>
+      <div className='bg-blue-500 flex items-center h-12 p-4'>
+        <h1 className= 'flex items-center'>
+          <div className = 'flex items center'>
+            <img src={FintrackLogo} alt="Fintrack Logo" className="h-20 w-40" style={{ marginTop: '10px' }}/>
+          </div>
+        </h1>
       </div>
+
 
       <div className=' flex flex-col px-[8%]'>
         <div className='flex flex-row pt-[2%]'>
