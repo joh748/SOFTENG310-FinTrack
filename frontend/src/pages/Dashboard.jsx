@@ -1,3 +1,4 @@
+
 import { useContext } from "react";
 import CurrentBalance from "../components/CurrentBalance";
 import TransactionLog from "../components/TransactionLog";
@@ -9,6 +10,7 @@ import SavingsTracker from "../components/SavingsTracker";
 //REMOVE VIEWING ONLY
 import TransactionForm from "../components/TransactionForm";
 
+
 /*
  * When adding your new component:
  * remove the p tags and replace them with your respective react components, and remove the bg-[colour] property in its wrapped <div>
@@ -19,14 +21,19 @@ import TransactionForm from "../components/TransactionForm";
 export default function Dashboard() {
   return (
     <>
-      <div className="bg-blue-200">
-        <p>HEADER</p>
+      <div className='bg-blue-500 flex items-center h-12 p-4'>
+        <h1 className= 'flex items-center'>
+          <div className = 'flex items center'>
+            <img src={FintrackLogo} alt="Fintrack Logo" className="h-20 w-40" style={{ marginTop: '10px' }}/>
+          </div>
+        </h1>
       </div>
 
       <div className=" flex flex-col px-[8%]">
         <div className="flex flex-row pt-[2%]">
           <div className=" flex flex-col w-[80%]">
             <div className=" flex flex-col items-start mb-[2%]">
+
               <CurrentBalance />
             </div>
             <TransactionLog />
