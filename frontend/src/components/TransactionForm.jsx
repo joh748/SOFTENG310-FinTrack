@@ -27,7 +27,7 @@ export default function TransactionForm({ onSubmit, onCancel }) {
           <h2 className="text-2xl font-bold mb-4 text-center">
             Add New Transaction
           </h2>
-          {/* amount,title,description */}
+          {/*Transaction Type element*/}
           <div className="flex flex-col mt-4">
             <label className={`${labelStyle} mb-2`}>Transaction Type</label>
             <div className="w-full flex gap-2 mb-2">
@@ -55,6 +55,7 @@ export default function TransactionForm({ onSubmit, onCancel }) {
               </button>
             </div>
           </div>
+          {/*Title element*/}
           <div className="flex flex-col">
             <label className={labelStyle}>Title</label>
             <input
@@ -66,17 +67,19 @@ export default function TransactionForm({ onSubmit, onCancel }) {
               className={inputStyle}
             ></input>
           </div>
+          {/*Amount element*/}
           <div className="flex flex-col">
             <label className={labelStyle}>Amount</label>
             <input
               type="number"
               id="amount"
               value={amount}
-              onChange={(e) => setAmount(pasreFloat(e.target.value))}
+              onChange={(e) => setAmount(parseFloat(e.target.value))}
               onKeyDown={handleKeyDown}
               className={inputStyle}
             ></input>
           </div>
+          {/*Description element*/}
           <div className="flex flex-col">
             <label className={labelStyle}>Description</label>
             <textarea
