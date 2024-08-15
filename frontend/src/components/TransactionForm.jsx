@@ -61,6 +61,7 @@ export default function TransactionForm({ onSubmit, onCancel }) {
               type="text"
               id="title"
               value={title}
+              onChange={(e) => setTitle(e.target.value)}
               onKeyDown={handleKeyDown}
               className={inputStyle}
             ></input>
@@ -71,6 +72,7 @@ export default function TransactionForm({ onSubmit, onCancel }) {
               type="number"
               id="amount"
               value={amount}
+              onChange={(e) => setAmount(pasreFloat(e.target.value))}
               onKeyDown={handleKeyDown}
               className={inputStyle}
             ></input>
@@ -80,6 +82,7 @@ export default function TransactionForm({ onSubmit, onCancel }) {
             <textarea
               id="description"
               value={description}
+              onChange={(e) => setDescription(e.target.value)}
               className={`${inputStyle}  min-h-[250px] max-h-[400px]`}
               rows="4"
             />
