@@ -34,8 +34,6 @@ export default function SavingsTracker() {
     axiosInstance
       .get("/user/goal")
       .then((response) => {
-        console.log("Goal response:", response.data);
-        console.log("goal:" + goal);
         setGoal(response.data.result.saving_goal);
       })
       .catch((error) => {
@@ -88,7 +86,7 @@ export default function SavingsTracker() {
       <div className="w-full h-6 bg-gray-200 dark:bg-gray-700 outline-primary-highlight outline outline-1">
         <div
           className="h-6 bg-primary-highlight"
-          style={{ width: `${progress} %` }}
+          style={{ width: `${progress}%` }}
         ></div>
       </div>
       <button
