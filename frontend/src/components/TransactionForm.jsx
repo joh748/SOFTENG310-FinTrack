@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 export default function TransactionForm({ onSubmit, onCancel }) {
@@ -8,6 +8,15 @@ export default function TransactionForm({ onSubmit, onCancel }) {
   const [amount, setAmount] = useState(0);
   const [description, setDescription] = useState("");
   const [transactionType, setTransactionType] = useState("income");
+
+  // Handle sudden change in transaction type
+  useEffect(() => {
+    if (transactionType === "expense") {
+      setAmount(-Math.abs(amount));
+    } else {
+      setAmount(Math.abs(amount));
+    }
+  }, [transactionType, amount]);
 
   // Prevent form submission on enter key press
   const handleKeyDown = (event) => {
@@ -91,7 +100,7 @@ export default function TransactionForm({ onSubmit, onCancel }) {
               type="number"
               id="amount"
               value={amount}
-              onChange={(e) => setAmount(parseFloat(e.target.value))}
+              onChange={(e) => setAmount(e.target.value)}
               onKeyDown={handleKeyDown}
               className={inputStyle}
             ></input>
