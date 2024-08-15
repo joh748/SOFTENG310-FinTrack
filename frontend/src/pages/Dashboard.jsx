@@ -46,8 +46,6 @@ export default function Dashboard() {
         <div className="bg-green-300 flex flex-row justify-center">
           <p>INCOME STATS</p>
         </div>
-        {/* REMOVE VIEWING ONLY */}
-        <TransactionForm></TransactionForm>
       </div>
     </>
   );
