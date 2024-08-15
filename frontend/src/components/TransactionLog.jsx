@@ -1,8 +1,7 @@
 import Transaction from "./Transaction";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import TransactionContext from "../context/TransactionContext";
-import { useState, useContext } from "react";
-import TransactionList from "./TransactionList";
+import { useContext, useState } from "react";
 
 export default function TransactionList() {
   const {
@@ -16,24 +15,9 @@ export default function TransactionList() {
   } = useContext(TransactionContext);
   const [selectedTransactions, setSelectedTransactions] = useState([]);
 
-  //Function for deleting transactions
-  const handleDelete = async () => {
-    const updatedTransactions = transactions.filter(
-      (transaction) => !selectedTransactions.includes(transaction.id)
-    );
-    setTransactions(updatedTransactions);
+  const handleSelect = (transactionId, isSelected) => {};
 
-    //Make delete requests to the server for each transaction selected
-    await Promise.all(
-      selectedTransactions.map(async (id) => {
-        await axios.delete(`http://localhost:4000/transaction/${id}`);
-      })
-    );
-
-    // Clear selection after deletion
-    setSelectedTransactions([]);
-  };
-
+  const handleDeleteSelected = async () => {};
   return (
     <div className="flex flex-col items-center">
       <div className=" w-[100%]">
@@ -72,12 +56,17 @@ export default function TransactionList() {
         </div>
         <div className=" flex justify-between flex-col items-center min-h-[450px]">
           <div className="w-[90%] mt-[40px]">
-            <TransactionList
-              transactions={transactions}
-              setSelectedTransactions={setSelectedTransactions}
-            ></TransactionList>
+            <ul>
+              {transactions.map((transaction) => (
+                <Transaction
+                  key={transaction.id}
+                  transaction={transaction}
+                  handleSelect={handleSelect}
+                />
+              ))}
+            </ul>
           </div>
-          <DeleteTransactionButton handleDelete={handleDelete} />
+
           <div className="flex flex-row">
             <button
               className={currentPage === 1 ? "text-gray-400" : ""}
@@ -89,6 +78,12 @@ export default function TransactionList() {
             <h2 className="text-sub-heading w-4">{currentPage}</h2>
             <button onClick={() => setCurrentPage(currentPage + 1)}>
               <IoIosArrowForward size={35} />
+            </button>
+            <button
+              onClick={handleDeleteSelected}
+              className="bg-primary-red text-white text-button px-3 py-3 min-w-[280px] rounded-full hover:bg-primary-red-dark active:bg-primary-red-darker mt-4"
+            >
+              Delete Selected Transactions
             </button>
           </div>
         </div>

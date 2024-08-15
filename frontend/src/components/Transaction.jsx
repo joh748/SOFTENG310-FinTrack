@@ -20,9 +20,13 @@ const Transaction = ({ transaction, handleSelect }) => {
     convert();
   }, [currency, transaction.amount, convertCurrency]);
 
+  const handleCheckboxChange = (e) => {
+    handleSelect(transaction.id, e.target.checked);
+    console.log("clicked: ", transaction.id);
+  };
   return (
     <div className="flex flex-row justify-start text-body pl-[8x]">
-      <input type="checkbox" onClick={() => handleSelect(transaction.id)} />
+      <input type="checkbox" onChange={handleCheckboxChange} />
       <div
         className={` w-full flex flex-row justify-between text-body pl-[8px] ${
           isAmountNegative ? "text-red-500" : "text-green-500"
