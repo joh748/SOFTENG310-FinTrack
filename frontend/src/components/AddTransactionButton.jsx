@@ -1,9 +1,28 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import TransactionForm from "./TransactionForm";
 
 export default function AddTransactionButton() {
   const [showForm, setShowForm] = useState(false);
+  const [balance, setBalance] = useState(0);
+
+  // Fetch the user's current balance when the component mounts
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const axiosInstance = axios.create({
+      baseURL: "http://localhost:4000",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    axiosInstance
+      .get("/user/balance")
+      .then((response) => {
+        setBalance(response.data.result.balance);
+      })
+      .catch((error) => {
+        console.error("Error fetching user balance:", error);
+      });
+  }, [balance]); // Empty dependency array to run only on mount
 
   const handleFormSubmit = async ({
     title,
@@ -11,78 +30,39 @@ export default function AddTransactionButton() {
     description,
     transactionType,
   }) => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("User is not authenticated.");
+      return;
+    }
+
+    const axiosInstance = axios.create({
+      baseURL: "http://localhost:4000",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
     try {
-      const token = localStorage.getItem("token");
-
-      if (!token) {
-        console.error("User is not authenticated.");
-        return;
-      }
-
-      const transactionURL = "http://localhost:4000/transaction";
-      const balanceURL = "http://localhost:4000/user/balance";
-
-      console.log("Posting transaction to:", transactionURL);
-
       // Post request to create the transaction
-      const response = await axios.post(
-        transactionURL,
-        {
-          title,
-          amount,
-          description,
-        },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      const response = await axiosInstance.post("/transaction", {
+        title,
+        amount,
+        description,
+      });
 
-      console.log("Response data:", response.data);
+      console.log("Transaction created successfully.", response.data);
 
-      if (response.status === 200) {
-        console.log("Transaction created successfully.");
+      // Update the balance after the transaction is created
+      const newBalance =
+        transactionType === "income"
+          ? balance + parseFloat(amount)
+          : balance - parseFloat(amount);
 
-        // Fetch the user balance
-        try {
-          const balanceResponse = await axios.get(balanceURL, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          });
+      // PATCH request to update the balance
+      await axiosInstance.patch("/user/balance", { balance: newBalance });
 
-          console.log("Balance response data:", balanceResponse.data);
-
-          const userBalance = balanceResponse.data.balance;
-          console.log("Fetched user balance:", userBalance);
-
-          const newBalance =
-            transactionType === "income"
-              ? userBalance + parseFloat(amount)
-              : userBalance - parseFloat(amount);
-
-          // PATCH request to update the balance
-          const patchResponse = await axios.patch(
-            balanceURL,
-            {
-              balance: newBalance,
-            },
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
-
-          console.log("Balance before update:", userBalance);
-          console.log("Amount added/subtracted:", amount);
-          console.log("Balance after update:", patchResponse.data.balance);
-          console.log("Balance updated successfully");
-        } catch (balanceError) {
-          console.error("Error fetching user balance:", balanceError);
-        }
-      }
+      console.log("Balance updated successfully.");
+      setBalance(newBalance); // Update the balance state
     } catch (error) {
       console.error("Error occurred:", error);
     } finally {
