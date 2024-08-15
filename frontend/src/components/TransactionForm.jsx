@@ -6,6 +6,7 @@ export default function TransactionForm({ onSubmit, onCancel }) {
   const [title, setTitle] = useState("");
   const [amount, setAmount] = useState();
   const [description, setDescription] = useState("");
+  const [transactionType, setTransactionType] = useState("income");
 
   // Prevent form submission on enter key press
   const handleKeyDown = (event) => {
@@ -27,6 +28,33 @@ export default function TransactionForm({ onSubmit, onCancel }) {
             Add New Transaction
           </h2>
           {/* amount,title,description */}
+          <div className="flex flex-col mt-4">
+            <label className={`${labelStyle} mb-2`}>Transaction Type</label>
+            <div className="w-full flex gap-2 mb-2">
+              <button
+                type="button"
+                onClick={() => setTransactionType("income")}
+                className={`w-full px-4 py-2 font-bold rounded ${
+                  transactionType === "income"
+                    ? "bg-primary-green text-white"
+                    : "bg-gray-200 text-black"
+                }`}
+              >
+                Income
+              </button>
+              <button
+                type="button"
+                onClick={() => setTransactionType("expense")}
+                className={`w-full px-4 py-2 font-bold rounded ${
+                  transactionType === "expense"
+                    ? "bg-primary-red text-white"
+                    : "bg-gray-200 text-black"
+                }`}
+              >
+                Expense
+              </button>
+            </div>
+          </div>
           <div className="flex flex-col">
             <label className={labelStyle}>Title</label>
             <input
