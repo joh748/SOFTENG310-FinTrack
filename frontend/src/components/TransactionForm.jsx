@@ -1,8 +1,11 @@
-import React from "react";
+import { useState } from "react";
 
 export default function TransactionForm({ onSubmit, onCancel }) {
   const labelStyle = "text-2xl";
   const inputStyle = "mt-2 border p-2 w-full";
+  const [title, setTitle] = useState("");
+  const [amount, setAmount] = useState();
+  const [description, setDescription] = useState("");
 
   // Prevent form submission on enter key press
   const handleKeyDown = (event) => {
@@ -28,6 +31,8 @@ export default function TransactionForm({ onSubmit, onCancel }) {
             <label className={labelStyle}>Title</label>
             <input
               type="text"
+              id="title"
+              value={title}
               onKeyDown={handleKeyDown}
               className={inputStyle}
             ></input>
@@ -36,6 +41,8 @@ export default function TransactionForm({ onSubmit, onCancel }) {
             <label className={labelStyle}>Amount</label>
             <input
               type="number"
+              id="amount"
+              value={amount}
               onKeyDown={handleKeyDown}
               className={inputStyle}
             ></input>
@@ -43,6 +50,8 @@ export default function TransactionForm({ onSubmit, onCancel }) {
           <div className="flex flex-col">
             <label className={labelStyle}>Description</label>
             <textarea
+              id="description"
+              value={description}
               className={`${inputStyle}  min-h-[250px] max-h-[400px]`}
               rows="4"
             />
