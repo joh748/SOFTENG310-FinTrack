@@ -78,25 +78,28 @@ export default function SavingsTracker() {
       });
   };
   return (
-    <div className="flex flex-col items-center gap-2 mb-2 mt-2">
-      <h2 className="text-2xl font-semibold"> Current Savings Goal</h2>
-      <p className="text-body">
-        ${balance}/${goal || "0"}
+    <div className="flex flex-col items-center gap-2 mb-2 mt-2 w-[40%]">
+      <h2 className="text-sub-heading font-bold m-0"> Current Savings Goal:</h2>
+      <p className="text-body my-0 mb-3">
+        ${balance}/${goal}
       </p>
-      <div className="w-full h-6 bg-gray-200 dark:bg-gray-700 outline-primary-highlight outline outline-1">
+      <div className="w-full h-11 bg-white outline-primary outline outline-3 rounded-full">
         <div
-          className="h-6 bg-primary-highlight"
-          style={{ width: `${progress}%` }}
+          className="h-11 rounded-full bg-primary"
+          style={{ width: `${progress}` }}
         ></div>
       </div>
-      <button
-        className="bg-primary-highlight hover:bg-primary text-white font-bold py-1 px-5 rounded"
-        onClick={() => {
-          setShowSetGoal(true);
-        }}
-      >
-        Update Savings Goal
-      </button>
+      {progress >= 0 && (
+        <button
+          className="bg-primary hover:bg-primary-dark text-white text-button font-bold py-2 px-7 rounded-full my-4"
+          onClick={() => {
+            setShowSetGoal(true);
+            console.log("goal:" + goal);
+          }}
+        >
+          Update Savings Goal
+        </button>
+      )}
       {showSetGoal && (
         <SetGoal
           newGoal={newGoal}

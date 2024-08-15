@@ -2,6 +2,7 @@ import Transaction from "./Transaction";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import TransactionContext from "../context/TransactionContext";
 import { useContext, useState } from "react";
+import axios from "axios";
 
 export default function TransactionList() {
   const {
@@ -23,7 +24,33 @@ export default function TransactionList() {
     );
   };
 
-  const handleDeleteSelected = async () => {};
+  const handleDeleteSelected = async () => {
+    console.log("Transactions to delete:", selectedTransactions);
+
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      console.error("User is not authenticated.");
+      return;
+    }
+
+    const axiosInstance = axios.create({
+      baseURL: "http://localhost:4000",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    try {
+      // Assuming you have an API function to delete a transaction by ID
+      await Promise.all(
+        selectedTransactions.map((transactionId) =>
+          axiosInstance.delete(`/transaction/${transactionId}`)
+        )
+      );
+      console.log("Transactions deleted successfully.");
+    } catch (error) {
+      console.error("Failed to delete transactions", error);
+    }
+  };
   return (
     <div className="flex flex-col items-center">
       <div className=" w-[100%]">
