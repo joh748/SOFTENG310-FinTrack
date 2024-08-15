@@ -25,6 +25,8 @@ export default function AddTransactionButton() {
       headers: { Authorization: `Bearer ${token}` },
     });
 
+    console.log("amount: ", amount);
+
     try {
       // Post request to create the transaction
       const response = await axiosInstance.post("/transaction", {
@@ -36,16 +38,12 @@ export default function AddTransactionButton() {
       console.log("Transaction created successfully.", response.data);
 
       // Update the balance after the transaction is created
-      const newBalance =
-        transactionType === "income"
-          ? balance + parseFloat(amount)
-          : balance - parseFloat(amount);
 
       // PATCH request to update the balance
-      await axiosInstance.patch("/user/balance", { balance: newBalance });
+      await axiosInstance.patch("/user/balance", { balance: balance + amount });
 
       console.log("Balance updated successfully.");
-      setBalance(newBalance); // Update the balance state
+      setBalance(balance + amount); // Update the balance state in the context
     } catch (error) {
       console.error("Error occurred:", error);
     } finally {
