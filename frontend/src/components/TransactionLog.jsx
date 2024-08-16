@@ -1,5 +1,6 @@
-import Transaction from './Transaction';
+import Transaction from "./Transaction";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
+
 import TransactionContext from '../context/TransactionContext';
 import { useContext, useState, useEffect } from 'react';
 
@@ -53,13 +54,12 @@ export default function TransactionList() {
             </button>
             <h2 className='text-sub-heading'>{currentPage}</h2>
             <button className={currentPage === maxPage ? 'text-gray-400' : 'text-black hover:text-primary active:text-primary-dark'} onClick={() => setCurrentPage(currentPage + 1)} disabled={currentPage === maxPage}>
+
               <IoIosArrowForward size={35} />
             </button>
           </div>
-
         </div>
       </div>
-
     </div>
   );
 }
