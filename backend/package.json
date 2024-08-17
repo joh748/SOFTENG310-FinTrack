@@ -4,7 +4,7 @@
   "description": "",
   "main": "src/server.js",
   "scripts": {
-    "test": "mocha --recursive",
+    "test": "mocha --recursive --exclude coverage",
     "coverage": "nyc --reporter=html --reporter=text mocha --recursive",
     "start": "node src/server.js"
   },
