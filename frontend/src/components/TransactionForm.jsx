@@ -29,9 +29,16 @@ export default function TransactionForm({ onSubmit, onCancel }) {
   };
 
   const handleSubmit = () => {
+    //if amount is left empty update it to 0 and submit it.
+    let updatedAmount = amount;
+    if(amount === ''){
+      updatedAmount = 0;
+      setAmount(0);
+    }
+
     onSubmit({
       title,
-      amount,
+      amount: updatedAmount,
       description,
       transactionType,
     });
