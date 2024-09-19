@@ -18,7 +18,7 @@ export default function CurrentBalance() {
   return (
     <div className="flex flex-col items-center">
       <h2 className="text-sub-heading font-extrabold">
-        Current Balance: {convertedAmount} 
+        Current Balance: ${convertedAmount} 
       </h2>
     </div>
   );
