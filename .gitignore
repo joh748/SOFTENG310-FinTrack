@@ -27,4 +27,8 @@ yarn-error.log*
 
 #misc folders
 .idea/
+<<<<<<< HEAD
 .vscode/
+=======
+.vscode/launch.json
+>>>>>>> upstream/main
