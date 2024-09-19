@@ -23,8 +23,8 @@ const createUserTableQuery = `
     email VARCHAR(255) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP , 
-    balance money DEFAULT 0.0 NOT NULL,
-    saving_goal money DEFAULT 0.0 NOT NULL
+    balance Numeric(16,2) DEFAULT 0.0 NOT NULL,
+    saving_goal Numeric(16,2) DEFAULT 0.0 NOT NULL
 
   );
 `;
@@ -33,7 +33,7 @@ const createTransactionTableQuery = `
     id SERIAL PRIMARY KEY,
     user_id INTEGER NOT NULL,
     title VARCHAR(255) NOT NULL , 
-    amount money NOT NULL,
+    amount Numeric(16,2) NOT NULL,
     description TEXT , 
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
