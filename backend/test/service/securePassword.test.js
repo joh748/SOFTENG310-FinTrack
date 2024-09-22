@@ -138,7 +138,7 @@ describe('securePassword', () => {
             expect(result).to.be.true;
           });
         
-        // Test if comparing a different passwords fives false
+        // Test if comparing a different passwords gives false
         it('should return false for non-matching passwords', async () => {
             const plainPassword = 'MyPassword123';
             const wrongPassword = 'WrongPassword123';
