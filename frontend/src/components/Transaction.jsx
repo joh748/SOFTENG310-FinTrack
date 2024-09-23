@@ -1,11 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import TransactionContext from "../context/TransactionContext";
+import TransactionDetailsPopup from "../components/TransactionDetailPopup";
 
 const Transaction = ({ transaction }) => {
   const [isAmountNegative, setIsAmountNegative] = useState(false);
   const [convertedAmount, setConvertedAmount] = useState(transaction.amount);
+  const [showDetails, setShowDetails] = useState(false);
   const { currency, convertCurrency, handleSelect } =
-    useContext(TransactionContext);
+  useContext(TransactionContext);
 
   // useEffect to check if each transaction is negative and then convert the currency
   useEffect(() => {
@@ -26,21 +28,36 @@ const Transaction = ({ transaction }) => {
     console.log("clicked: ", transaction.id);
   };
   return (
-    <div className="flex flex-row justify-start text-body pl-[8x]">
-      <input type="checkbox" onChange={handleCheckboxChange} />
-      <div
-        className={` w-full flex flex-row justify-between text-body pl-[8px] ${
-          isAmountNegative ? "text-red-500" : "text-green-500"
-        }`}
-      >
-        <p>
-          {isAmountNegative ? convertedAmount : `+${convertedAmount}`}:{" "}
-          {transaction.description}
-        </p>
-        <p className="self-end">{transaction.created_at.substring(0, 10)}</p>
+  <>
+      <div className="flex flex-row justify-start text-body pl-[8x]">
+        <input type="checkbox" onChange={handleCheckboxChange} />
+          
+          <div 
+            className={` w-full flex flex-row justify-between text-body pl-[8px] ${
+              isAmountNegative ? "text-red-500" : "text-green-500"
+            }`}
+            onClick={() => setShowDetails(true)}
+          >
+            <p>
+              {isAmountNegative ? convertedAmount : `+${convertedAmount}`}:{" "}
+              {transaction.title}
+            </p>
+            <p className="self-end">{transaction.created_at.substring(0, 10)}</p>
+          </div>
+        
       </div>
+
+    {showDetails && (
+     <div className="absolute">
+        <TransactionDetailsPopup
+          transaction={transaction}
+          setShowDetails={setShowDetails}
+        />
     </div>
-  );
+    )
+    }
+  </>
+  )
 };
 
 export default Transaction;
