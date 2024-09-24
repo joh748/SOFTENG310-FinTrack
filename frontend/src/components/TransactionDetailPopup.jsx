@@ -28,8 +28,9 @@ export default function TransactionDetailPopup({transaction, setShowDetails}){
               
 
               <textarea className="pl-4 font-size-12 font-medium resize-none"
+                disabled = {true}
+                rows="5"
                 value={transaction.description}
-                rows={6}
               />
 
               <button className="mr-0 ml-auto pt-5" onClick= {handleExit}>
