@@ -30,12 +30,8 @@ export default function TransactionDetailPopup({transaction, setShowDetails}){
               />
 
               <button className="mr-0 ml-auto pt-5" onClick= {handleExit}>
-                <div id="exitdiv" 
-                 className="bg-primary-dark hover:bg-primary-darker p-2 rounded-2xl w-20 relative"
-                 >
-                    
+                <div id="exitdiv" className="bg-primary-dark hover:bg-primary-darker p-2 rounded-2xl w-20 relative">
                     <h1 className="text-button-small text-white">exit</h1>
-                
                 </div>
               </button>
           </div>
