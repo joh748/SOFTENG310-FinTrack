@@ -27,6 +27,7 @@ const Transaction = ({ transaction }) => {
     handleSelect(transaction.id, e.target.checked);
     console.log("clicked: ", transaction.id);
   };
+
   return (
   <>
       <div className="flex flex-row justify-start text-body pl-[8x] ">
@@ -34,27 +35,29 @@ const Transaction = ({ transaction }) => {
           
           <div 
             className={` w-full flex flex-row justify-between text-body ml-[8px] pl-2 pr-2 rounded-2xl ${
-              isAmountNegative ? "text-red-500" : "text-green-500"
-            } hover:bg-gray-300 cursor-pointer`}
-            onClick={() => setShowDetails(true)}
-          >
+              isAmountNegative ? "text-red-500" : "text-green-500"} hover:bg-gray-300 cursor-pointer`}
+            onClick={() => setShowDetails(true)}>
+            
             <p>
               {isAmountNegative ? convertedAmount : `+${convertedAmount}`}:{" "}
               {transaction.title}
             </p>
+            
             <p className="self-end">{transaction.created_at.substring(0, 10)}</p>
+
           </div>
-        
       </div>
 
-    {showDetails && (
-     <div className="absolute">
-        <TransactionDetailsPopup
-          transaction={transaction}
-          setShowDetails={setShowDetails}
-        />
-    </div>
-    )
+    {/*displays the currently hovered transaction in a popup*/
+    
+    showDetails && (
+        <div className="absolute">
+          <TransactionDetailsPopup
+            transaction={transaction}
+            setShowDetails={setShowDetails}
+          />
+        </div>
+      )
     }
   </>
   )

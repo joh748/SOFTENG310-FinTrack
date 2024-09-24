@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 
 export default function TransactionDetailPopup({transaction, setShowDetails}){
-   const handleExit =() => {
+   
+  //exits out of the current popup
+  const handleExit =() => {
      setShowDetails(false);
    }
 
@@ -16,6 +18,7 @@ export default function TransactionDetailPopup({transaction, setShowDetails}){
                 <h2 className="pl-2 text-body font-bold">Title: </h2>
                 <h2 className="pl-2 text-body ">{transaction.title}</h2>
               </div>
+              
               <div className= "flex flex-row">
                 <h2 className="pl-2 text-body font-bold">Amount:</h2>
                 <h2 className="pl-2 text-body">${transaction.amount}</h2>
@@ -28,12 +31,13 @@ export default function TransactionDetailPopup({transaction, setShowDetails}){
                 value={transaction.description}
                 rows={6}
               />
-
+              
               <button className="mr-0 ml-auto pt-5" onClick= {handleExit}>
                 <div id="exitdiv" className="bg-primary-dark hover:bg-primary-darker p-2 rounded-2xl w-20 relative">
                     <h1 className="text-button-small text-white">exit</h1>
                 </div>
               </button>
+
           </div>
         </div>
       </>
