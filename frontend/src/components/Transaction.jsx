@@ -30,7 +30,7 @@ const Transaction = ({ transaction }) => {
   return (
   <>
       <div className="flex flex-row justify-start text-body pl-[8x] ">
-        <input type="checkbox" onChange={handleCheckboxChange} />
+        <input className="cursor-pointer" type="checkbox" onChange={handleCheckboxChange} />
           
           <div 
             className={` w-full flex flex-row justify-between text-body ml-[8px] pl-2 pr-2 rounded-2xl ${
