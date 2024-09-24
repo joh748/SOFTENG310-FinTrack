@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export default function TransactionDetailPopup({transaction, setShowDetails}){
    
-  //exits out of the current popup
+  //exits out of the current popup by setting the popup boolean to false in transaction.jsx
   const handleExit =() => {
      setShowDetails(false);
    }
@@ -31,7 +31,7 @@ export default function TransactionDetailPopup({transaction, setShowDetails}){
                 value={transaction.description}
                 rows={6}
               />
-              
+
               <button className="mr-0 ml-auto pt-5" onClick= {handleExit}>
                 <div id="exitdiv" className="bg-primary-dark hover:bg-primary-darker p-2 rounded-2xl w-20 relative">
                     <h1 className="text-button-small text-white">exit</h1>
