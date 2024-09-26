@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import TransactionContext from "../context/TransactionContext";
 import TransactionDetailsPopup from "../components/TransactionDetailPopup";
+import PropTypes from "prop-types";
 
 const Transaction = ({ transaction }) => {
   const [isAmountNegative, setIsAmountNegative] = useState(false);
@@ -36,7 +37,8 @@ const Transaction = ({ transaction }) => {
           <div 
             className={` w-full flex flex-row justify-between text-body ml-[8px] pl-2 pr-2 rounded-2xl ${
               isAmountNegative ? "text-red-500" : "text-green-500"} hover:bg-gray-300 cursor-pointer`}
-            onClick={() => setShowDetails(true)}>
+            onClick={() => setShowDetails(true)}
+            role="button">
             
             <p>
               {isAmountNegative ? convertedAmount : `+${convertedAmount}`}:{" "}
@@ -61,6 +63,9 @@ const Transaction = ({ transaction }) => {
     }
   </>
   )
+}
+Transaction.propTypes = {
+  transaction: PropTypes.arrayOf(PropTypes.string)
 };
 
 export default Transaction;

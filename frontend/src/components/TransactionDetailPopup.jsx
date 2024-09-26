@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 export default function TransactionDetailPopup({transaction, setShowDetails}){
    
   //exits out of the current popup by setting the popup boolean to false in transaction.jsx
@@ -42,3 +43,8 @@ export default function TransactionDetailPopup({transaction, setShowDetails}){
       
   )
 }
+
+TransactionDetailPopup.propTypes = {
+  transaction: PropTypes.arrayOf(PropTypes.string),
+  setShowDetails: PropTypes.func
+};
