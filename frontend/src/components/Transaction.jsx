@@ -34,11 +34,10 @@ const Transaction = ({ transaction }) => {
       <div className="flex flex-row justify-start text-body pl-[8x] ">
         <input className="cursor-pointer" type="checkbox" onChange={handleCheckboxChange} />
           
-          <div 
+          <button
             className={` w-full flex flex-row justify-between text-body ml-[8px] pl-2 pr-2 rounded-2xl ${
               isAmountNegative ? "text-red-500" : "text-green-500"} hover:bg-gray-300 cursor-pointer`}
-            onClick={() => setShowDetails(true)}
-            role="button">
+            onClick={() => setShowDetails(true)}>
             
             <p>
               {isAmountNegative ? convertedAmount : `+${convertedAmount}`}:{" "}
@@ -47,7 +46,7 @@ const Transaction = ({ transaction }) => {
             
             <p className="self-end">{transaction.created_at.substring(0, 10)}</p>
 
-          </div>
+          </button>
       </div>
 
     {/*displays the currently hovered transaction in a popup*/
