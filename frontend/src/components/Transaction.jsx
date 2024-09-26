@@ -64,7 +64,16 @@ const Transaction = ({ transaction }) => {
   )
 }
 Transaction.propTypes = {
-  transaction: PropTypes.arrayOf(PropTypes.string)
+  transaction: PropTypes.shape(
+    {
+      amount: PropTypes.string,
+      created_at: PropTypes.string,
+      description: PropTypes.string,
+      id: PropTypes.number,
+      title: PropTypes.string,
+      user_id: PropTypes.number
+    }
+  )
 };
 
 export default Transaction;
