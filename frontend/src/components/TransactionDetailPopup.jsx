@@ -1,5 +1,3 @@
-import { useState, useEffect } from "react";
-
 export default function TransactionDetailPopup({transaction, setShowDetails}){
    
   //exits out of the current popup by setting the popup boolean to false in transaction.jsx
@@ -8,7 +6,7 @@ export default function TransactionDetailPopup({transaction, setShowDetails}){
    }
 
   return(
-      <>
+      
         <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
           <div className="bg-white p-3 rounded-2xl w-96 relative flex flex-col">
               
@@ -41,6 +39,6 @@ export default function TransactionDetailPopup({transaction, setShowDetails}){
 
           </div>
         </div>
-      </>
+      
   )
 }
