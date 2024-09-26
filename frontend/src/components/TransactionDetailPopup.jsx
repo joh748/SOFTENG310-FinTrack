@@ -4,6 +4,7 @@ export default function TransactionDetailPopup({transaction, setShowDetails}){
   //exits out of the current popup by setting the popup boolean to false in transaction.jsx
   const handleExit =() => {
      setShowDetails(false);
+     
    }
 
   return(
