@@ -7,6 +7,7 @@ import { useContext, useState, useEffect } from "react";
 export default function TransactionList() {
   const {
     transactions,
+    allTransactions,
     filter,
     currentPage,
     setCurrentPage,
@@ -21,24 +22,25 @@ export default function TransactionList() {
   // at page load, transactions is empty, so set maxPage to currentPage (1). So using isPageJustLoaded to avoid this behavior at page load
   // only set the max page after the transactions have been loaded
   useEffect(() => {
+    setMaxPage(Math.ceil(allTransactions.length / 10));
     if (!isPageJustLoaded && !isFiltering) {
-      if (transactions.length == 0) {
+      if (transactions.length < 10) {
         setMaxPage(currentPage);
       }
     } else {
       setIsPageJustLoaded(false);
       setIsFiltering(false);
     }
-  }, [transactions,]);
+  }, [transactions, allTransactions, currentPage, isPageJustLoaded, isFiltering]);
 
   useEffect(() => {
     if (filter.length > 0) {
       setIsFiltering(true);
     } else {
       setIsFiltering(false);
-      setMaxPage(100);
     }
   }, [filter]);
+
 
   return (
     <div className="flex flex-col items-center">
@@ -123,6 +125,7 @@ export default function TransactionList() {
               <IoIosArrowBack size={35} />
             </button>
             <h2 className="text-sub-heading">{currentPage}</h2>
+            <h3 className="text-sub-heading">&#47;{maxPage}</h3>
             <button
               className={
                 currentPage === maxPage
