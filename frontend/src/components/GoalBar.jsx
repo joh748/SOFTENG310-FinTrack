@@ -5,7 +5,7 @@ function GoalBar({ progress, balance, goal, subgoals }) {
     <div className="w-full bg-gray-200 rounded-lg h-6 relative">
       {/* Progress Bar */}
       <div
-        className="bg-green-500 h-full rounded-lg"
+        className="bg-gradient-to-r from-blue-400 bg-primary h-full rounded-lg"
         style={{ width: `${progress}%` }}
       ></div>
 
