@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 function GoalBar({ progress, balance, goal, subgoals }) {
   return (
@@ -23,14 +24,31 @@ function GoalBar({ progress, balance, goal, subgoals }) {
       <div className="absolute w-full flex justify-between -top-6">
         {subgoals.map((subgoal, index) => (
           <div key={index} className="text-center w-0 relative">
-            <span className="absolute left-1/2 transform -translate-x-1/2 text-xs text-gray-700">
-              ${subgoal}
-            </span>
-          </div>
-        ))}
-      </div>}
+              <span
+                className={`absolute left-1/2 transform -translate-x-1/2 text-xs 
+                  ${Number(balance) >= Number(subgoal) ? "text-green-700" : "text-red-500"}`}
+              >
+                ${subgoal}
+              </span>
+            </div>
+          ))}
+        </div>}
     </div>
   );
 }
+GoalBar.propTypes = {
+  progress: PropTypes.number.isRequired,
+  balance: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]).isRequired,
+  goal: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]).isRequired,
+  subgoals: PropTypes.arrayOf(
+    PropTypes.number
+  ).isRequired,
+};
 
 export default GoalBar;
