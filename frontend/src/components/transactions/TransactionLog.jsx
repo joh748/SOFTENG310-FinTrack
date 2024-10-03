@@ -1,10 +1,10 @@
 import Transaction from "./Transaction";
 import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
-import TransactionContext from "../context/TransactionContext";
+import TransactionContext from "../../context/TransactionContext";
 import { useContext, useState, useEffect } from "react";
 
-import { LoadingSpinner } from "./LoadingSpinner";
+import { LoadingSpinner } from "../LoadingSpinner";
 
 export default function TransactionList() {
   const {
