@@ -1,8 +1,10 @@
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect, useContext, useRef } from "react";
 import axios from "axios";
 import SetGoal from "./SetGoal";
 import TransactionContext from "../context/TransactionContext";
 import GoalBar from "./GoalBar";
+import Confetti from "react-confetti"
+import useWindowSize from "../hooks/useWindowSize";
 
 export default function SavingsTracker() {
   const { balance, setBalance } = useContext(TransactionContext);
@@ -10,6 +12,9 @@ export default function SavingsTracker() {
   const [newGoal, setNewGoal] = useState(0);
   const [showSetGoal, setShowSetGoal] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [showConfetti, setShowConfetti] = useState(false); // Still using useState for re-renders
+  const showConfettiRef = useRef(false); // Ref to track internal confetti state
+  const { width, height } = useWindowSize(); // Use the custom hook for window size
 
   //Variables for axios instance
   const token = localStorage.getItem("token");
@@ -57,7 +62,28 @@ export default function SavingsTracker() {
     const update = (Number(balance) / Number(goal)) * 100;
     setProgress(update);
     console.log("Progress: ", update);
-  }, [balance, goal]);
+
+    // Check if the user has achieved a subgoal and trigger confetti
+    const subgoals_to_celebrate = [goal];
+    if (subgoals_to_celebrate.some((subgoal) => Number(balance) >= Number(subgoal))) {
+      console.log("balance:", balance);
+      console.log("subgoals:", subgoals_to_celebrate);
+
+      // Trigger confetti only if it's not already showing
+      if (!showConfettiRef.current) {
+        setShowConfetti(true);  // Trigger re-render to show confetti
+        showConfettiRef.current = true;  // Update ref to track the state
+
+        // Stop confetti after 1 second
+        setTimeout(() => {
+          setShowConfetti(false); // Hide confetti after delay
+          showConfettiRef.current = false; // Reset the ref value
+          console.log("Stopped confetti");
+        }, 5000);
+      }
+    }
+
+  }, [balance, goal, progress]);
 
   // Updates the user's savings goal via the Set New Goal button
   const updateGoal = () => {
@@ -90,6 +116,11 @@ export default function SavingsTracker() {
   };
   return (
     <div className="flex flex-col items-center gap-2 mb-2 mt-2 w-[40%]">
+      
+      {console.log("confetti?",showConfettiRef.current)}
+      {showConfettiRef && showConfettiRef.current && 
+      <Confetti width={width} height={height}/>}
+
       <h3 className="text-sub-heading font-bold m-0"> Current Savings Goal:</h3>
       <p className="text-body my-0 mb-10">
         ${balance}/${goal}

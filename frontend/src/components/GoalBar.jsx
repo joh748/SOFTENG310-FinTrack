@@ -37,7 +37,10 @@ function GoalBar({ progress, balance, goal, subgoals }) {
   );
 }
 GoalBar.propTypes = {
-  progress: PropTypes.number.isRequired,
+  progress: PropTypes.oneOfType([
+    PropTypes.number,
+    PropTypes.string
+  ]).isRequired,
   balance: PropTypes.oneOfType([
     PropTypes.number,
     PropTypes.string
@@ -47,7 +50,7 @@ GoalBar.propTypes = {
     PropTypes.string
   ]).isRequired,
   subgoals: PropTypes.arrayOf(
-    PropTypes.number
+    PropTypes.any
   ).isRequired,
 };
 
