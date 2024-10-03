@@ -47,7 +47,6 @@ export default function AddTransactionButton() {
     } catch (error) {
       console.error("Error occurred:", error);
     } finally {
-      console.log("Im at finally");
       setShowForm(false);
     }
   };

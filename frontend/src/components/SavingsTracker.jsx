@@ -61,13 +61,10 @@ export default function SavingsTracker() {
 
     const update = (Number(balance) / Number(goal)) * 100;
     setProgress(update);
-    console.log("Progress: ", update);
 
     // Check if the user has achieved a subgoal and trigger confetti
     const subgoals_to_celebrate = [goal];
     if (subgoals_to_celebrate.some((subgoal) => Number(balance) >= Number(subgoal))) {
-      console.log("balance:", balance);
-      console.log("subgoals:", subgoals_to_celebrate);
 
       // Trigger confetti only if it's not already showing
       if (!showConfettiRef.current) {
@@ -78,7 +75,6 @@ export default function SavingsTracker() {
         setTimeout(() => {
           setShowConfetti(false); // Hide confetti after delay
           showConfettiRef.current = false; // Reset the ref value
-          console.log("Stopped confetti");
         }, 5000);
       }
     }
@@ -117,7 +113,6 @@ export default function SavingsTracker() {
   return (
     <div className="flex flex-col items-center gap-2 mb-2 mt-2 w-[40%]">
       
-      {console.log("confetti?",showConfettiRef.current)}
       {showConfettiRef && showConfettiRef.current && 
       <Confetti width={width} height={height}/>}
 
@@ -137,8 +132,6 @@ export default function SavingsTracker() {
           className="bg-primary hover:bg-primary-dark text-white text-button font-bold py-2 px-7 rounded-full my-4"
           onClick={() => {
             setShowSetGoal(true);
-            console.log("goal:" + goal);
-            console.log("progress:" + progress);
           }}
         >
           Update Savings Goal
