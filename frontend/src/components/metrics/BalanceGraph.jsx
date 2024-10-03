@@ -4,37 +4,22 @@ import {
   Scatter,
   XAxis,
   YAxis,
-  ZAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
   ResponsiveContainer,
 } from 'recharts';
 import TransactionContext from "../../context/TransactionContext";
 
-export default function BalanceGraph(data) {
+export default function BalanceGraph() {
 
     const {
         balance,
-        transactions,
-        filter,
-        currentPage,
-        setCurrentPage,
-        filterYear,
-        filterMonth,
-        filterWeek,
+        transactions
       } = useContext(TransactionContext);
 
       
 
-    const [balanceData, setBalanceData] = useState([
-        { x: 10, y: 30 },
-        { x: 30, y: 200 },
-        { x: 45, y: 100 },
-        { x: 50, y: 400 },
-        { x: 70, y: 150 },
-        { x: 100, y: 250 },
-    ]);
+    const [balanceData, setBalanceData] = useState([]);
 
     const parseDate = (dateString) => {
         // Parse the date string
@@ -100,9 +85,7 @@ export default function BalanceGraph(data) {
             <CartesianGrid />
             <XAxis type="number" dataKey="x" name="date"/>
             <YAxis type="number" dataKey="y" name="balance" unit="$" />
-            {/* <ZAxis type="number" range={[365]} /> */}
             <Tooltip cursor={{ strokeDasharray: '3 3' }} />
-            {/* <Legend /> */}
             <Scatter data={balanceData} fill="#ff0000" line />
             </ScatterChart>
         </ResponsiveContainer>
