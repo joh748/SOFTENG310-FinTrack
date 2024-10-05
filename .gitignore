@@ -28,6 +28,3 @@ yarn-error.log*
 #misc folders
 .idea/
 .vscode/launch.json
-
-#certificates
-backend/src/certs/ca.crt
