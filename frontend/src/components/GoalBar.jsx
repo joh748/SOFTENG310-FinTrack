@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 
 function GoalBar({ progress, balance, goal, subgoals }) {
   const hasReachedGoal = Number(balance) >= Number(goal);
+  const filteredSubgoals = subgoals.slice(1, -1);
+  const subgoalPositions = filteredSubgoals.map(subgoal => (Number(subgoal) / Number(goal)) * 100);
 
   return (
     <div className="w-full bg-gray-200 rounded-lg h-6 relative">
@@ -12,6 +14,22 @@ function GoalBar({ progress, balance, goal, subgoals }) {
           className="bg-gradient-to-r from-blue-400 bg-primary h-full rounded-lg"
           style={{ width: `${progress}%` }}
         ></div>
+      </div>
+
+      {/* Grey Lines for Subgoals */}
+      <div className="absolute w-full h-full top-0 left-0 flex">
+        {subgoalPositions.map((position, index) => (
+          <div
+            key={index}
+            className="absolute border-l border-gray-400"
+            style={{
+              left: `${position}%`,
+              height: 'h-6', // Make it the same height as the progress bar
+              width: '2px',  // Width of the line
+              top: '0',      // Align to the top of the progress bar
+            }}
+          ></div>
+        ))}
       </div>
 
       {/* Labels for Subgoals */}
