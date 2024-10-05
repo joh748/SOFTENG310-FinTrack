@@ -128,15 +128,18 @@ export default function SavingsTracker() {
         subgoals={[0, 0.25*goal, 0.5*goal ,0.75*goal, goal]}/>
 
       {progress >= 0 && (
+        <div className={balance>=goal ? "mt-20" : "mt-4"}>
         <button
-          className="bg-primary hover:bg-primary-dark text-white text-button font-bold py-2 px-7 rounded-full my-4"
+          className="bg-primary hover:bg-primary-dark text-white text-button font-bold py-2 px-7 rounded-full"
           onClick={() => {
             setShowSetGoal(true);
           }}
         >
           Update Savings Goal
         </button>
+      </div>
       )}
+
       {showSetGoal && (
         <SetGoal
           newGoal={newGoal}
