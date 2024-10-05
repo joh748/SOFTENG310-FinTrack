@@ -1,8 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import SetGoal from "./SetGoal";
-import TransactionContext from "../context/TransactionContext";
-import GoalBar from "./GoalBar";
+import TransactionContext from "../../context/TransactionContext";
 
 export default function SavingsTracker() {
   const { balance, setBalance } = useContext(TransactionContext);
@@ -11,7 +10,7 @@ export default function SavingsTracker() {
   const [showSetGoal, setShowSetGoal] = useState(false);
   const [progress, setProgress] = useState(0);
 
-  //Variables for axios instance
+  // Variables for axios instance
   const token = localStorage.getItem("token");
   const axiosInstance = axios.create({
     baseURL: "http://localhost:4000",
@@ -42,7 +41,7 @@ export default function SavingsTracker() {
       });
   }, []);
 
-  //Dynamic progress bar whenver the balance or goal changes
+  // Dynamic progress bar whenver the balance or goal changes
   useEffect(() => {
     if (Number(balance) > Number(goal)) {
       setProgress(100);
@@ -90,17 +89,16 @@ export default function SavingsTracker() {
   };
   return (
     <div className="flex flex-col items-center gap-2 mb-2 mt-2 w-[40%]">
-      <h3 className="text-sub-heading font-bold m-0"> Current Savings Goal:</h3>
-      <p className="text-body my-0 mb-10">
+      <h2 className="text-sub-heading font-bold m-0"> Current Savings Goal:</h2>
+      <p className="text-body my-0 mb-3">
         ${balance}/${goal}
-      </p>      
-
-      <GoalBar 
-        progress={progress}
-        balance={balance} 
-        goal={goal}
-        subgoals={[0, 0.25*goal, 0.5*goal ,0.75*goal, goal]}/>
-
+      </p>
+      <div className="w-full h-11 bg-white outline-primary outline outline-3 rounded-full">
+        <div
+          className="h-11 rounded-full bg-primary"
+          style={{ width: `${progress}%` }}
+        ></div>
+      </div>
       {progress >= 0 && (
         <button
           className="bg-primary hover:bg-primary-dark text-white text-button font-bold py-2 px-7 rounded-full my-4"
