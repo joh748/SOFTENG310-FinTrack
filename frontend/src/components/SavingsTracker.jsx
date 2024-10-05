@@ -13,7 +13,6 @@ export default function SavingsTracker() {
   const [showSetGoal, setShowSetGoal] = useState(false);
   const [progress, setProgress] = useState(0);
   const [showConfetti, setShowConfetti] = useState(false); // Still using useState for re-renders
-  const showConfettiRef = useRef(false); // Ref to track internal confetti state
   const { width, height } = useWindowSize(); // Use the custom hook for window size
 
   //Variables for axios instance
@@ -66,17 +65,16 @@ export default function SavingsTracker() {
     const subgoals_to_celebrate = [goal];
     if (subgoals_to_celebrate.some((subgoal) => Number(balance) >= Number(subgoal))) {
 
-      // Trigger confetti only if it's not already showing
-      if (!showConfettiRef.current) {
-        setShowConfetti(true);  // Trigger re-render to show confetti
-        showConfettiRef.current = true;  // Update ref to track the state
+      console.log("you should be celebrated")
 
-        // Stop confetti after 1 second
-        setTimeout(() => {
-          setShowConfetti(false); // Hide confetti after delay
-          showConfettiRef.current = false; // Reset the ref value
-        }, 5000);
-      }
+      // Trigger confetti only if it's not already showing
+      setShowConfetti(true); 
+
+      // Stop confetti after 5 second
+      setTimeout(() => {
+        setShowConfetti(false);
+      }, 5000);
+      
     }
 
   }, [balance, goal, progress]);
@@ -112,9 +110,10 @@ export default function SavingsTracker() {
   };
   return (
     <div className="flex flex-col items-center gap-2 mb-2 mt-2 w-[40%]">
-      
-      {showConfettiRef && showConfettiRef.current && 
-      <Confetti width={width} height={height}/>}
+
+      {showConfetti && <div>showConfetti</div>}
+
+      {showConfetti && <Confetti width={width} height={height} recycle={false}/>}
 
       <h3 className="text-sub-heading font-bold m-0"> Current Savings Goal:</h3>
       <p className="text-body my-0 mb-10">
