@@ -24,7 +24,7 @@ function GoalBar({ progress, balance, goal, subgoals }) {
             className="absolute border-l border-gray-400"
             style={{
               left: `${position}%`,
-              height: 'h-6', // Make it the same height as the progress bar
+              height: '24px', // Make it the same height as the progress bar
               width: '2px',  // Width of the line
               top: '0',      // Align to the top of the progress bar
             }}
