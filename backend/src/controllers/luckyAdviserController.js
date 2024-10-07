@@ -8,7 +8,15 @@ exports.getResponseForPrompt = async (req, res) => {
     const { prompt } = req.body;
 
     try {
-        const model = genAI.getGenerativeModel({ model: "gemini-pro" });
+        const model = genAI.getGenerativeModel({ 
+            model: "gemini-pro" ,
+            generationConfig: {
+                // candidateCount: 1,
+                // stopSequences: ["x"],
+                // maxOutputTokens: 20,
+                temperature: 1.0,
+              },
+        });
         const result = await model.generateContent(prompt);
         const response = result.response;
         const text = response.text();
