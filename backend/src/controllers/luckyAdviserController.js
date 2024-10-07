@@ -26,16 +26,16 @@ exports.getLuckyAdvice = async (req, res) => {
     const prompt = `
     Give 1 financial tip/advice/information that users can expand their knowledge on over time.
     The response should include:
-    1. **Title**:
+    1. **Title**
     A clear title for the tip.
-    2. **Content**:
+    2. **Content**
     Detailed explanation or advice regarding the tip.
 
     Make sure to format the response clearly, using double asterisks to denote section headings.
     `;
-    // 3. **Source**:
+    // 3. **Source**
     // A reliable source where this information can be found.
-    // 4. **Related Links**:
+    // 4. **Related Links**
     // A list of relevant links to websites related to the financial information provided.
     
 
