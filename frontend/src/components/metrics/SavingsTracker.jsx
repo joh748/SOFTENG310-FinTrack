@@ -4,12 +4,15 @@ import SetGoal from "./SetGoal";
 import TransactionContext from "../../context/TransactionContext";
 import { refreshDisplayBalance } from "../../utility/CurrencyUtil";
 import '../../assets/css/savingsTracker.css';
-import GoalBar from '../GoalBar';
+import GoalBar from '../progress-bar/GoalBar';
+import CompletionMsg from "../progress-bar/CompletionMsg";
 
 export default function SavingsTracker() {
-  const { currency, balance, goal } = useContext(TransactionContext);
+  const { currency, balance, goal, setGoal } = useContext(TransactionContext);
   const [progress, setProgress] = useState(0);
   const [displayBalance, setDisplayBalance] = useState(0);
+  const [showSetGoal, setShowSetGoal] = useState(false);
+  const [newGoal, setNewGoal] = useState(0);
 
   // Variables for axios instance
   const token = localStorage.getItem("token");
@@ -37,32 +40,69 @@ export default function SavingsTracker() {
     setProgress(update);
     console.log("Progress: ", update);
   }, [balance, goal]);
-  
+
+  // Updates the user's savings goal via the Set New Goal button
+  const updateGoal = () => {
+    //checks if newGoal is null if it is replace it with 0
+    //new val updated goal is used because setNewGoal is Aync and might not update in time for sending data to the db
+    let updatedGoal = newGoal;
+    if (newGoal === '') {
+      updatedGoal = 0;
+      setNewGoal(0)
+    }
+
+    //saves newGoal to the DB
+    const token = localStorage.getItem("token");
+    const axiosInstance = axios.create({
+      baseURL: "http://localhost:4000",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    axiosInstance
+      .patch("/user/goal", {
+        goal: updatedGoal,
+      })
+      .then((response) => {
+        setGoal(updatedGoal);
+        setShowSetGoal(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
-    <div className="flex flex-col items-center gap-2 mb-2 mt-2 w-[40%]">
-      <h2 className="text-sub-heading font-bold m-0"> Current Savings Goal:</h2>
+    <div className="flex flex-col items-center mb-2 mt-2 w-[80%]">
+      {/* <h2 className="text-sub-heading font-bold m-0">Current Savings Goal:</h2>
       <p className="text-body my-0 mb-3">
         ${balance}/${goal}
-      </p>
+      </p> */}
 
-      <GoalBar 
-        progress={progress}
-        balance={balance} 
-        goal={goal}
-        subgoals={[0, 0.25*goal, 0.5*goal ,0.75*goal, goal]}/>
+      {/* Use flexbox to align GoalBar and button */}
+      <div className="flex items-center w-full pt-4">
+        <GoalBar
+          progress={progress}
+          balance={balance}
+          goal={goal}
+          subgoals={[0, 0.25 * goal, 0.5 * goal, 0.75 * goal, goal]}
+        />
 
-      {progress >= 0 && (
-        <div className={balance>=goal ? "mt-20" : "mt-4"}>
-        <button
-          className="bg-primary hover:bg-primary-dark text-white text-button font-bold py-2 px-7 rounded-full"
-          onClick={() => {
-            setShowSetGoal(true);
-          }}
-        >
-          Update Savings Goal
-        </button>
+        <CompletionMsg />
+
+
+        {progress >= 0 && (
+          <div className="ml-4"> {/* Margin left to separate the button from GoalBar */}
+            <button
+              className="updateGoalButton"
+              onClick={() => {
+                setShowSetGoal(true);
+              }}
+            >
+              Update
+            </button>
+          </div>
+        )}
       </div>
-      )}
 
       {showSetGoal && (
         <SetGoal
