@@ -26,6 +26,7 @@ body {
 }
 
 .sideBar {
+  background: linear-gradient(180deg, rgba(42,4,126,1) 0%, rgba(77,4,126,1) 100%);
   width: var(--sideBarWidth);
   height: calc(100vh - var(--topBarHeight));
   float: right;
