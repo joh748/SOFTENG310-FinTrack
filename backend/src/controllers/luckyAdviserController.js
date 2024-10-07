@@ -1,5 +1,5 @@
 const { GoogleGenerativeAI } = require('@google/generative-ai');
-const { cleanResponse } = require('../services/responseCleaner'); // Importing from backend services
+const { cleanResponse } = require('../services/responseCleaner.js'); // Importing from backend services
 require('dotenv').config();
 
 const genAI = new GoogleGenerativeAI(process.env.REACT_APP_GEMINI_API_KEY);
@@ -22,11 +22,22 @@ exports.getResponseForPrompt = async (req, res) => {
 };
 
 exports.getLuckyAdvice = async (req, res) => {
-    // prompt to use when I'm feeling lucky button is pressed
-    const prompt = "Give 1 financial tip/advice/information" + 
-    "so that the users can expand their knowledge overtime." +
-    "For the tip provided, there has to be a reliable source for the information." +
-    "At the last, please provide links to the websites that are related to the financial information provided.";
+    // adjust prompt message for I'm feeling lucky button
+    const prompt = `
+    Give 1 financial tip/advice/information that users can expand their knowledge on over time.
+    The response should include:
+    1. **Title**:
+    A clear title for the tip.
+    2. **Content**:
+    Detailed explanation or advice regarding the tip.
+
+    Make sure to format the response clearly, using double asterisks to denote section headings.
+    `;
+    // 3. **Source**:
+    // A reliable source where this information can be found.
+    // 4. **Related Links**:
+    // A list of relevant links to websites related to the financial information provided.
+    
 
     try {
         const model = genAI.getGenerativeModel({ model: "gemini-pro" });
