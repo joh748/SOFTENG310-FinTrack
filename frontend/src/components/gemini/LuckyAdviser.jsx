@@ -75,11 +75,11 @@ function LuckyAdviser() {
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
                         placeholder="Ask Me Something You Want"
-                        className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 h-16 resize-none"
+                        className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 h-14 resize-none"
                         required
                     />
-                    <div className="absolute right-2 -bottom-16 flex space-x-2">
-                        <button onClick={getResponseForGivenPrompt} type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
+                    <div className="absolute right-0 -bottom-12 flex space-x-2">
+                        <button onClick={getResponseForGivenPrompt} type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2">
                             Send
                         </button>
                         <LuckyButton onGetAdvice={handleLuckyAdvice} />
