@@ -68,27 +68,30 @@ function LuckyAdviser() {
     return (
         <div className="container mx-auto p-4">
             <div className="flex flex-col mb-4">
-                <label htmlFor="prompt" className="mb-2 text-sm font-medium text-gray-900 sr-only">Ask Me Something You Want</label>
-                <div className="relative">
-                    <textarea
+                <div className="relative flex items-end space-x-2">
+                    <input
                         id="prompt"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
-                        placeholder="Ask Me Something You Want"
-                        className="block w-full p-4 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 h-14 resize-none"
+                        placeholder="Ask for financial advice or education..."
+                        className="block w-full p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-green resize-none"
                         required
                     />
+                    <button onClick={getResponseForGivenPrompt} type="submit" className="bg-white text-primary-green rounded-md border border-primary-green hover:bg-gray-200 transition font-medium text-sm px-3 py-2">
+                        Send
+                    </button>
                     <div className="absolute right-0 -bottom-12 flex space-x-2">
-                        <button onClick={getResponseForGivenPrompt} type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-3 py-2">
-                            Send
-                        </button>
                         <LuckyButton onGetAdvice={handleLuckyAdvice} />
                     </div>
                 </div>
             </div>
             {loading ? (
                 <div className="text-center mt-3">
-                    <LoadingSpinner />
+                    <div className="spinner-border text-primary">
+                        <span className="visually-hidden">
+                        <LoadingSpinner />
+                        </span>
+                    </div>
                 </div>
             ) : (
                 showResponses && promptResponses.length > 0 && (
@@ -105,7 +108,7 @@ function LuckyAdviser() {
                         ))}
                         <button
                             onClick={handleCloseResponses}
-                            className="self-end bg-white text-violet-800 rounded-md px-4 py-2 border border-violet-800 hover:bg-gray-200 transition"
+                            className="self-end bg-white text-primary-green rounded-md px-4 py-2 border border-primary-green hover:bg-gray-200 transition"
                         >
                             Close
                         </button>
