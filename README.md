@@ -107,6 +107,42 @@ npm start
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+## Configuration of the .env File
+
+In order to access the PostgreSQL database hosted by Aiven for storing user and transaction data, a `.env` file is required in the `backend` folder. This file should include the following fields:
+
+```
+PG_USER=<your_database_user>
+PG_HOST=<your_database_host>
+PG_DATABASE=<your_database_name>
+PG_PASSWORD=<your_database_password>
+PG_PORT=<your_database_port>
+CA_CERT_PATH=../certs/ca.crt
+CIPHER=<your_cipher_string>
+REACT_APP_GEMINI_API_KEY=<your_gemini_api_key>
+```
+
+### Instructions:
+
+1. **Obtain the .env File**: Please contact us to get the .env file, as it isn't pushed to GitHub. You may also need to create your own PostgreSQL database on Aiven for personal security reasons. 
+
+2. **Creating a PostgreSQL Database**: Follow the instructions on the [Aiven website][Aiven-url] to create your PostgreSQL database. 
+
+3. **Fill in the .env File**: After creating your database, fill in the fields in the `.env` file with your database's information:
+   - `PG_USER`: Your database user.
+   - `PG_HOST`: The host of your database.
+   - `PG_DATABASE`: The name of your database.
+   - `PG_PASSWORD`: Your database password.
+   - `PG_PORT`: The port number (default is usually 5432).
+   - `CIPHER`: This can be any string you want; it's used to encrypt tokens.
+   - `REACT_APP_GEMINI_API_KEY`: This can be created on the [Gemini API page][Gemini-AppKey-url].
+
+4. **Place the .env File**: Once the .env file is configured, place it in the `backend` folder.
+
+5. **CA Certificate**: Ensure that you have your CA certificate from Aiven in the file `backend/src/certs/ca.crt`, as the `CA_CERT_PATH` is prefilled.
+
+Once these steps are completed, the database should work automatically, regardless of whose database you're using. If you encounter any errors, double-check that all fields are filled out correctly.
+
 <!-- CONTRIBUTING -->
 ## Contributing
 
@@ -201,3 +237,5 @@ To learn more about the technologies and frameworks used in this project, check 
 [PostgreSQL-url]: https://www.postgresql.org/
 [Tailwind.url]: https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white
 [Tailwind-url]: https://tailwindcss.com/
+[Aiven-url]: https://aiven.io/postgresql
+[Gemini-AppKey-url]: https://aistudio.google.com/app/apikey
