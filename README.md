@@ -145,10 +145,10 @@ This project utilizes several libraries and APIs to enhance functionality:
 * **[Express](https://expressjs.com/)**: A minimal and flexible Node.js web application framework.
 * **[Axios](https://axios-http.com/docs/intro)**: A promise-based HTTP client for making requests to the backend.
 * **[Recharts](https://recharts.org/en-US/)**: A charting library for creating graphical representations of transaction history.
+* **[date-fns](https://date-fns.org/)**: A modern JavaScript date utility library for manipulating dates.
 * **[Gemini API](https://ai.google.dev/api?lang=node)**: Used for providing financial advice to users.
 * **[Chai](https://www.chaijs.com/)**: An assertion library for Node.js and browsers, used for testing.
 * **[Sinon](https://sinonjs.org/)**: A library for creating spies, mocks, and stubs for JavaScript testing.
-* **[date-fns](https://date-fns.org/)**: A modern JavaScript date utility library for manipulating dates.
 
 Feel free to refer to the documentation of each library/API for more information on their usage.
 
