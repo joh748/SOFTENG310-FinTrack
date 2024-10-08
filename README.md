@@ -168,6 +168,7 @@ Do note that this will generate some folders in the backend directory. These fol
 If the tests fail, make sure that all backend dependencies have been installed. If, for some reason, they aren't being installed by an `npm install`, enter `npm install --save-dev mocha chai sinon nyc` .
 
 # Libraries/APIs
+This section introduces different libraries/APIs used for the app and why they are used. This also includes links to more detailed documentation for each libraries/APIs.
 ## Recharts
 Recharts is used for graphical representation of transaction history.
 Documentation and different API that can be used from Recharts can be found on [this page](https://recharts.org/en-US/).
