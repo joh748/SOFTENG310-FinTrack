@@ -108,6 +108,9 @@ exports.getMetrics = async (req, res) => {
 
         let monthlySpending = 0;
         let monthlyIncome = 0;
+        let totalSpending = 0;
+        let totalIncome = 0;
+
 
         // Calculate the total spending and income for the current month
         transactions.forEach(transaction => {
@@ -124,21 +127,36 @@ exports.getMetrics = async (req, res) => {
                     monthlyIncome += parseFloat(transaction.amount);
                 }
             }
-        });
 
+            
+            //adding to lifetime metrics
+            if (transaction.amount < 0) {
+                totalSpending += Math.abs(transaction.amount); // Spending is negative
+            } else {
+                totalIncome += parseFloat(transaction.amount); // Income is positive
+            }
+        });
+        //calculating lifetime metrics
         const percentageSpent = monthlyIncome > 0 ? (monthlySpending / monthlyIncome) * 100 : 0;
         const percentageSaved = 100 - percentageSpent;
-
+        //const percentOfGoal = Math.round(balance/goal * 100 * 100)/100
+  
         // Return the calculated metrics with a success status
         res.json({
             success: true,
-            metrics: {
+            monthlyMetrics: {
                 monthlySpending,
                 monthlyIncome,
                 percentageSpent,
                 percentageSaved
+            },
+            lifetimeMetrics:{
+                totalSpending,
+                totalIncome
             }
         });
+
+        console.log("\n\n\n\n\n\n\n\n\n\n"+res)
 
         // Catch any errors and return an error status
     } catch (error) {

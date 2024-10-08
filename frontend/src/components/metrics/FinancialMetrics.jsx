@@ -1,78 +1,114 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import TransactionContext from '../../context/TransactionContext';
 import '../../assets/css/default.css';
+import {convertCurrency} from '../../utility/CurrencyUtil';
+import axios from 'axios';
 import DefaultButton from '../default/DefaultButton.jsx';
 
 export default function FinancialMetrics() {
-  const [showMetrics, setShowMetrics] = useState(false);
-  const { balance, currency, allTransactions } = useContext(TransactionContext);
-  const [convertedBalance, setConvertedBalance] = useState(0);
-  const [monthlyMetrics, setMonthlyMetrics] = useState({});
+  const { balance, currency, transactions,goal} = useContext(TransactionContext);
+  
+  //used to save the metrics in NZD
+  const [monthlyMetrics, setMonthlyMetrics] = useState({ monthlySpending: 0,
+    monthlyIncome: 0,
+    percentageSpent: 0,
+    percentageSaved: 0});
 
-  // Takes in a list of transactions and calculates the monthly spending, income, and percentages. This should always be
+  const [lifetimeMetrics, setLifetimeMetrics] = useState({
+      totalSpending: 0,
+      totalIncome: 0,
+      percentOfGoal:0
+  });
+
+  //used to save the metrics in the current currency
+  const [convertedMonthlyMetrics, setConvertedMonthlyMetrics] = useState({ monthlySpending: 0,
+      monthlyIncome: 0,
+      percentageSpent: 0,
+      percentageSaved: 0});
+
+  const [convertedLifetimeMetrics, setConvertedLifetimeMetrics] = useState({  
+      totalSpending: 0,
+      totalIncome: 0,
+      percentOfGoal:0
+    });
+        
+  //when any of the parameters that effect transaction are modified then recalculate the metrics and convert to the correct currency
+  useEffect(() => {
+    const fetchData =  () => {
+      calculateMetrics(); 
+      calculateCurrency();
+    };
+
+    fetchData();
+
+  },[transactions,currency,goal,balance])
+
+  //converst the lifetime and montly metrics into the correct currency. then appends to ConvertedLifetimeMetrics and ConvertedMonthlyMetrics
+  async function calculateCurrency(){
+    const convertedMonthlySpending = await convertCurrency(currency, "NZD", monthlyMetrics.monthlySpending);
+    const convertedMonthlyIncome = await convertCurrency(currency, "NZD", monthlyMetrics.monthlyIncome);
+    const convertedTotalSpending = await convertCurrency(currency, "NZD", lifetimeMetrics.totalSpending);
+    const convertedTotalIncome = await convertCurrency(currency, "NZD", lifetimeMetrics.totalIncome);
+
+
+    const convertedPercentOfGoal = Math.round(balance/goal * 100 * 100)/100 
+
+    setConvertedMonthlyMetrics({
+        monthlySpending: convertedMonthlySpending,
+        monthlyIncome: convertedMonthlyIncome,
+        percentageSpent: monthlyMetrics.percentageSpent,
+        percentageSaved: monthlyMetrics.percentageSaved
+    });
+
+    setConvertedLifetimeMetrics({
+        totalSpending: convertedTotalSpending,
+        totalIncome: convertedTotalIncome,
+        percentOfGoal:convertedPercentOfGoal 
+    });
+  }
+
+  // Takes in a list of transactions and calculates the monthly and lifetime metrics. This should always be
   // the full list of transactions, not just the ones currently displayed.
-  const calculateMetrics = (transactions) => {
-    const now = new Date();
-    const currentMonth = now.getMonth();
-    const currentYear = now.getFullYear();
-
-    let monthlySpending = 0;
-    let monthlyIncome = 0;
-
-    transactions.forEach(transaction => {
-      const transactionDate = new Date(transaction.created_at);
-      const isCurrentMonth = transactionDate.getMonth() === currentMonth && transactionDate.getFullYear() === currentYear;
-
-      if (isCurrentMonth) {
-        if (transaction.amount < 0) {
-          monthlySpending += Math.abs(transaction.amount); // Spending is negative
-        } else {
-          monthlyIncome += parseFloat(transaction.amount); // Income is positive
-        }
+  async function calculateMetrics () {
+    try {
+      const response = await axios.get('http://localhost:4000/transaction/metrics');
+      if (response.data.success) {
+        setMonthlyMetrics(response.data.monthlyMetrics);
+        setLifetimeMetrics(response.data.lifetimeMetrics,{percentOfGoal: Math.round(balance/goal * 100 * 100)/100});
+      } else {
+        console.error('Failed to fetch metrics');
       }
-    });
-
-    const percentageSpent = monthlyIncome > 0 ? (monthlySpending / monthlyIncome) * 100 : 0;
-    const percentageSaved = 100 - percentageSpent;
-
-    setMonthlyMetrics({
-      monthlySpending,
-      monthlyIncome,
-      percentageSpent,
-      percentageSaved
-    });
-  };
-
-  // Function to toggle the visibility of the modal
-  const handleClick = () => {
-    setShowMetrics(!showMetrics);
-    calculateMetrics(allTransactions);
+    } catch (error) {
+      console.error('Error fetching metrics:', error);
+    }
   };
 
   return (
-    <div>
-      <DefaultButton onClick={handleClick}>
-        Financial Metrics
-      </DefaultButton>
+    <div className="flex justify-center">   
+      <div className="inline-block border-4 border-main-green rounded-lg shadow-lg ">
+        <h2 className="bg-main-green text-body text-white font-semibold p-2">Financial Metrics</h2>
+        
+        <div className='flex justify-center p-5'>
+          {/*Monthly metrics*/}
+          <div className='mr-4 bg-slate-300 p-5 rounded-lg shadow-lg'>
+            <h2 className="text-body-small font-semibold mb-4">Monthly</h2>
+            <p><strong>Spending This Month:</strong> {convertedMonthlyMetrics.monthlySpending} {currency}</p>
+            <p><strong>Income This Month:</strong> {convertedMonthlyMetrics.monthlyIncome} {currency}</p>
+            <p><strong>% Income Spent:</strong> {convertedMonthlyMetrics.percentageSpent.toFixed(2)}%</p>
+            <p><strong>% Income Saved:</strong> {convertedMonthlyMetrics.percentageSaved.toFixed(2)}%</p>
+          </div>
 
-      {/* Conditionally render the modal */}
-      {showMetrics && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50">
-          <div className="bg-white p-5 rounded-lg shadow-lg w-[90%] max-w-lg">
-            <h2 className="text-xl font-semibold mb-4">Financial Metrics</h2>
-            <p><strong>Current Balance:</strong> {convertedBalance} {currency}</p>
-            <p><strong>Spending this Month:</strong> {monthlyMetrics.monthlySpending} {currency}</p>
-            <p><strong>Income this Month:</strong> {monthlyMetrics.monthlyIncome} {currency}</p>
-            <p><strong>% Income Spent:</strong> {monthlyMetrics.percentageSpent.toFixed(2)}%</p>
-            <p><strong>% Income Saved:</strong> {monthlyMetrics.percentageSaved.toFixed(2)}%</p>
-            <button
-              onClick={handleClick}
-              className="mt-4 bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
-              Close
-            </button>
+          {/*Lifetime metrics*/}
+          <div className='ml-4 bg-slate-300 p-5 rounded-lg shadow-lg'>
+            <h2 className="text-body-small font-semibold mb-4">Lifetime</h2>
+            <p><strong>Balance</strong> {Math.round(balance*100)/100} {currency}</p>
+            <p><strong>Percent Of Goal</strong> {convertedLifetimeMetrics.percentOfGoal}%</p>
+            <p><strong>Total Income:</strong> {convertedLifetimeMetrics.totalIncome} {currency}</p>
+            <p><strong>Total Spending:</strong> {convertedLifetimeMetrics.totalSpending} {currency}</p>
           </div>
         </div>
-      )}
-    </div>
+      </div>
+    </div>     
+    
   );
 }

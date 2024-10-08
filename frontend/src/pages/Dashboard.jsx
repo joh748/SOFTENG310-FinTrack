@@ -39,6 +39,7 @@ export default function Dashboard() {
         <h2 className="genericH2">This app supports a suite of features designed to help you track your financial progress towards a set goal. To get started, use the <b>Update Savings Goal</b> button in the <b>side-bar</b> to the right. To record a new financial transaction to or from your savings, use the <b>Add Transaction</b> button. Once a transaction has been created, it can be viewed in the <b>Transaction History</b> table below. You can search these entries by date, update, and delete them. This app supports app-wide currency conversion. This can be accessed via the <b>currency dropdown</b> on the right, along with a summary of your finances. For further financial advice, consult our <a style={{color: "var(--color3)"}} href="https://gemini.google.com/">Gemini-AI</a> powered finance advisor at the bottom of the page.</h2>
         <DefaultHeader>---- ---- Balance Over Time ---- ----</DefaultHeader>
         <BalanceGraph />
+        <FinancialMetrics />
         <DefaultHeader>---- ---- Transaction History ---- ----</DefaultHeader>
         <TransactionLog />
         <DefaultHeader>---- ---- AI Powered Finance Advice ---- ----</DefaultHeader>
@@ -50,7 +51,7 @@ export default function Dashboard() {
         <DeleteTransactionButton />
         <UpdateSavingGoalButton />
         <div style={{height: '40px', width: '100%', float: 'left'}}/> {/* Space between groups of buttons */}
-        <FinancialMetrics />
+        
         <CurrencyDropdown />
       </div>
     </>
