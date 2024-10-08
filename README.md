@@ -108,17 +108,6 @@ npm start
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how the project can be used. Here’s how you can start:
-- Input your income and expenses.
-- View financial metrics and reports.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
 <!-- CONTRIBUTING -->
 ## Contributing
 
@@ -142,9 +131,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - your.email@example.com
-
-Project Link: [https://github.com/Taks0708/SOFTENG310-FinTrack](https://github.com/Taks0708/SOFTENG310-FinTrack)
+You can contact UPI yois920 with an email or message Discord username Taks7. Please only contact us if you are absolutely stuck with the set up after the project is handed off.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
