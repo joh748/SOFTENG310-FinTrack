@@ -50,7 +50,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-Financial Tracker for SOFTENG 310 Project at the University of Auckland by Team Meow Meow Kitty Cats (Group 6). This project allows users to input and track their income and expenses for a certain period. Additional functionalities like displaying financial metrics and currency conversion will also be added.
+Financial Tracker for SOFTENG 310 Project at the University of Auckland by Team Meow Meow Kitty Cats (Group 6). This project allows users to input and track their income and expenses for a certain period. 
 
 ### Built With
 * [![React][React.js]][React-url]
