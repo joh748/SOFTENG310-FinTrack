@@ -12,7 +12,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Taks0708/SOFTENG310-FinTrack">
-    <img src="frontend\src\assets\images\FintrackLogo.png" alt="Logo" width="1500" height="434"> 
+    <img src="frontend\src\assets\images\FintrackLogo.png" alt="Logo" width="750" height="217"> 
   </a>
 
   <h3 align="center">Financial Tracker</h3>
@@ -159,10 +159,14 @@ This project utilizes several libraries and APIs to enhance functionality:
 * **[Axios](https://axios-http.com/docs/intro)**: A promise-based HTTP client for making requests to the backend.
 * **[Recharts](https://recharts.org/en-US/)**: A charting library for creating graphical representations of transaction history.
 * **[Gemini API](https://ai.google.dev/api?lang=node)**: Used for providing financial advice to users.
+* **[Chai](https://www.chaijs.com/)**: An assertion library for Node.js and browsers, used for testing.
+* **[Sinon](https://sinonjs.org/)**: A library for creating spies, mocks, and stubs for JavaScript testing.
+* **[date-fns](https://date-fns.org/)**: A modern JavaScript date utility library for manipulating dates.
 
 Feel free to refer to the documentation of each library/API for more information on their usage.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- LEARN MORE -->
 ## Learn More
