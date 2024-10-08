@@ -76,13 +76,11 @@ function LuckyAdviser() {
                         placeholder="Ask for financial advice or education..."
                         className="block w-full p-2 text-sm border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-green resize-none"
                         required
+                        disabled={loading} // Disable button when loading
                     />
-                    <button onClick={getResponseForGivenPrompt} type="submit" className="bg-white text-primary-green rounded-md border border-primary-green hover:bg-gray-200 transition font-medium text-sm px-3 py-2">
+                    <button onClick={getResponseForGivenPrompt} type="submit" disabled={loading}  className="bg-white text-primary-green rounded-md border border-primary-green hover:bg-gray-200 transition font-medium text-sm px-3 py-2">
                         Send
                     </button>
-                    <div className="absolute right-0 -bottom-12 flex space-x-2">
-                        <LuckyButton onGetAdvice={handleLuckyAdvice} />
-                    </div>
                 </div>
             </div>
             {loading ? (
@@ -95,7 +93,7 @@ function LuckyAdviser() {
                 </div>
             ) : (
                 showResponses && promptResponses.length > 0 && (
-                    <div className="flex flex-col mb-4 p-4 border border-gray-300 rounded-md shadow-md">
+                    <div className="flex flex-col mt-8 mb-4 p-4 border border-gray-300 rounded-md shadow-md">
                         {promptResponses.map((promptResponse, index) => (
                             <div key={index}>
                                 <div className="font-bold text-lg mb-2">{promptResponse.title}</div>
@@ -115,6 +113,12 @@ function LuckyAdviser() {
                     </div>
                 )
             )}
+            <div className="flex justify-end mt-2">
+                <LuckyButton
+                    onGetAdvice={handleLuckyAdvice}
+                    disabled={loading} // Disable when loading
+                />
+            </div>
         </div>
     );
 }
