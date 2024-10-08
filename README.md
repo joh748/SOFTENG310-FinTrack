@@ -1,6 +1,3 @@
-Here’s a revised README.md that integrates the content from your original file with the structure and style of the template you provided. You can customize the placeholders and sections as needed:
-
-```markdown
 <!-- Improved compatibility of back to top link -->
 <a id="readme-top"></a>
 
@@ -181,4 +178,3 @@ Project Link: [https://github.com/Taks0708/SOFTENG310-FinTrack](https://github.c
 [PostgreSQL-url]: https://www.postgresql.org/
 [Tailwind.url]: https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white
 [Tailwind-url]: https://tailwindcss.com/
-```
