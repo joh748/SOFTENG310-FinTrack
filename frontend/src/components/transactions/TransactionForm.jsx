@@ -186,7 +186,7 @@ export default function TransactionForm({ onSubmit, onCancel }) {
             </button>
             <button
               onClick={onCancel}
-              className={`bg-gray-400 hover:bg-gray-500 text-white font-bold py-2 px-4 rounded-full mr-2 w-full`}
+              className={`bg-gray-500 ${enableCancelStyle} text-white font-bold py-2 px-4 rounded-full mr-2 w-full`}
             >
               Cancel
             </button>
