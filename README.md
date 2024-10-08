@@ -171,7 +171,7 @@ If the tests fail, make sure that all backend dependencies have been installed. 
 This section introduces different libraries/APIs used for the app and why they are used. This also includes links to more detailed documentation for each libraries/APIs.
 ## Recharts
 Recharts is used for graphical representation of transaction history.
-Documentation and different API that can be used from Recharts can be found on [this page](https://recharts.org/en-US/).
+Documentation and different API that can be used from Recharts can be found on [Recharts documentation](https://recharts.org/en-US/).
 ## Gemini API
 Gemini is used for getting financial advice for our users. 
-Documentation can be found on [this page](https://ai.google.dev/api?lang=node).
+Documentation can be found on [Gemini API documentation](https://ai.google.dev/api?lang=node).
