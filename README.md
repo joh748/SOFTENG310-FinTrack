@@ -12,7 +12,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Taks0708/SOFTENG310-FinTrack">
-    <img src="frontend\src\logo.svg" alt="Logo" width="80" height="80"> <!-- Replace with your logo -->
+    <img src="frontend\src\assets\images\FintrackLogo.png" alt="Logo" width="80" height="80"> <!-- Replace with your logo -->
   </a>
 
   <h3 align="center">Financial Tracker</h3>
