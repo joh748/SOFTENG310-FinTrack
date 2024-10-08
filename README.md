@@ -192,7 +192,7 @@ To learn more about the technologies and frameworks used in this project, check 
 [issues-shield]: https://img.shields.io/github/issues/Taks0708/SOFTENG310-FinTrack.svg?style=for-the-badge
 [issues-url]: https://github.com/Taks0708/SOFTENG310-FinTrack/issues
 [license-shield]: https://img.shields.io/github/license/Taks0708/SOFTENG310-FinTrack.svg?style=for-the-badge
-[license-url]: https://github.com/Taks0708/SOFTENG310-FinTrack/blob/master/LICENSE
+[license-url]: https://github.com/joh748/SOFTENG310-FinTrack/blob/96a0d5a588a086a2ddd1c94ebb5fbb29a651cebf/LICENSE
 [product-screenshot]: images/screenshot.png
 [React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
 [React-url]: https://reactjs.org/
