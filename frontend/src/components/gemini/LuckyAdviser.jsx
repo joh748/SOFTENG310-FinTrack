@@ -78,7 +78,11 @@ function LuckyAdviser() {
                         required
                         disabled={loading} // Disable button when loading
                     />
-                    <button onClick={getResponseForGivenPrompt} type="submit" disabled={loading}  className="bg-white text-primary-green rounded-md border border-primary-green hover:bg-gray-200 transition font-medium text-sm px-3 py-2">
+                    <button 
+                        onClick={getResponseForGivenPrompt} 
+                        type="submit" disabled={loading}  
+                        className={`bg-white text-primary-green rounded-md border border-primary-green hover:bg-gray-200 transition 
+                        font-medium text-sm px-3 py-2 ${loading ? 'opacity-50' : ''}`}>
                         Send
                     </button>
                 </div>
@@ -116,7 +120,7 @@ function LuckyAdviser() {
             <div className="flex justify-end mt-2">
                 <LuckyButton
                     onGetAdvice={handleLuckyAdvice}
-                    disabled={loading} // Disable when loading
+                    loading={loading} // Disable when loading
                 />
             </div>
         </div>
