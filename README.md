@@ -12,7 +12,7 @@
 <br />
 <div align="center">
   <a href="https://github.com/Taks0708/SOFTENG310-FinTrack">
-    <img src="frontend\src\assets\images\FintrackLogo.png" alt="Logo" width="80" height="80"> <!-- Replace with your logo -->
+    <img src="frontend\src\assets\images\FintrackLogo.png" alt="Logo" width="1500" height="434"> 
   </a>
 
   <h3 align="center">Financial Tracker</h3>
@@ -142,11 +142,44 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@your_twitter](https://twitter.com/your_username) - your.email@example.com
+Your Name - your.email@example.com
 
 Project Link: [https://github.com/Taks0708/SOFTENG310-FinTrack](https://github.com/Taks0708/SOFTENG310-FinTrack)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- Libraries/APIs -->
+## Libraries/APIs
+
+This project utilizes several libraries and APIs to enhance functionality:
+
+* **[React](https://reactjs.org/)**: A JavaScript library for building user interfaces.
+* **[Tailwind CSS](https://tailwindcss.com/)**: A utility-first CSS framework for styling.
+* **[Express](https://expressjs.com/)**: A minimal and flexible Node.js web application framework.
+* **[Axios](https://axios-http.com/docs/intro)**: A promise-based HTTP client for making requests to the backend.
+* **[Recharts](https://recharts.org/en-US/)**: A charting library for creating graphical representations of transaction history.
+* **[Gemini API](https://ai.google.dev/api?lang=node)**: Used for providing financial advice to users.
+
+Feel free to refer to the documentation of each library/API for more information on their usage.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LEARN MORE -->
+## Learn More
+
+To learn more about the technologies and frameworks used in this project, check out the following links:
+
+* **[Create React App Documentation](https://github.com/facebook/create-react-app)**: Information about getting started with Create React App.
+* **[React Documentation](https://reactjs.org/docs/getting-started.html)**: Official React documentation.
+* **[Code Splitting](https://facebook.github.io/create-react-app/docs/code-splitting)**: Learn about code splitting in React apps.
+* **[Analyzing the Bundle Size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)**: Techniques to analyze your bundle size.
+* **[Making a Progressive Web App](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)**: Guide to making your app a PWA.
+* **[Advanced Configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)**: Configuration details for Create React App.
+* **[Deployment](https://facebook.github.io/create-react-app/docs/deployment)**: Instructions for deploying your React app.
+* **[Troubleshooting](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)**: Tips for common issues, including build failures.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
