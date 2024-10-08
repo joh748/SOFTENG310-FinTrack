@@ -37,6 +37,7 @@
   <ol>
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#configuration-of-the-env-file">Configuration of the .env File</li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -107,6 +108,7 @@ npm start
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
+<!-- Configuration of the .env file -->
 ## Configuration of the .env File
 
 In order to access the PostgreSQL database hosted by Aiven for storing user and transaction data, a `.env` file is required in the `backend` folder. This file should include the following fields:
