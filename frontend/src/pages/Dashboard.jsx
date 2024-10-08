@@ -14,6 +14,7 @@ import FintrackLogo from "../assets/images/FintrackLogo.png";
 import FinancialMetrics from "../components/metrics/FinancialMetrics";
 
 import '../assets/css/dashboard.css';
+import LuckyAdviser from "../components/gemini/LuckyAdviser";
 
 /*
  * When adding your new component:
@@ -37,6 +38,7 @@ export default function Dashboard() {
       <div class="scrollableContent">
         <BalanceGraph />
         <TransactionLog />
+        <LuckyAdviser/> 
       </div>
       <div class="sideBar">
         <AddTransactionButton />
