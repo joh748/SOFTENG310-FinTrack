@@ -4,6 +4,8 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 import TransactionContext from "../../context/TransactionContext";
 import { useContext, useState, useEffect } from "react";
 
+import '../../assets/css/transactions.css'
+
 import { LoadingSpinner } from "../LoadingSpinner";
 
 import DatePicker from "react-datepicker";
@@ -17,11 +19,13 @@ export default function TransactionList() {
     setCurrentPage,
     fromDate,
     toDate,
-    setDateRange
+    setDateRange,
+    loading,
+    setLoading
   } = useContext(TransactionContext);
   const [maxPage, setMaxPage] = useState(100);
   const [isPageJustLoaded, setIsPageJustLoaded] = useState(true);
-  const [loading, setLoading] = useState(false);
+
 
   // at page load, transactions is empty, so set maxPage to currentPage (1). So using isPageJustLoaded to avoid this behavior at page load
   // only set the max page after the transactions have been loaded
@@ -38,17 +42,6 @@ export default function TransactionList() {
 
   }, [transactions, allTransactions, currentPage, isPageJustLoaded]);
 
-  useEffect(() => {
-    const fetchTransactions = () => {
-      if (loading){
-        setLoading(false);
-      }
-  
-    };
-
-    fetchTransactions();
-  }, [transactions, loading]);
-
 
   return (
     <div className="flex flex-col items-center">
@@ -59,11 +52,13 @@ export default function TransactionList() {
           <h1>To: </h1>
           <DatePicker startDate={fromDate} selected={toDate} dateFormat={"dd-MM-yyyy"} onChange={(date) => setDateRange(fromDate, date)} />
         </div>
-        <div className=" flex justify-between flex-col items-center min-h-[450px] outline outline-4 outline-primary rounded-3xl mt-4 pb-3">
+        <div className="transactionLog">
           <div className="w-[90%] mt-[30px]">
             {loading ? (
-              <LoadingSpinner /> // Show spinner while loading
-            ) : transactions.length !== 0 ? (
+              <LoadingSpinner />
+            ) : transactions.length == 0 ? (
+              <p>No transactions found.</p>
+            ) : transactions.length > 0 ? (
               <ul>
                 {transactions.map((transaction) => (
                   <Transaction

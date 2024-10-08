@@ -8,7 +8,7 @@ const Transaction = ({ transaction }) => {
   const [isAmountNegative, setIsAmountNegative] = useState(false);
   const [convertedAmount, setConvertedAmount] = useState(transaction.amount);
   const [showDetails, setShowDetails] = useState(false);
-  const { currency, handleSelect } = useContext(TransactionContext);
+  const { currency, handleSelect, currencySymbol } = useContext(TransactionContext);
 
   const transactionDate = new Date(transaction.created_at.substring(0, 10));
   const dateString = ((transactionDate.getDate() < 10) ? "0" : "") + transactionDate.getDate() + "-" + 
@@ -31,7 +31,6 @@ const Transaction = ({ transaction }) => {
 
   const handleCheckboxChange = (e) => {
     handleSelect(transaction.id, e.target.checked);
-    console.log("clicked: ", transaction.id);
   };
 
   return (
@@ -45,7 +44,7 @@ const Transaction = ({ transaction }) => {
             onClick={() => setShowDetails(true)}>
             
             <p>
-              {isAmountNegative ? convertedAmount : `+${convertedAmount}`}:{" "}
+              {isAmountNegative ? `-${currencySymbol}${convertedAmount.slice(1)}` : `+${currencySymbol}${convertedAmount}`}:{" "}
               {transaction.title}
             </p>
             
