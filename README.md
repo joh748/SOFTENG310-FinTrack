@@ -23,8 +23,6 @@
     <a href="https://github.com/Taks0708/SOFTENG310-FinTrack"><strong>Explore the docs »</strong></a>
     <br />
     <br />
-    <a href="https://github.com/Taks0708/SOFTENG310-FinTrack">View Demo</a>
-    ·
     <a href="https://github.com/Taks0708/SOFTENG310-FinTrack/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
     ·
     <a href="https://github.com/Taks0708/SOFTENG310-FinTrack/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
@@ -39,12 +37,12 @@
     <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#testing">Testing</a></li>
     <li><a href="#available-scripts"Available Scripts></a></li>
-    <li><a href="#configuration-of-the-env-file">Configuration of the .env File</li>
+    <li><a href="#configuration-of-the-env-file">Configuration of the .env File</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#libralies/apis">Contact</a></li>
-    <li><a href="#learn-more">Contact</a></li>
+    <li><a href="#libralies/apis">Libraries/APIs</a></li>
+    <li><a href="#learn-more">Learn More</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
 </details>
