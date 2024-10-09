@@ -187,7 +187,7 @@ REACT_APP_GEMINI_API_KEY=<your_gemini_api_key>
 
 ### Instructions:
 
-1. **Obtain the .env File**: Please contact us to get the .env file, as it isn't pushed to GitHub. You may also need to create your own PostgreSQL database on Aiven for personal security reasons. 
+1. **Obtain the .env File**: Please copy the above or use `.env.template` in the backend folder. You may also need to create your own PostgreSQL database on Aiven for personal security reasons. When using `.env.template`, please rename to `.env` and put it in the `backend` folder.
 
 2. **Creating a PostgreSQL Database**: Follow the instructions on the [Aiven website][Aiven-url] to create your PostgreSQL database. 
 
@@ -205,6 +205,10 @@ REACT_APP_GEMINI_API_KEY=<your_gemini_api_key>
 5. **CA Certificate**: Ensure that you have your CA certificate from Aiven in the file `backend/src/certs/ca.crt`, as the `CA_CERT_PATH` is prefilled.
 
 Once these steps are completed, the database should work automatically, regardless of whose database you're using. If you encounter any errors, double-check that all fields are filled out correctly.
+
+Please contact us if need any help.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 ## Contributing
