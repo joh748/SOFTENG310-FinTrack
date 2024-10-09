@@ -36,12 +36,12 @@
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#testing">Testing</a></li>
-    <li><a href="#available-scripts">Available Scripts></a></li>
+    <li><a href="#available-scripts">Available Scripts</a></li>
     <li><a href="#configuration-of-the-env-file">Configuration of the .env File</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#libralies/apis">Libraries/APIs</a></li>
+    <li><a href="#librariesapis">Libraries/APIs</a></li>
     <li><a href="#learn-more">Learn More</a></li>
     <li><a href="#acknowledgments">Acknowledgments</a></li>
   </ol>
