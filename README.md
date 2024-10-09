@@ -36,7 +36,7 @@
     <li><a href="#about-the-project">About The Project</a></li>
     <li><a href="#getting-started">Getting Started</a></li>
     <li><a href="#testing">Testing</a></li>
-    <li><a href="#available-scripts"Available Scripts></a></li>
+    <li><a href="#available-scripts">Available Scripts></a></li>
     <li><a href="#configuration-of-the-env-file">Configuration of the .env File</a></li>
     <li><a href="#contributing">Contributing</a></li>
     <li><a href="#license">License</a></li>
