@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import LuckyButton from './LuckyButton';
 import axios from 'axios';
 import { LoadingSpinner } from '../LoadingSpinner';
+import DefaultButton from '../default/DefaultButton';
 
 function LuckyAdviser() {
     const [inputValue, setInputValue] = useState('');
     const [promptResponses, setPromptResponses] = useState([]);
     const [loading, setLoading] = useState(false);
     const [showResponses, setShowResponses] = useState(true);
+    const enableApplyStyle = "hover:bg-primary-dark hover:text-white active:bg-primary-darker";
+    const enableCancelStyle = "hover:bg-primary-red active:bg-primary-red-darker";
+    const disableStyle = "opacity-50";
 
     // Create axios instance with base URL and authorization token
     const axiosInstance = axios.create({
@@ -81,8 +85,8 @@ function LuckyAdviser() {
                     <button 
                         onClick={getResponseForGivenPrompt} 
                         type="submit" disabled={loading}  
-                        className={`bg-white text-primary-green rounded-md border border-primary-green hover:bg-gray-200 transition 
-                        font-medium text-sm px-3 py-2 ${loading ? 'opacity-50' : ''}`}>
+                        className={`${loading ? disableStyle : enableApplyStyle} bg-white text-primary border border-primary 
+                        font-medium text-sm px-3 py-2 rounded-md`}>
                         Send
                     </button>
                 </div>
@@ -110,7 +114,7 @@ function LuckyAdviser() {
                         ))}
                         <button
                             onClick={handleCloseResponses}
-                            className="self-end bg-white text-primary-green rounded-md px-4 py-2 border border-primary-green hover:bg-gray-200 transition"
+                            className={`self-end bg-gray-500 ${enableCancelStyle} text-white font-medium text-sm px-3 py-2 rounded-md`}
                         >
                             Close
                         </button>
@@ -120,7 +124,9 @@ function LuckyAdviser() {
             <div className="flex justify-end mt-2">
                 <LuckyButton
                     onGetAdvice={handleLuckyAdvice}
-                    loading={loading} // Disable when loading
+                    loading={loading}
+                    enableStyles={enableApplyStyle}
+                    disableStyles={disableStyle} // Disable when loading
                 />
             </div>
         </div>
