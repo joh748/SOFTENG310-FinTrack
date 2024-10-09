@@ -211,12 +211,13 @@ Once these steps are completed, the database should work automatically, regardle
 
 Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
 
-1. Fork the Project
+1. Fork and clone the Project
 2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
 3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the Branch (`git push origin feature/AmazingFeature`)
+4. Push to the Branch (`git push --set-upstream origin feature/AmazingFeature`)
 5. Open a Pull Request
 
+Check contribution document for more detail: [Contribution](https://github.com/Taks0708/SOFTENG310-FinTrack/blob/946f5830c0eb2a469253761c9bdb35a8fbd008f6/CONTRIBUTING.md)
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- LICENSE -->
