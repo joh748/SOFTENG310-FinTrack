@@ -1,5 +1,54 @@
-# SOFTENG310-FinTrack
-Financial Tracker for SOFTENG 310 Project in the University of Auckland by Team Meow Meow Kitty Cats (Group 6). This project will allows users to input and track their income and expenses for a certain period of time. Other functionality such as displaying financial metrics, currency conversion, and more will also be added.
+<!-- Improved compatibility of back to top link -->
+<a id="readme-top"></a>
+
+<!-- PROJECT SHIELDS -->
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+[![Issues][issues-shield]][issues-url]
+[![MIT License][license-shield]][license-url]
+
+<!-- PROJECT LOGO -->
+<br />
+<div align="center">
+  <a href="https://github.com/Taks0708/SOFTENG310-FinTrack">
+    <img src="frontend\src\assets\images\FintrackLogo.png" alt="Logo" width="750" height="217"> 
+  </a>
+
+  <h3 align="center">Financial Tracker</h3>
+
+  <p align="center">
+    Financial Tracker for SOFTENG 310 Project at the University of Auckland by Team Meow Meow Kitty Cats (Group 6). This project allows users to input and track their income and expenses for a certain period. 
+    <br />
+    <a href="https://github.com/Taks0708/SOFTENG310-FinTrack"><strong>Explore the docs »</strong></a>
+    <br />
+    <br />
+    <a href="https://github.com/Taks0708/SOFTENG310-FinTrack/issues/new?labels=bug&template=bug-report---.md">Report Bug</a>
+    ·
+    <a href="https://github.com/Taks0708/SOFTENG310-FinTrack/issues/new?labels=enhancement&template=feature-request---.md">Request Feature</a>
+  </p>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#testing">Testing</a></li>
+    <li><a href="#available-scripts">Available Scripts</a></li>
+    <li><a href="#configuration-of-the-env-file">Configuration of the .env File</a></li>
+    <li><a href="#contributing">Contributing</a></li>
+    <li><a href="#license">License</a></li>
+    <li><a href="#contact">Contact</a></li>
+    <li><a href="#librariesapis">Libraries/APIs</a></li>
+    <li><a href="#learn-more">Learn More</a></li>
+    <li><a href="#acknowledgments">Acknowledgments</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
 
 The project is a web app that uses React.js and Tailwind for the frontend, and Express.js for the backend. The database used is PostgreSQL.
 
@@ -7,41 +56,80 @@ To run the web app locally, make sure to run the frontend and backend in separat
 
 You can contact UPI `yois920` with an email or message Discord username `Taks7`. Please only contact us if you are absolutely stuck with the set up after the project is handed off.
 
-# General Setup
-To start off, you will need the node package manager (npm) to be installed in order to download the dependencies required for the frontend and backend. npm is installed alongside node.js
+### Built With
+* [![React][React.js]][React-url]
+* [![Express][Express.js]][Express-url]
+* [![PostgreSQL][PostgreSQL.url]][PostgreSQL-url]
+* [![Tailwind CSS][Tailwind.url]][Tailwind-url]
 
-You can download node.js at: https://nodejs.org/en/download/prebuilt-installer
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-You can check if npm is installed by typing the following into a terminal:
+<!-- GETTING STARTED -->
+## Getting Started
 
-`npm -v`
+To get a local copy up and running, follow these simple steps.
 
-You might have to close and reopen your IDE for it to recognise that npm has been installed
+### Prerequisites
+Make sure you have Node.js and npm installed:
+* [Node.js](https://nodejs.org/en/download/)
 
-After that go into the local directory `.../SOFTENG310-FinTrack` after cloning the repository
+Check if npm is installed:
+```bash
+npm -v
+```
 
-You will need to install the dependencies for the frontend and the backend seperately using npm.
+### Installation
 
-# Frontend
-Make sure you're currently in the `.../SOFTENG310-FinTrack` directory (you may need to create a new terminal).
-Change your current directory to the frontend using:
+1. Clone the repo
+   ```bash
+   git clone https://github.com/Taks0708/SOFTENG310-FinTrack.git
+   ```
+2. Navigate to the project directory
+   ```bash
+   cd SOFTENG310-FinTrack
+   ```
+3. Install dependencies for the frontend and backend separately.
 
-`cd frontend`
+#### Frontend
+```bash
+cd frontend
+npm install
+```
 
-Then, type in the following to download all the frontend dependencies (you have to repeat this if new dependencies are added):
+To run the frontend:
+```bash
+npm start
+```
 
-`npm install`
+#### Backend
+```bash
+cd backend
+npm install
+```
 
-It might take a bit of time for everything to be downloaded, but once its over, you can start running the frontend!
+To run the backend:
+```bash
+npm start
+```
 
-The following section goes into great detail about the various commands, but to get started, just type the following into the terminal to run the frontend (make sure you've already entered the frontend directory):
+<!-- Testing -->
+## Testing
+
+The backend has some unit tests for the controller classes to ensure that the functions registered to each endpoint works. In order to run these tests, go to the **backend directory** and enter:
 
 `npm start`
 
-## Getting Started with Create React App
+The coverage of these tests can be seen by entering the following when in the backend directory:
 
-The frontend was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+`npm run coverage`
 
+Do note that this will generate some folders in the backend directory. These folders have already been added to the .gitignore, and shouldn't be pushed to the main repository.
+
+If the tests fail, make sure that all backend dependencies have been installed. If, for some reason, they aren't being installed by an `npm install`, enter `npm install --save-dev mocha chai sinon nyc` .
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- Available Scripts-->
 ## Available Scripts
 
 In the frontend directory, you can run:
@@ -79,99 +167,139 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- Configuration of the .env file -->
+## Configuration of the .env File
+
+In order to access the PostgreSQL database hosted by Aiven for storing user and transaction data, a `.env` file is required in the `backend` folder. This file should include the following fields:
+
+```
+PG_USER=<your_database_user>
+PG_HOST=<your_database_host>
+PG_DATABASE=<your_database_name>
+PG_PASSWORD=<your_database_password>
+PG_PORT=<your_database_port>
+CA_CERT_PATH=../certs/ca.crt
+CIPHER=<your_cipher_string>
+REACT_APP_GEMINI_API_KEY=<your_gemini_api_key>
+```
+
+### Instructions:
+
+1. **Obtain the .env File**: Please contact us to get the .env file, as it isn't pushed to GitHub. You may also need to create your own PostgreSQL database on Aiven for personal security reasons. 
+
+2. **Creating a PostgreSQL Database**: Follow the instructions on the [Aiven website][Aiven-url] to create your PostgreSQL database. 
+
+3. **Fill in the .env File**: After creating your database, fill in the fields in the `.env` file with your database's information:
+   - `PG_USER`: Your database user.
+   - `PG_HOST`: The host of your database.
+   - `PG_DATABASE`: The name of your database.
+   - `PG_PASSWORD`: Your database password.
+   - `PG_PORT`: The port number (default is usually 5432).
+   - `CIPHER`: This can be any string you want; it's used to encrypt tokens.
+   - `REACT_APP_GEMINI_API_KEY`: This can be created on the [Gemini API page][Gemini-AppKey-url].
+
+4. **Place the .env File**: Once the .env file is configured, place it in the `backend` folder.
+
+5. **CA Certificate**: Ensure that you have your CA certificate from Aiven in the file `backend/src/certs/ca.crt`, as the `CA_CERT_PATH` is prefilled.
+
+Once these steps are completed, the database should work automatically, regardless of whose database you're using. If you encounter any errors, double-check that all fields are filled out correctly.
+
+<!-- CONTRIBUTING -->
+## Contributing
+
+Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+
+1. Fork and clone the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push --set-upstream origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+Check contribution document for more detail: [Contribution](https://github.com/Taks0708/SOFTENG310-FinTrack/blob/946f5830c0eb2a469253761c9bdb35a8fbd008f6/CONTRIBUTING.md)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- LICENSE -->
+## License
+
+Distributed under the Apache-2.0 License. See [Licnese][license-url] for more information.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- CONTACT -->
+## Contact
+
+You can contact UPI yois920 with an email or message Discord username Taks7. Please only contact us if you are absolutely stuck with the set up after the project is handed off.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- Libraries/APIs -->
+## Libraries/APIs
+
+This project utilizes several libraries and APIs to enhance functionality:
+
+* **[React](https://reactjs.org/)**: A JavaScript library for building user interfaces.
+* **[Tailwind CSS](https://tailwindcss.com/)**: A utility-first CSS framework for styling.
+* **[Express](https://expressjs.com/)**: A minimal and flexible Node.js web application framework.
+* **[Axios](https://axios-http.com/docs/intro)**: A promise-based HTTP client for making requests to the backend.
+* **[Recharts](https://recharts.org/en-US/)**: A charting library for creating graphical representations of transaction history.
+* **[date-fns](https://date-fns.org/)**: A modern JavaScript date utility library for manipulating dates.
+* **[Gemini API](https://ai.google.dev/api?lang=node)**: Used for providing financial advice to users.
+* **[Chai](https://www.chaijs.com/)**: An assertion library for Node.js and browsers, used for testing.
+* **[Sinon](https://sinonjs.org/)**: A library for creating spies, mocks, and stubs for JavaScript testing.
+
+Feel free to refer to the documentation of each library/API for more information on their usage.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+<!-- LEARN MORE -->
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+To learn more about the technologies and frameworks used in this project, check out the following links:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+* **[Create React App Documentation](https://github.com/facebook/create-react-app)**: Information about getting started with Create React App.
+* **[React Documentation](https://reactjs.org/docs/getting-started.html)**: Official React documentation.
+* **[Code Splitting](https://facebook.github.io/create-react-app/docs/code-splitting)**: Learn about code splitting in React apps.
+* **[Analyzing the Bundle Size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)**: Techniques to analyze your bundle size.
+* **[Making a Progressive Web App](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)**: Guide to making your app a PWA.
+* **[Advanced Configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)**: Configuration details for Create React App.
+* **[Deployment](https://facebook.github.io/create-react-app/docs/deployment)**: Instructions for deploying your React app.
+* **[Troubleshooting](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)**: Tips for common issues, including build failures.
 
-### Code Splitting
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
+<!-- ACKNOWLEDGMENTS -->
+## Acknowledgments
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+* [Choose an Open Source License](https://choosealicense.com)
+* [GitHub Emoji Cheat Sheet](https://www.webpagefx.com/tools/emoji-cheat-sheet)
+* [Malven's Flexbox Cheatsheet](https://flexbox.malven.co/)
+* [Shields.io](https://shields.io)
 
-### Making a Progressive Web App
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-# Backend
-Make sure you're currently in the `.../SOFTENG310-FinTrack` directory by entering into the terminal (make sure this is a different terminal than the frontend one):
-
-`cd backend`
-
-Then, type in the following to download all the backend dependencies (you have to repeat this if new dependencies are added):
-
-`npm install`
-
-It might take a bit of time for everything to be downloaded, but once its over, you can start running the backend!
-
-To get started, just type the following into the terminal to run the backend (make sure you've already entered the backend directory):
-
-`npm start`
-
-## Express and Axios
-To learn more about Express, check out the [Express documentation](https://expressjs.com/en/4x/api.html).
-
-We send requests to the backend using Axios. To learn more about how to use Axios, chec out the [Axios documentation](https://axios-http.com/docs/intro)
-
-To learn more about the endpoints that are available or how to add new endpoints, check out [the wiki](https://github.com/Taks0708/SOFTENG310-FinTrack/wiki/Endpoints)
-
-## Database and .env File
-We are using a free PostgreSQL database hosted by Aiven to store user and transaction data. In order to access the database, a .env file is required. The .env file should include fields called:
-
-- PG_USER
-- PG_HOST
-- PG_DATABASE
-- PG_PASSWORD
-- PG_PORT
-- CA_CERT_PATH:../certs/ca.crt
-- CIPHER
-- REACT_APP_GEMINI_API_KEY
-
-Please contact us in order to get this .env file, as it isn't pushed to GitHub. You may need to create your own PostgreSQL database on Aiven for personal security reasons though. 
-
-Just follow the instructions on [this page](https://aiven.io/mysql) to do so. Once you have the database created, just fill in the .env file fields shown above with your database's info. The CIPHER field can be any string you want as it is used to encrypt tokens.
-
-For the REACT_APP_GEMINI_API_KEY, this can be created on [this page](https://aistudio.google.com/app/apikey). 
-
-Once you have the .env file, simply place it in the **backend** folder. The database should automatically start working once this is done (regardless of whose database you're using)
-
-If there are errors, ensure that the fields are properly filled out. Also note that the CA_CERT_PATH is prefilled out, so make sure to put your certificate from Aizen in the file: `backend/src/certs/ca.crt`.
-
-## Testing
-
-The backend has some unit tests for the controller classes to ensure that the functions registered to each endpoint works. In order to run these tests, go to the **backend directory** and enter:
-
-`npm start`
-
-The coverage of these tests can be seen by entering the following when in the backend directory:
-
-`npm run coverage`
-
-Do note that this will generate some folders in the backend directory. These folders have already been added to the .gitignore, and shouldn't be pushed to the main repository.
-
-If the tests fail, make sure that all backend dependencies have been installed. If, for some reason, they aren't being installed by an `npm install`, enter `npm install --save-dev mocha chai sinon nyc` .
-
-# Libraries/APIs
-This section introduces different libraries/APIs used for the app and why they are used. This also includes links to more detailed documentation for each libraries/APIs.
-## Recharts
-Recharts is used for graphical representation of transaction history.
-Documentation and different API that can be used from Recharts can be found on [Recharts documentation](https://recharts.org/en-US/).
-## Gemini API
-Gemini is used for getting financial advice for our users. 
-Documentation can be found on [Gemini API documentation](https://ai.google.dev/api?lang=node).
+<!-- MARKDOWN LINKS & IMAGES -->
+[contributors-shield]: https://img.shields.io/github/contributors/Taks0708/SOFTENG310-FinTrack.svg?style=for-the-badge
+[contributors-url]: https://github.com/Taks0708/SOFTENG310-FinTrack/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Taks0708/SOFTENG310-FinTrack.svg?style=for-the-badge
+[forks-url]: https://github.com/Taks0708/SOFTENG310-FinTrack/network/members
+[stars-shield]: https://img.shields.io/github/stars/Taks0708/SOFTENG310-FinTrack.svg?style=for-the-badge
+[stars-url]: https://github.com/Taks0708/SOFTENG310-FinTrack/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Taks0708/SOFTENG310-FinTrack.svg?style=for-the-badge
+[issues-url]: https://github.com/Taks0708/SOFTENG310-FinTrack/issues
+[license-shield]: https://img.shields.io/github/license/Taks0708/SOFTENG310-FinTrack.svg?style=for-the-badge
+[license-url]: https://github.com/joh748/SOFTENG310-FinTrack/blob/96a0d5a588a086a2ddd1c94ebb5fbb29a651cebf/LICENSE
+[product-screenshot]: images/screenshot.png
+[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
+[React-url]: https://reactjs.org/
+[Express.js]: https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white
+[Express-url]: https://expressjs.com/
+[PostgreSQL.url]: https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white
+[PostgreSQL-url]: https://www.postgresql.org/
+[Tailwind.url]: https://img.shields.io/badge/TailwindCSS-06B6D4?style=for-the-badge&logo=tailwind-css&logoColor=white
+[Tailwind-url]: https://tailwindcss.com/
+[Aiven-url]: https://aiven.io/postgresql
+[Gemini-AppKey-url]: https://aistudio.google.com/app/apikey
