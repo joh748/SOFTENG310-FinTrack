@@ -16,6 +16,8 @@ const userService = require('../../src/services/userService');
 describe('usersController', () => {
 
     let req, res;
+    let testPassword = 'test'
+    let testEmail = 'test'
     
     // Set up the req and res objects before each test
     beforeEach(() => {
@@ -36,7 +38,7 @@ describe('usersController', () => {
       // Test the login function when the login is successful
         it('should return token on successful login', async () => {
           // Set up the req object
-          req.body = { email: 'test', password: 'test' };
+          req.body = { email: testEmail, password: testPassword };
 
           // Stub functions to mock valid login
           sinon.stub(userService, 'checkEmailExists').resolves(true);
@@ -55,7 +57,7 @@ describe('usersController', () => {
         // Test the login function when the email does not exist
         it('should return error if email does not exist', async () => {
             // Set up the req object
-            req.body = { email: 'test', password: 'test' };
+            req.body = { email: testEmail, password: testPassword };
 
             // Stub functions to mock invalid email
             sinon.stub(userService, 'checkEmailExists').resolves(false);
@@ -70,7 +72,7 @@ describe('usersController', () => {
         // Test the login function when the password is incorrect
         it('should return error if password is incorrect', async () => {
             // Set up the req object
-            req.body = { email: 'test', password: 'test' };
+            req.body = { email: testEmail, password: testPassword };
 
             // Stub functions to mock invalid password
             sinon.stub(userService, 'checkEmailExists').resolves(true);
@@ -86,7 +88,7 @@ describe('usersController', () => {
         // Test the login function when an error occurs
         it('should return error if an error occurs during login', async () => {
             // Set up the req object
-            req.body = { email: 'test', password: 'test' };
+            req.body = { email: testEmail, password: testPassword };
 
             // Stub the checkEmailExists function to reject with an error
             sinon.stub(userService, 'checkEmailExists').rejects(new Error('An error occurred'));
@@ -104,7 +106,7 @@ describe('usersController', () => {
         // Test the signup function when the signup is successful
         it('should return token on successful signup', async () => {
           // Set up the req object
-          req.body = { email: 'test', password: 'test' };
+          req.body = { email: testEmail, password: testPassword };
 
           // Stub functions to mock valid signup
           sinon.stub(userService, 'checkEmailExists').resolves(false);
@@ -122,7 +124,7 @@ describe('usersController', () => {
         // Test the signup function when the email already exists
         it('should return error if email already in use', async () => {
           // Set up the req object
-          req.body = { email: 'test', password: 'test' };
+          req.body = { email: testEmail, password: testPassword };
 
           // Stub functions to mock email already in use
           sinon.stub(userService, 'checkEmailExists').resolves(true);
@@ -137,7 +139,7 @@ describe('usersController', () => {
         // Test the signup function when an error occurs
         it('should return error if an error occurs during signup', async () => {
             // Set up the req object
-            req.body = { email: 'test', password: 'test' };
+            req.body = { email: testEmail, password: testPassword };
 
             // Stub the checkEmailExists function to reject with an error
             sinon.stub(userService, 'checkEmailExists').rejects(new Error('An error occurred'));
